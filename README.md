@@ -1,4 +1,4 @@
-Jean-Christophe
+Jean
 Simon
 guillaume
 sonia
