@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const path = require ('path');
 const auth = require('./middlewares/auth');
 const users = require('./controllers/users');
+const suppliers = require('./controllers/suppliers');
 const app = express();
 const connectTodatabase = require('./config/connectToDatabase')
 const router = express.Router();
@@ -17,6 +18,9 @@ app.use('/', router);
 
 router.post('/register', users.register);
 router.post('/login', users.login);
+
+router.post('/supplierRegister', suppliers.register);
+router.post('/supplierLogin', suppliers.login);
 
 app.get('/', (req, res) => {
     res.send('NeedElp baby')

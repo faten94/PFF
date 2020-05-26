@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Supplier = require('./SupplierSch')
 const Service = require('./ServiceSch')
 
 
@@ -9,6 +8,10 @@ const SupplierSchema = new Schema({
     lastname: { type: String, required: true },
 
     firstname: { type: String, required: true },
+
+    email: { type: String, required: true },
+
+    password: { type: String, required: true },
       
     photo: {type: String },
 
@@ -16,7 +19,7 @@ const SupplierSchema = new Schema({
 
     siret :{type :Number},
 
-    address: {type: string , required: true },
+    address: {type: String , required: true },
 
     zip: {type: Number , required: true },
     
@@ -33,5 +36,5 @@ const SupplierSchema = new Schema({
     Service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
 })
 
-const Supplier = mongoose.model('Supplier', DevisSchema)
+const Supplier = mongoose.model('Supplier', SupplierSchema)
 module.exports = Supplier
