@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const LocationSchema = new Schema({
   
-    zip: {type: int },
+    zip: {type: Number },
     
     city: { type: String},
     
@@ -11,4 +11,5 @@ const LocationSchema = new Schema({
     
 })
 
-module.exports = mongoose.model('LocationSch', LocationSchema)
+Const Location = mongoose.model('Location', LocationSchema)
+module.exports = Location

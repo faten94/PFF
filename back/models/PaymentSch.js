@@ -5,12 +5,12 @@ const PaymentSchema = new Schema({
  
     date: { type: Date, default: Date.now },
     
-    price: {type: Float },
+    price: {type: Number },
     
     devis: { type: String},
     
     statut: {type: String},
     
 })
-
-module.exports = mongoose.model('PaymentSch', PaymentSchema)
+const Payment = mongoose.model('Payment', PaymentSchema)
+module.exports = Payment
