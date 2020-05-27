@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch } from "react-router-dom";
+import ProtectedRoute from "./protectedRoute";
+import ProfileUserPage from "./Pages/ProfileUserPage";
+import ProfileSettingUserPage from "./Pages/ProfileSettingUserPage";
+import ProfileSettingSupplierPage from "./Pages/ProfileSettingSupplierPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <ProtectedRoute exact path="/account" component={ProfileUserPage} />
+          <ProtectedRoute exact path="/account/edit" component={ProfileSettingUserPage} />
+          <ProtectedRoute exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
