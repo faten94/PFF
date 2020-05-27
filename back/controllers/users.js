@@ -14,6 +14,7 @@ app.use(express.json());
 
 
 exports.register = async (req,res, next) => {
+    req.body.role = 'user'
     const userExists = await User.findOne({ email: req.body.email })
     if (userExists) {
         return res.status(403).json({
@@ -34,7 +35,7 @@ exports.login = (req, res) => {
         
         if (err || !user){
             return res.status(400).json({
-                error: "Email doesn't exist"
+                error: "Email doesn't exist."
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
@@ -53,7 +54,7 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
     res.clearCookie("token");
-    return res.json({message: "Logout succesfull !"})
+    return res.json({message: "Logout succesfull!"})
 };
 
 exports.getUserFromId = function (req, res, id) {
@@ -67,5 +68,52 @@ exports.getProfile = (req, res) => {
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)
+    })
+}
+
+exports.getAllProfile = (req, res) => {
+    User.find(function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}
+
+exports.updateProfile = (req, res) => {
+    id =  getId.getId(req, res)
+    bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
+        req.body.password = encrypted
+        User.findByIdAndUpdate(id, req.body, function(err, result){
+            if(err) res.send(err)
+            res.json('User updated.')
+        })
+    })
+}
+
+exports.deleteProfile = (req, res) => {
+    id =  getId.getId(req, res)
+    User.findByIdAndDelete(id, req.body, function(err, result){
+        if(err) res.send(err)
+        res.clearCookie("token");
+        res.json({message: result.firstname+' '+result.lastname+" deleted!"})
+    })
+}
+
+exports.adminUpdateProfile = async (req, res) => {
+    id =  req.body._id
+    await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
+        req.body.password = encrypted
+        User.findByIdAndUpdate(id, req.body, function(err, result){
+            if(err) res.send(err)
+            res.json('User updated.')
+        })
+    })
+}
+
+exports.verifyAdmin = function (req, res, id) {
+    return User.findById(id, function (err, user) {
+        if(err) throw err;
+        if(user.role == 'admin'){
+            return 'admin'
+        }
     })
 }
