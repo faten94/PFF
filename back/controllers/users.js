@@ -34,7 +34,7 @@ exports.login = (req, res) => {
         
         if (err || !user){
             return res.status(400).json({
-                error: "Email doesn't exist"
+                error: "Email doesn't exist."
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
@@ -53,7 +53,7 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
     res.clearCookie("token");
-    return res.json({message: "Logout succesfull !"})
+    return res.json({message: "Logout succesfull!"})
 };
 
 exports.getUserFromId = function (req, res, id) {
@@ -79,9 +79,12 @@ exports.getAllProfile = (req, res) => {
 
 exports.updateProfile = (req, res) => {
     id =  getId.getId(req, res)
-    User.findByIdAndUpdate(id, req.body, function(err, result){
-        if(err) res.send(err)
-        res.send(result)
+    bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
+        req.body.password = encrypted
+        User.findByIdAndUpdate(id, req.body, function(err, result){
+            if(err) res.send(err)
+            res.json('User updated.')
+        })
     })
 }
 
@@ -89,6 +92,18 @@ exports.deleteProfile = (req, res) => {
     id =  getId.getId(req, res)
     User.findByIdAndDelete(id, req.body, function(err, result){
         if(err) res.send(err)
-        res.send(result)
+        res.clearCookie("token");
+        res.json({message: result.firstname+' '+result.lastname+" deleted!"})
+    })
+}
+
+exports.adminUpdateProfile = async (req, res) => {
+    id =  req.body._id
+    await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
+        req.body.password = encrypted
+        User.findByIdAndUpdate(id, req.body, function(err, result){
+            if(err) res.send(err)
+            res.json('User updated.')
+        })
     })
 }
