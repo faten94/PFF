@@ -69,3 +69,26 @@ exports.getProfile = (req, res) => {
         res.json(user)
     })
 }
+
+exports.getAllProfile = (req, res) => {
+    User.find(function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}
+
+exports.updateProfile = (req, res) => {
+    id =  getId.getId(req, res)
+    User.findByIdAndUpdate(id, req.body, function(err, result){
+        if(err) res.send(err)
+        res.send(result)
+    })
+}
+
+exports.deleteProfile = (req, res) => {
+    id =  getId.getId(req, res)
+    User.findByIdAndDelete(id, req.body, function(err, result){
+        if(err) res.send(err)
+        res.send(result)
+    })
+}

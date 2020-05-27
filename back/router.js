@@ -10,7 +10,8 @@ app.use('/', router);
 router.post('/register', users.register);
 router.post('/login', users.login);
 router.post('/logout', users.logout);
-router.post('/settings', auth, users.getProfile);
+router.get('/settings', auth, users.getProfile);
+router.post('/settings', auth, users.updateProfile);
 
 router.post('/supplierRegister', suppliers.register);
 router.post('/supplierLogin', suppliers.login);
