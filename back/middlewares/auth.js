@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const users = require('../controllers/users');
 
 module.exports = (req, res, next) => {
-  console.log("auth")
   try {
     const token = req.headers.authorization
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');

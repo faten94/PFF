@@ -14,10 +14,8 @@ exports.register = async (req,res, next) => {
             error: "This email is already used."
         });
     }
-    console.log('Register starting')
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
-        console.log('bcrypt '+req.body.password)
         const user = new User(req.body)
         user.save()
         res.status(200).json({ message: "Registration complete." });
@@ -30,7 +28,7 @@ exports.login = (req, res) => {
         
         if (err || !user){
             return res.status(400).json({
-                error: "L'email n'existe pas"
+                error: "Email doesn't exist"
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
@@ -39,10 +37,15 @@ exports.login = (req, res) => {
             }
             const token = jwt.sign({_id: user._id}, 'RANDOM_TOKEN_SECRET', { expiresIn: '24h' });
             
-            res.cookie("token", token, {expire: new Date() + 86400})
+            res.cookie("token", token, {expire: new Date() + 86400, httpOnly: true})
             
             const {_id, name, email} = user
             return res.json({token, user: {_id, email, name}});
         });
     });  
+};
+
+exports.logout = (req, res) => {
+    res.clearCookie("token");
+    return res.json({message: "Logout succesfull !"})
 };

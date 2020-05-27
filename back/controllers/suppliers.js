@@ -14,10 +14,9 @@ exports.register = async (req,res, next) => {
             error: "This email is already used."
         });
     }
-    console.log('Register starting')
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
-        console.log('bcrypt '+req.body.password)
+
         const supplier = new Supplier(req.body)
         supplier.save()
         res.status(200).json({ message: "Registration complete." });
@@ -30,7 +29,7 @@ exports.login = (req, res) => {
         
         if (err || !supplier){
             return res.status(400).json({
-                error: "L'email n'existe pas"
+                error: "Email doesn't exist"
             })
         }
         bcrypt.compare(req.body.password, supplier.password, function(err, result) {
