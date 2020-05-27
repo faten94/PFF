@@ -17,7 +17,9 @@ const UserSchema = new Schema({
   
   email: { type: String, required: true },
   
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+
+  role: { type: String, default: 'user'}
 
 })
 

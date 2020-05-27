@@ -14,6 +14,7 @@ app.use(express.json());
 
 
 exports.register = async (req,res, next) => {
+    req.body.role = 'user'
     const userExists = await User.findOne({ email: req.body.email })
     if (userExists) {
         return res.status(403).json({
@@ -105,5 +106,14 @@ exports.adminUpdateProfile = async (req, res) => {
             if(err) res.send(err)
             res.json('User updated.')
         })
+    })
+}
+
+exports.verifyAdmin = function (req, res, id) {
+    return User.findById(id, function (err, user) {
+        if(err) throw err;
+        if(user.role == 'admin'){
+            return 'admin'
+        }
     })
 }
