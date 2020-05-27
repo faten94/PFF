@@ -5,9 +5,12 @@ const path = require ('path');
 const auth = require('./middlewares/auth');
 const users = require('./controllers/users');
 const suppliers = require('./controllers/suppliers');
+const dotenv = require("dotenv");
 const app = express();
 const connectTodatabase = require('./config/connectToDatabase')
 const router = express.Router();
+
+dotenv.config();
 
 app.use(bodyParser.json());
 app.use(cors())

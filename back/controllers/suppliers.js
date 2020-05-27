@@ -5,6 +5,8 @@ const Supplier = require('../models/SupplierSch');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv");
+dotenv.config();
 app.use(express.json());
 
 exports.register = async (req,res, next) => {
@@ -36,7 +38,7 @@ exports.login = (req, res) => {
             if(result == false){
                 res.json({validation: false});
             }
-            const token = jwt.sign({_id: supplier._id}, 'RANDOM_TOKEN_SECRET', { expiresIn: '24h' });
+            const token = jwt.sign({_id: supplier._id}, process.env.JWT_SECRET, { expiresIn: '24h' });
             
             res.cookie("token", token, {expire: new Date() + 86400})
             

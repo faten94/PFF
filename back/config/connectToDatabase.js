@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const mongoURI= "mongodb+srv://needelp:epitech2020@needelp-yr1nq.mongodb.net/test?retryWrites=true&w=majority";
+const dotenv = require("dotenv");
 
-
+dotenv.config();
 
 const connectToDatabase = async() =>
 {
@@ -9,7 +9,7 @@ const connectToDatabase = async() =>
     {
        await mongoose.connect
         (
-            mongoURI,
+            process.env.MONGO_URI,
             {
                 useCreateIndex:true,
                 useFindAndModify:true,
