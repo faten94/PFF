@@ -10,6 +10,40 @@ class ProfileUserPage extends Component {
 
     };
 
+    getUser = (res) => {
+        axios
+          .get("http://localhost:5000/settings")
+          .then((response) => {
+            console.log(response);
+            const data = response.data;
+            console.log(data);
+            this.setState({ userInfo: data });
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+    }
+
+   // displayUser = (res) => {
+  //     
+  //  }
+
+    displayTwittes = (res) => {
+        console.log("author2 passe dans le render:", authors2);
+        const numbers = authors2;
+        console.log("json", JSON.stringify(numbers));
+        const listItems = numbers.map((twitt) => {
+          return (<div>
+            <p>{twitt.text}</p>
+            <span>{twitt.hashtag}</span>
+            <p>{twitt.author}</p>
+          </div>
+          )
+        });
+        console.log("liistItems", numbers);
+        return (listItems);
+      };
+
     render() {
         return (
             <div>
