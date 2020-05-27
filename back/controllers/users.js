@@ -6,8 +6,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv");
+const auth = require("../middlewares/auth");
+const getId = require("../middlewares/getId");
+
 dotenv.config();
 app.use(express.json());
+
 
 exports.register = async (req,res, next) => {
     const userExists = await User.findOne({ email: req.body.email })
@@ -51,3 +55,17 @@ exports.logout = (req, res) => {
     res.clearCookie("token");
     return res.json({message: "Logout succesfull !"})
 };
+
+exports.getUserFromId = function (req, res, id) {
+    return User.findById(id, function (err, user) {
+        if(err) throw err;
+    })
+}
+
+exports.getProfile = (req, res) => {
+    id = getId.getId(req, res)
+    User.findById(id, function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}

@@ -3,12 +3,12 @@ const users = require('../controllers/users');
 const dotenv = require("dotenv");
 dotenv.config();
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
-    const token = req.headers.authorization
+    const token = req.cookies.token
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decodedToken.userId;
-    if (users.getUserFromId(req, res, userId)) {
+    const userId = decodedToken._id;
+    if (!await users.getUserFromId(req, res, userId)) {
       console.log('auth failed')
       throw 'Invalid user ID';
     } else {
