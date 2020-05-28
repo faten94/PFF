@@ -30,7 +30,10 @@ exports.register = async (req,res, next) => {
 };
 
 exports.login = (req, res) => {
+    console.log('login')
+    console.log(req.body)
     const { email, password } = req.body
+    console.log(email)
     User.findOne({email}, (err, user) => {
         
         if (err || !user){
@@ -39,13 +42,13 @@ exports.login = (req, res) => {
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
+            console.log(result)
             if(result == false){
-                res.json({validation: false});
+                return res.status(400).json({
+                    error: "Email doesn't exist."
+                })
             }
-            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });
-            
-            res.cookie("token", token, {expire: new Date() + 86400, httpOnly: true})
-            
+            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });            
             const {_id, name, email} = user
             return res.json({token, user: {_id, email, name}});
         });
@@ -65,7 +68,6 @@ exports.getUserFromId = function (req, res, id) {
 
 exports.getProfile = (req, res) => {
     id = getId.getId(req, res)
-    console.log("on est dans le back")
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)
@@ -80,7 +82,9 @@ exports.getAllProfile = (req, res) => {
 }
 
 exports.updateProfile = (req, res) => {
+    console.log("updateProfile")
     id =  getId.getId(req, res)
+    if(req.body.password == '') return res.json('empty password')
     bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
         User.findByIdAndUpdate(id, req.body, function(err, result){
