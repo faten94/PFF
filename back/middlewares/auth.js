@@ -5,7 +5,13 @@ dotenv.config();
 
 module.exports = async (req, res, next) => {
   try {
-    const token = req.cookies.token
+    if(req.cookies.token != undefined){
+      const token = req.cookies.token
+    }
+    else {
+      const token = req.body.token
+    }
+    
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken._id;
     if (!await users.getUserFromId(req, res, userId)) {
