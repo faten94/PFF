@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <div className="navbar" style={{backgroundColor: "cornflowerblue"}} >
-      <Link to="/register">Inscription</Link>
+      <Link to="/registeruser">Inscription</Link>
+      <Link to="/registersupplier">Envie de proposer vos services ?</Link>
 
     <LoginForm />
 
