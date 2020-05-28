@@ -29,7 +29,10 @@ exports.register = async (req,res, next) => {
 };
 
 exports.login = (req, res) => {
+    console.log('login')
+    console.log(req.body)
     const { email, password } = req.body
+    console.log(email)
     User.findOne({email}, (err, user) => {
         
         if (err || !user){
@@ -38,13 +41,13 @@ exports.login = (req, res) => {
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
+            console.log(result)
             if(result == false){
-                res.json({validation: false});
+                return res.status(400).json({
+                    error: "Email doesn't exist."
+                })
             }
-            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });
-            
-            res.cookie("token", token, {expire: new Date() + 86400, httpOnly: true})
-            
+            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });            
             const {_id, name, email} = user
             return res.json({user: {_id, email, name}});
         });

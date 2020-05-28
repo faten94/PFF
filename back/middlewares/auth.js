@@ -4,13 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = async (req, res, next) => {
+  console.log("auth "+req.headers.authorization);
   try {
-    if(req.cookies.token != undefined){
-      const token = req.cookies.token
-      }
-      else {
-      const token = req.body.token
-      }
+    const token = req.headers.authorization
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken._id;
     if (!await users.getUserFromId(req, res, userId)) {
