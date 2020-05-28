@@ -65,6 +65,7 @@ exports.getUserFromId = function (req, res, id) {
 
 exports.getProfile = (req, res) => {
     id = getId.getId(req, res)
+    console.log("on est dans le back")
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)

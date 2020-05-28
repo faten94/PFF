@@ -1,34 +1,70 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+import { isAuthenticated } from "../auth/auth"
+import { read } from "./apiUser"
+import Cookies from 'js-cookie';
 
 class ProfileUserPage extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            name: "",
+            email: "",
+        }
     }
 
-    state = {
-        userInfo: [],
-    };
+    // init = () => {
+    //     const token = isAuthenticated().token;
+    //     read(token)
 
-    getUser = (res) => {
-        axios
-          .get("http://localhost:8080/settings")
-          .then((response) => {
-            console.log("response",response);
-            const data = response.data;
-            console.log("data",data);
-            this.setState({ userInfo: data });
-          })
-          .catch((err) => {
-            console.log(err);
-          })
+    //     .then(data => {
+    //         if(data.error) {
+    //             this.setState({redirect : true});
+    //         }
+    //         else {
+    //             this.setState({ userInfo: data });
+    //             console.log(data);
+    //         }
+    //     });
+    // }
+
+    // getUser = () => {
+    //     axios
+    //       .get("http://localhost:8080/settings/")
+    //       .then((response) => {
+    //         console.log("response",response);
+    //         const data = response.data;
+    //         console.log("data",data);
+    //         this.setState({ userInfo: data });
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       })
+    // }
+
+    componentDidMount() {
+        const headers = {'authorization': Cookies.get('token')}
+        axios.get('http://localhost:8080/settings', {headers: headers})
+        .then(res => {
+            console.log(res);
+        console.log(this.state);
+        this.setState({name: res.data.firstname, email: res.data.email})
+        })
+        .catch(error => console.log(error));
+        // fetch('http://localhost:8080/settings', {
+        //         method: 'GET',
+        //     credentials: "same-origin"
+        // })
+        //     .then((res) =>
+        //         console.log("on est dans le component didmount", res)
+        //     ).catch(
+        //         error => console.log(error)
+        //     );
     }
 
-   // displayUser = (res) => {
-  //     
-  //  }
+    // displayUser = (res) => {
+    //     
+    //  }
 
 
     render() {
@@ -84,8 +120,8 @@ class ProfileUserPage extends Component {
                 <br></br>
                 <div>Cliquez sur un element du tableau pour le modifier.
                         <br></br>
-                        <br></br>
-                    <button onClick={this.getUser()}>
+                    <br></br>
+                    <button>
                         cliquez ici pour modifier le profil completement</button></div>
             </div>
         );
