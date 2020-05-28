@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 const Supplier = require('../models/SupplierSch');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -43,7 +42,7 @@ exports.login = (req, res) => {
             res.cookie("token", token, {expire: new Date() + 86400})
             
             const {_id, name, email} = supplier
-            return res.json({token, supplier: {_id, email, name}});
+            return res.json({supplier: {_id, email, name, typesupplier}});
         });
     });  
 };

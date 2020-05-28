@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const users = require('../controllers/users');
+const adminUsers = require('../controllers/adminUsers')
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken._id;
     
-    if (!await users.verifyAdmin(req, res, userId)) {
+    if (!await adminUsers.verifyAdmin(req, res, userId)) {
       res.json('Warning, you are not an admin')
     } else {
       console.log('Admin role verified')
