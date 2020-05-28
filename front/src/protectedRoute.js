@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-
+//protected route for user -- to do protected route for admin
 const ProtectedRoute = ({ component: Component, ...rest }) => {
     return (
         <Route

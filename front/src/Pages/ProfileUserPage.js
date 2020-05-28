@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
+import axios from "axios";
 
 
 class ProfileUserPage extends Component {
     constructor(props) {
         super(props);
+
     }
 
     state = {
-
+        userInfo: [],
     };
 
     getUser = (res) => {
         axios
-          .get("http://localhost:5000/settings")
+          .get("http://localhost:8080/settings")
           .then((response) => {
-            console.log(response);
+            console.log("response",response);
             const data = response.data;
-            console.log(data);
+            console.log("data",data);
             this.setState({ userInfo: data });
           })
           .catch((err) => {
@@ -28,34 +30,19 @@ class ProfileUserPage extends Component {
   //     
   //  }
 
-    displayTwittes = (res) => {
-        console.log("author2 passe dans le render:", authors2);
-        const numbers = authors2;
-        console.log("json", JSON.stringify(numbers));
-        const listItems = numbers.map((twitt) => {
-          return (<div>
-            <p>{twitt.text}</p>
-            <span>{twitt.hashtag}</span>
-            <p>{twitt.author}</p>
-          </div>
-          )
-        });
-        console.log("liistItems", numbers);
-        return (listItems);
-      };
 
     render() {
         return (
             <div>
                 <h1 className="title">Compte</h1>
 
-                <img class="photo"
+                <img className="photo"
                     src="#"
                     alt="ID n*" />
 
                 <br></br>
 
-                <label for="photo">Telechargez une photo de profil:</label>
+                <label htmlFor="photo">Telechargez une photo de profil:</label>
 
                 <input type="file"
                     id="photo" name="photo"
@@ -98,7 +85,7 @@ class ProfileUserPage extends Component {
                 <div>Cliquez sur un element du tableau pour le modifier.
                         <br></br>
                         <br></br>
-                    <button>
+                    <button onClick={this.getUser()}>
                         cliquez ici pour modifier le profil completement</button></div>
             </div>
         );
