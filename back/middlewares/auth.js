@@ -4,7 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = async (req, res, next) => {
+  // console.log("on est dans le auth middlewear", req);
   try {
+    console.log("on est dans le auth middlewear", req.cookies);
     const token = req.cookies.token
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken._id;
