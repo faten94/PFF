@@ -35,3 +35,11 @@ exports.getAllProfile = (req, res) => {
         res.json(user)
     })
 }
+
+exports.getProfile = (req, res) => {
+    id =  req.body._id
+    User.findById(id, function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}
