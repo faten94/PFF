@@ -34,15 +34,13 @@ class ProfileUserPage extends Component {
     }
     
     handleSubmit(event) {
-        console.log('handlesubmit')
         event.preventDefault();
         var headers = {'authorization': Cookies.get('token')}
         var user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };
-        console.log(user)
-        
+
         axios.post('http://localhost:8080/login', {
             email: this.state.email,
             password: this.state.oldpassword
@@ -59,11 +57,14 @@ class ProfileUserPage extends Component {
                     password: this.state.password
                 }
                 if (this.state.password == '') data.password = this.state.oldpassword
-                console.log(data)
+                if (this.state.lastname == '') data.lastname = this.state.oldlastname
+                if (this.state.firstname == '') data.firstname = this.state.oldfirstname
+                if (this.state.email == '') data.email = this.state.oldemail
+                if (this.state.address == '') data.address = this.state.oldaddress
+                if (this.state.phone == '') data.phone = this.state.oldphone
+                if (this.state.date == '') data.date = this.state.olddate
                 axios.post('http://localhost:8080/settings', data, {headers: headers})
                 .then(res => {
-                    console.log('after settings')
-                    console.log(res)
                     window.location.reload(false)
                 })
             }
@@ -74,7 +75,6 @@ class ProfileUserPage extends Component {
         const headers = {'authorization': Cookies.get('token')}
         axios.get('http://localhost:8080/settings', {headers: headers})
         .then(res => {
-            console.log(res.data);
             this.setState({
                 firstname: res.data.firstname,
                 oldfirstname: res.data.firstname,
