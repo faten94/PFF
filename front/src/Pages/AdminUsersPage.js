@@ -7,10 +7,10 @@ import Cookies from 'js-cookie';
 class AdminUsersPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            users :[],
+        };
     }
-    state = {
-        users :[],
-    };
     
     getAllUsers = () => {
         const headers = { 'authorization': Cookies.get('token') }
@@ -48,7 +48,6 @@ class AdminUsersPage extends Component {
         return (usersList);
     }
 
-
     async componentDidMount() {
         await this.getAllUsers();
     }
@@ -63,6 +62,17 @@ class AdminUsersPage extends Component {
             
                 <table id='students'>
                     <tbody>
+                    <tr>
+                    <td>Nom</td>
+                    <td>Prenom</td>
+                    <td>Password</td>
+                    <td>Adresse</td>
+                    <td>Photo</td>
+                    <td>Telephone</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                    <td>Date d'inscription</td>
+                </tr>
                         {this.displayUsers(users)}
                     </tbody>
                 </table>
