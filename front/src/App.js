@@ -7,6 +7,7 @@ import ProfileSettingSupplierPage from "./Pages/ProfileSettingSupplierPage";
 import AdminPage from "./Pages/AdminPage";
 import HomePage from './Pages/HomePage';
 import Navbar from './components/Navbar';
+import Logout from './components/logout/Logout';
 import RegisterUserPage from './Pages/RegisterUserPage';
 import RegisterSupplierPage from './Pages/RegisterSupplierPage';
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/registeruser" component={RegisterUserPage} />
         <Route path="/registersupplier" component={RegisterSupplierPage} />
+        <Route path="/logout"><Logout /></Route>
         </Switch>
       </BrowserRouter>
       </div>

@@ -20,6 +20,7 @@ function Navbar() {
     return (
       <div className="navbar" style={{backgroundColor: "cornflowerblue"}} >
       <Link to="/account">Compte</Link>
+      <li className="nav-item"><a className="nav-link active" href="/Logout">Logout</a></li>
       </div>
       )
     }
