@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 const User = require('../models/UserSch')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -30,7 +29,10 @@ exports.register = async (req,res, next) => {
 };
 
 exports.login = (req, res) => {
+    console.log('login')
+    console.log(req.body)
     const { email, password } = req.body
+    console.log(email)
     User.findOne({email}, (err, user) => {
         
         if (err || !user){
@@ -39,81 +41,21 @@ exports.login = (req, res) => {
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
+            console.log(result)
             if(result == false){
-                res.json({validation: false});
+                return res.status(400).json({
+                    error: "Email doesn't exist."
+                })
             }
-            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });
-            
-            res.cookie("token", token, {expire: new Date() + 86400, httpOnly: true})
-            
+            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });            
             const {_id, name, email} = user
-            return res.json({token, user: {_id, email, name}});
+            return res.json({user: {_id, email, name}, token: token});
         });
     });  
-};
-
-exports.logout = (req, res) => {
-    res.clearCookie("token");
-    return res.json({message: "Logout succesfull!"})
 };
 
 exports.getUserFromId = function (req, res, id) {
     return User.findById(id, function (err, user) {
         if(err) throw err;
-    })
-}
-
-exports.getProfile = (req, res) => {
-    id = getId.getId(req, res)
-    User.findById(id, function (err, user) {
-        if(err) throw err;
-        res.json(user)
-    })
-}
-
-exports.getAllProfile = (req, res) => {
-    User.find(function (err, user) {
-        if(err) throw err;
-        res.json(user)
-    })
-}
-
-exports.updateProfile = (req, res) => {
-    id =  getId.getId(req, res)
-    bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
-        req.body.password = encrypted
-        User.findByIdAndUpdate(id, req.body, function(err, result){
-            if(err) res.send(err)
-            res.json('User updated.')
-        })
-    })
-}
-
-exports.deleteProfile = (req, res) => {
-    id =  getId.getId(req, res)
-    User.findByIdAndDelete(id, req.body, function(err, result){
-        if(err) res.send(err)
-        res.clearCookie("token");
-        res.json({message: result.firstname+' '+result.lastname+" deleted!"})
-    })
-}
-
-exports.adminUpdateProfile = async (req, res) => {
-    id =  req.body._id
-    await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
-        req.body.password = encrypted
-        User.findByIdAndUpdate(id, req.body, function(err, result){
-            if(err) res.send(err)
-            res.json('User updated.')
-        })
-    })
-}
-
-exports.verifyAdmin = function (req, res, id) {
-    return User.findById(id, function (err, user) {
-        if(err) throw err;
-        if(user.role == 'admin'){
-            return 'admin'
-        }
     })
 }
