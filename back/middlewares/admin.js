@@ -5,10 +5,11 @@ dotenv.config();
 
 module.exports = async (req, res, next) => {
   try {
-    const token = req.cookies.token
+    const token = req.headers.authorization
+    console.log("token admin middlewear");
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decodedToken._id;
-    
+    console.log("token admin middlewear USER ID", userId);
     if (!await adminUsers.verifyAdmin(req, res, userId)) {
       res.json('Warning, you are not an admin')
     } else {
