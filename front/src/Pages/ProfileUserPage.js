@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { isAuthenticated } from "../auth/auth"
-import { read } from "./apiUser"
 import Error404 from './Error404Page'
 import Cookies from 'js-cookie';
 
