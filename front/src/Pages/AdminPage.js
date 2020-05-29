@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link } from "react-router-dom";
 
 class AdminPage extends Component {
     constructor(props) {
@@ -16,6 +16,24 @@ class AdminPage extends Component {
                 <h1 className="title">Admin</h1>
 
                 <h2 className="title">CRUD User</h2>
+
+            <Link to="/page2"><button>
+            Modifier les utilisateurs  
+            </button>
+            </Link>
+            <Link to="/page2"><button>
+            Modifier les fournisseurs 
+            </button>
+            </Link>
+            <Link to="/page2"><button>
+            Modifier les commentaires 
+            </button>
+            </Link>
+            <Link to="/page2"><button>
+            Modifier les devis 
+            </button>
+            </Link>
+
 
                 <table>
                     <tr>
