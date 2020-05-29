@@ -11,11 +11,13 @@ function Navbar() {
       <Link to="/registeruser">Inscription</Link>
       <Link to="/registersupplier">Envie de proposer vos services ?</Link>
 
+
     <LoginForm />
 
 
     </div>
   );
 }
+
 
 export default Navbar;

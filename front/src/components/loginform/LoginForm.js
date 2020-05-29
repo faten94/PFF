@@ -1,12 +1,15 @@
 import React from 'react';
 import './LoginForm.css';
 import axios from "axios"
+import { Link} from "react-router-dom";
+
 
 
 class  LoginForm extends React.Component {
 
   constructor(props) {
      super(props);
+     console.log(props);
      this.state = {
        email: "",
        password: ""
@@ -38,9 +41,11 @@ class  LoginForm extends React.Component {
        })
        .then(function (response) {
          // Quand resulat OK => Redirige vers la bonne page
+         window.location.href = '/profiluser'
+
        })
        .catch(function (error) {
-         alert(error.response.data.error);
+        
        });
 
 
