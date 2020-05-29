@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { isAuthenticated } from "../auth/auth"
 import { read } from "./apiUser"
+import Error404 from './Error404Page'
 import Cookies from 'js-cookie';
 
 class ProfileUserPage extends Component {
@@ -117,6 +118,9 @@ componentDidMount() {
 }
 
 render() {
+    if(Cookies.get('token') == undefined){
+        return <Error404/>
+    }
     return (
         <div>
         <h1 className="title">Compte</h1>
