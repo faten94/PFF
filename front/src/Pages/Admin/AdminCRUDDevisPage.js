@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { isAuthenticated } from "../auth/auth"
-import { read } from "./apiUser"
+import { isAuthenticated } from "../../auth/auth"
+import { read } from "../apiUser"
 import Cookies from 'js-cookie';
 
 class AdminCRUDDevisPage extends Component {

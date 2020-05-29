@@ -2,18 +2,18 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ProtectedRoute from "./protectedRoute";
 import ProfileSettingSupplierPage from "./Pages/ProfileSettingSupplierPage";
-import AdminPage from "./Pages/AdminPage";
+import AdminPage from "./Pages/Admin/AdminPage";
 import HomePage from './Pages/HomePage';
 import Navbar from './components/Navbar';
 import Logout from './components/logout/Logout';
 import RegisterUserPage from './Pages/RegisterUserPage';
 import RegisterSupplierPage from './Pages/RegisterSupplierPage';
 import ProfileUserPage from "./Pages/ProfileUserPage";
-import AdminUsersPage from "./Pages/AdminUsersPage";
-import AdminCRUDUserPage from "./Pages/AdminCRUDUserPage";
-import AdminCRUDSupplierPage from "./Pages/AdminCRUDSupplierPage";
-import AdminCRUDCommentsPage from "./Pages/AdminCRUDCommentsPage";
-import AdminCRUDDevisPage from "./Pages/AdminCRUDDevisPage";
+import AdminUsersPage from "./Pages/Admin/AdminUsersPage";
+import AdminCRUDUserPage from "./Pages/Admin/AdminCRUDUserPage";
+import AdminCRUDSupplierPage from "./Pages/Admin/AdminCRUDSupplierPage";
+import AdminCRUDCommentsPage from "./Pages/Admin/AdminCRUDCommentsPage";
+import AdminCRUDDevisPage from "./Pages/Admin/AdminCRUDDevisPage";
 import Error404Page from "./Pages/Error404Page";
 
 function App() {
