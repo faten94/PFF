@@ -54,11 +54,6 @@ exports.login = (req, res) => {
     });  
 };
 
-exports.logout = (req, res) => {
-    res.clearCookie("token");
-    return res.json({message: "Logout succesfull!"})
-};
-
 exports.getUserFromId = function (req, res, id) {
     return User.findById(id, function (err, user) {
         if(err) throw err;
