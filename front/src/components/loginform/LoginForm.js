@@ -41,7 +41,8 @@ class  LoginForm extends React.Component {
     // Quand resulat OK => Redirige vers la bonne page
     console.log("on est bien connecte", response);
     console.log(response.data['token'])
-        Cookies.set('token', response.data['token'])
+    Cookies.set('token', response.data['token'])
+    window.location.reload(false)
   })
   .catch(function (error) {
     // alert(error.response.data.error);
