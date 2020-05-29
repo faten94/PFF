@@ -125,7 +125,7 @@ class ProfileUserPage extends Component {
             <input name="lastname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
             </tr>
             <tr>
-            <td>Address</td>
+            <td>Adresse</td>
             <td>{this.state.oldaddress}</td>
             <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new address"/></div>
             </tr>
@@ -145,7 +145,7 @@ class ProfileUserPage extends Component {
             <div><input name="password" onChange={this.handleChange} type="password" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;"  placeholder="New password"></input></div>
             </tr>
             <tr>
-            <td>Registration date</td>
+            <td>Date d'enregistrement</td>
             <td>{this.state.olddate}</td>
             <td></td>
             {/* <div><input type="password" name="password_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : '');"  pattern="^\S{8,20}$" placeholder="Verify Password"></input></div> */}
@@ -158,11 +158,10 @@ class ProfileUserPage extends Component {
             </table>
             </form>
             <br></br>
-            <div>Update the information you wish to modify
+            <div>Changez une ou plusieurs informations de votre profil.
             <br></br>
             
-            <button>
-            cliquez ici pour modifier le profil completement</button></div>
+            </div>
             </div>
             );
         };
