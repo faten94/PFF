@@ -21,9 +21,11 @@ exports.UpdateProfile = async (req, res) => {
 }
 
 exports.verifyAdmin = function (req, res, id) {
+    console.log("admin verify id",id);
     return User.findById(id, function (err, user) {
         if(err) throw err;
         if(user.role == 'admin'){
+            console.log('verify admin ok')
             return 'admin'
         }
     })
