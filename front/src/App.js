@@ -20,10 +20,9 @@ function App() {
   
       <Navbar />
         <Switch>
-          <Route exact path="/account" component={ProfileUserPage} />
-         
-          <ProtectedRoute exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
-          <Route exact path="/admin" component={AdminPage} />
+        <Route exact path="/account" component={ProfileUserPage} />
+        <Route exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
+        <Route exact path="/admin" component={AdminPage} />
         <Route path="/" exact component={HomePage} />
         <Route path="/registeruser" component={RegisterUserPage} />
         <Route path="/registersupplier" component={RegisterSupplierPage} />
