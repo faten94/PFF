@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 import Logout from './components/logout/Logout';
 import RegisterUserPage from './Pages/RegisterUserPage';
 import RegisterSupplierPage from './Pages/RegisterSupplierPage';
-import ProfileUserPage from './Pages/ProfileUserPage';
+import SearchBar from './components/search/SearchBar';
 
 
 
@@ -25,6 +25,7 @@ function App() {
       <BrowserRouter>
 
       <Navbar />
+      <SearchBar />
         <Switch>
           <Route exact path="/account" component={ProfileUserPage} />
 

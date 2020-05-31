@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-//import './style/Home.css';
-
-
-function ProFileUserPage() {
-  return (
-    <div className="homeFormDiv">
-
-    </div>
-  );
-}
-
-export default ProFileUserPage;
-=======
 import React, { Component } from 'react';
 import axios from "axios";
 import { isAuthenticated } from "../auth/auth"
@@ -41,13 +26,13 @@ class ProfileUserPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleChange = async (e) => {
         await this.setState({
             [e.target.name]: e.target.value
         });
     }
-    
+
     handleSubmit(event) {
         event.preventDefault();
         var headers = {'authorization': Cookies.get('token')}
@@ -85,7 +70,7 @@ class ProfileUserPage extends Component {
             }
         }).catch(error => alert('Password confirmation failed, please input your current password.'));
     }
-    
+
     componentDidMount() {
         const headers = {'authorization': Cookies.get('token')}
         axios.get('http://localhost:8080/settings', {headers: headers})
@@ -107,27 +92,27 @@ class ProfileUserPage extends Component {
         })
         .catch(error => console.log(error));
     }
-    
+
     render() {
         return (
             <div>
             <h1 className="title">Compte</h1>
-            
+
             <img className="photo"
             src="#"
             alt="ID n*" />
-            
+
             <br></br>
-            
+
             <label htmlFor="photo">Telechargez une photo de profil:</label>
-            
+
             <input type="file"
             id="photo" name="photo"
             accept="image/png, image/jpeg"></input>
-            
+
             <br></br>
             <br></br>
-            
+
             <form onSubmit={this.handleSubmit}><table className="hoverTable">
             <tr>
             <td>Nom</td>
@@ -175,12 +160,11 @@ class ProfileUserPage extends Component {
             <br></br>
             <div>Changez une ou plusieurs informations de votre profil.
             <br></br>
-            
+
             </div>
             </div>
             );
         };
     }
-    
+
     export default ProfileUserPage;
->>>>>>> 922cda151c1dba4911e2e22ab43559d62ca5fb8f

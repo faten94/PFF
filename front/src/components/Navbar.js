@@ -11,22 +11,10 @@ function Navbar() {
       <div className="navbar" style={{backgroundColor: "cornflowerblue"}} >
       <Link to="/registeruser">Inscription</Link>
       <Link to="/registersupplier">Envie de proposer vos services ?</Link>
-<<<<<<< HEAD
 
-
-    <LoginForm />
-
-
-    </div>
-  );
-}
-
-
-export default Navbar;
-=======
       <LoginForm />
-      
-      
+
+
       </div>
       );
     }
@@ -37,7 +25,5 @@ export default Navbar;
       </div>
       )
     }
-    
+
     export default Navbar;
-    
->>>>>>> 922cda151c1dba4911e2e22ab43559d62ca5fb8f
