@@ -9,6 +9,9 @@ import RegisterUserPage from './Pages/RegisterUserPage';
 import RegisterSupplierPage from './Pages/Supplier/RegisterSupplierPage';
 import ProfileUserPage from "./Pages/ProfileUserPage";
 import AdminUsersPage from "./Pages/Admin/AdminUsersPage";
+import AdminSuppliersPage from "./Pages/Admin/AdminSuppliersPage";
+import AdminDevisPage from "./Pages/Admin/AdminDevisPage";
+import AdminCommentsPage from "./Pages/Admin/AdminCommentsPage";
 import AdminCRUDUserPage from "./Pages/Admin/AdminCRUDUserPage";
 import AdminCRUDSupplierPage from "./Pages/Admin/AdminCRUDSupplierPage";
 import AdminCRUDCommentsPage from "./Pages/Admin/AdminCRUDCommentsPage";
@@ -24,16 +27,19 @@ function App() {
         <Switch>
         <Route path="/" exact component={HomePage} />
         <ProtectedRouteUser exact path="/account" component={ProfileUserPage} />
-        <Route exact path="/admin" component={AdminPage} />
         <ProtectedRouteUser path="/registeruser" component={RegisterUserPage} />
         <ProtectedRouteUser path="/registersupplier" component={RegisterSupplierPage} />
         <Route path="/logout"><Logout /></Route>
 
+        <Route exact path="/admin" component={AdminPage} />
         <Route path="/admin/users" component={AdminUsersPage} />
+        <Route path="/admin/suppliers" component={AdminSuppliersPage} />
+        <Route path="/admin/comments" component={AdminCommentsPage} />
+        <Route path="/admin/quotes" component={AdminDevisPage} />
         <Route path="/admin/user/:_id" component={AdminCRUDUserPage} />
-        <Route path="/admin/crudsupplier" component={AdminCRUDSupplierPage} />
-        <Route path="/admin/crudcomments" component={AdminCRUDCommentsPage} />
-        <Route path="/admin/cruddevis" component={AdminCRUDDevisPage} />
+        <Route path="/admin/supplier/:id" component={AdminCRUDSupplierPage} />
+        <Route path="/admin/comment/:id" component={AdminCRUDCommentsPage} />
+        <Route path="/admin/quote/:id" component={AdminCRUDDevisPage} />
         <Route path="/404" component={Error404Page} />
         <Redirect to="/404" /> 
         </Switch>

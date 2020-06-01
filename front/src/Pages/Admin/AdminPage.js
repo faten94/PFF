@@ -21,17 +21,17 @@ class AdminPage extends Component {
                         Afficher les utilisateurs
                     </button>
                 </Link>
-                <Link to="/admin/crudsuppliers">
+                <Link to="/admin/suppliers">
                     <button>
                         Afficher les fournisseurs
                     </button>
                 </Link>
-                <Link to="/admin/crudcomments">
+                <Link to="/admin/comments">
                     <button>
                         Afficher les commentaires
                     </button>
                 </Link>
-                <Link to="/admin/cruddevis">
+                <Link to="/admin/quotes">
                     <button>
                         Afficher les devis
                     </button>
