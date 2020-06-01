@@ -12,9 +12,10 @@ constructor(props) {
        password: "",
        address: "",
        phone: "",
-       typesupplier: "",
+       particulier: "",
+       supplier: "",
        siret: "",
-       zipe: "",
+       zip: "",
        city: "",
        expertise: ""
 
@@ -26,7 +27,8 @@ constructor(props) {
      this.handlePasswordChange = this.handlePasswordChange.bind(this);
      this.handleAddressChange = this.handleAddressChange.bind(this);
      this.handlePhoneChange = this.handlePhoneChange.bind(this);
-     this.handleTypesupplierChange = this.handleTypesupplierChange.bind(this);
+     this.handleparticulierChange = this.handleParticulierChange.bind(this);
+      this.handlesupplierChange = this.handleSupplierChange.bind(this);
      this.handleSiretChange = this.handleSiretChange.bind(this);
      this.handleZipeChange = this.handleZipeChange.bind(this);
      this.handleCityChange = this.handleCityChange.bind(this);
@@ -35,7 +37,25 @@ constructor(props) {
 
    }
 
+   handleParticulierChange = (event) => {
+     const target = event.target;
+     const value = target.name === 'particulier' ? target.checked : target.value;
 
+     this.setState({
+       particulier: event.target.value
+     })
+
+   }
+handleSupplierChange = (event) => {
+     const target = event.target;
+     const value = target.name === 'supplier' ? target.checked : target.value;
+
+     const name = target.name;
+     this.setState({
+       supplier: event.target.value
+     })
+
+   }
    handleFirstnameChange = (e) => {
      this.setState({
        firstname: e.target.value
@@ -71,12 +91,6 @@ handlePhoneChange = (e) => {
      })
    }
 
-handleTypesupplierChange = (e) => {
-     this.setState({
-       typesupplier: e.target.value
-     })
-   }
-
 handleSiretChange = (e) => {
      this.setState({
        siret: e.target.value
@@ -84,7 +98,7 @@ handleSiretChange = (e) => {
    }
 handleZipeChange = (e) => {
      this.setState({
-       zipe: e.target.value
+       zip: e.target.value
      })
    }
 handleCityChange = (e) => {
@@ -108,7 +122,8 @@ handleExpertiseChange = (e) => {
          password: this.state.password,
          address: this.state.address,
          phone: this.state.phone,
-         typesupplier: this.state.typesupplier,
+         particulier: this.state.particulier,
+         supplier: this.state.supplier,
          siret: this.state.siret,
          zip: this.state.zip,
          city: this.state.city,
@@ -143,11 +158,9 @@ handleExpertiseChange = (e) => {
       <div className="formItem">
     <input type="number" placeholder="Siret" value={this.state.siret} onChange={this.handleSiretChange}/>
     </div>
-    <div className="formItem">
-      <input type="text" placeholder="typesupplier" value={this.state.typesupplier} onChange={this.handleTypesupplierChange}/>
-      </div>
+
       <div className="formItem">
-    <input type="number" placeholder="Zipe" value={this.state.zipe} onChange={this.handleZipeChange}/>
+    <input type="number" placeholder="Zip" value={this.state.zip} onChange={this.handleZipeChange}/>
     </div>
     <div className="formItem">
     <input type="text" placeholder="City" value={this.state.city} onChange={this.handleCityChange}/>
@@ -167,6 +180,31 @@ handleExpertiseChange = (e) => {
       <div className="formItem">
       <input type="password" placeholder="Confirm password" />
       </div>
+
+      <div className="formItem">
+        <label>
+          Particulier :
+          <input
+            name="particulier"
+            type="checkbox"
+            checked={this.state.particulier}
+            onChange={this.handleParticulierChange} />
+        </label>
+        </div>
+
+        <div className="formItem">
+        <label>
+          Professionnel :
+          <input
+            name="supplier"
+            type="checkbox"
+            checked={this.state.supplier}
+            onChange={this.handleSupplierChange} />
+        </label>
+        </div>
+
+
+
 
       <div className="formItem">
       <button type= "button" onClick={this.registerSupplier} >Register</button>
