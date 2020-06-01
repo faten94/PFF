@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Error404 from './Error404Page'
+import Error404 from '../Error404Page';
 import Cookies from 'js-cookie';
-import Avatar from '../images/avatar.png'
+import Avatar from '../../images/avatar.png'
 import { Link } from "react-router-dom";
 
 

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Payment = require('./PaymentSch')
-const Supplier = require('./SupplierSch')
-const Service = require('./ServiceSch')
+const payment = require('./PaymentSch')
+const supplier = require('./SupplierSch')
+const service = require('./ServiceSch')
 
 
 const DevisSchema = new Schema({
@@ -17,11 +17,11 @@ const DevisSchema = new Schema({
     
     daterdv: { type: String},
     
-    Payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
+    payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
 
-    Supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
+    supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
 
-    Service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }],
+    service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }],
 })
 
 const Devis = mongoose.model('Devis', DevisSchema)

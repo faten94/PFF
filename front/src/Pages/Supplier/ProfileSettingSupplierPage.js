@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Error404 from './Error404Page'
+import Error404 from '../Error404Page'
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Error404 from './Error404Page'
+import Error404 from './Error404Page';
 import Cookies from 'js-cookie';
 
 class ProfileUserPage extends Component {
@@ -138,7 +138,8 @@ render() {
         <br></br>
         <br></br>
         
-        <form onSubmit={this.handleSubmit}><table className="hoverTable">
+        <form onSubmit={this.handleSubmit}>
+            <table className="hoverTable">
         <tr>
         <td>Nom</td>
         <td>{this.state.oldfirstname}</td>
