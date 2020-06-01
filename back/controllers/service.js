@@ -1,63 +1,39 @@
 const express = require('express');
 const app = express();
-const Service = require('../models/ServiceSch')
-const jwt = require('jsonwebtoken');
+const cors = require('cors')
+const Supplier = require('../models/SupplierSch');
+const supplier = express.Router()
 const dotenv = require("dotenv");
+
+supplier.use(cors())
 
 dotenv.config();
 app.use(express.json());
 
 
-exports.GetAllSupplier = async(req, res) => {
-
-}
+    console.log('blallalal')
 
 
+    exports.GetAllSupplier = async(req, res) => {
 
-exports.register = async (req,res, next) => {
-    req.body.role = 'user'
-    const userExists = await User.findOne({ email: req.body.email })
-    if (userExists) {
-        return res.status(403).json({
-            error: "This email is already used."
-        });
-    }
-    await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
-        req.body.password = encrypted
-        const user = new User(req.body)
-        user.save()
-        res.status(200).json({ message: "Registration complete." });
-    })
-};
-
-exports.login = (req, res) => {
-    console.log('login')
-    console.log(req.body)
-    const { email, password } = req.body
-    console.log(email)
-    User.findOne({email}, (err, user) => {
-
-        if (err || !user){
-            return res.status(400).json({
-                error: "Email doesn't exist."
+            Supplier.find((err, docs)=>{
+                console.log(docs)
+                if(!err) res.send(docs)
+                else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
             })
+            console.log('je suis la')
+            
         }
-        bcrypt.compare(req.body.password, user.password, function(err, result) {
-            console.log(result)
-            if(result == false){
-                return res.status(400).json({
-                    error: "Email doesn't exist."
-                })
-            }
-            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, { expiresIn: '24h' });
-            const {_id, name, email} = user
-            return res.json({user: {_id, email, name}, token: token});
-        });
-    });
-};
+        // exports.GetAllSupplierByService = async(req, res) => {
 
-exports.getUserFromId = function (req, res, id) {
-    return User.findById(id, function (err, user) {
-        if(err) throw err;
-    })
-}
+        //     Supplier.find((err, docs)=>{
+        //         console.log(docs)
+        //         if(!err) res.send(docs)
+        //         else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
+        //     })
+        //     console.log('je suis la')
+
+
+
+
+
