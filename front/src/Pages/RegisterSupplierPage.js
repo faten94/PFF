@@ -17,7 +17,8 @@ constructor(props) {
        siret: "",
        zip: "",
        city: "",
-       expertise: ""
+       expertise: "",
+       service: ""
 
 
      }
@@ -33,6 +34,7 @@ constructor(props) {
      this.handleZipeChange = this.handleZipeChange.bind(this);
      this.handleCityChange = this.handleCityChange.bind(this);
      this.handleExpertiseChange = this.handleExpertiseChange.bind(this);
+     this.handleServiceChange = this.handleServiceChange.bind(this);
 
 
    }
@@ -112,6 +114,11 @@ handleExpertiseChange = (e) => {
      })
    }
 
+handleServiceChange = (e) => {
+     this.setState({
+       service: e.target.value
+     })
+   }
    registerSupplier = (e) => {
 
      console.log(this.state);
@@ -127,8 +134,8 @@ handleExpertiseChange = (e) => {
          siret: this.state.siret,
          zip: this.state.zip,
          city: this.state.city,
-         expertise: this.state.expertise
-
+         expertise: this.state.expertise,
+         service: this.state.service
 
        })
        .then(function (response) {
@@ -174,6 +181,10 @@ handleExpertiseChange = (e) => {
       <input type="texte" placeholder="Phone" value={this.state.phone} onChange={this.handlePhoneChange} />
       </div>
         <div className="formItem">
+      <input type="text" placeholder="taper ta proffesion" value={this.state.service} onChange={this.handleServiceChange} />
+      </div>
+
+      <div className="formItem">
       <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
       </div>
 

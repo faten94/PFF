@@ -31,6 +31,8 @@ router.get('/admin/supplier', auth, admin, adminSuppliers.getAllProfile)
 router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
 
+router.get('/service', service.ServiceSearch)
+
 
 
 
