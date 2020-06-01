@@ -31,9 +31,9 @@ const SupplierSchema = new Schema({
 
     date: { type: Date, default: Date.now },
     
-    Location: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LocationSch' }],
+    location: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LocationSch' }],
 
-    Service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
+    service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
 })
 
 const Supplier = mongoose.model('Supplier', SupplierSchema)

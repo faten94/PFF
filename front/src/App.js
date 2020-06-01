@@ -9,6 +9,7 @@ import Logout from './components/logout/Logout';
 import RegisterUserPage from './Pages/RegisterUserPage';
 import RegisterSupplierPage from './Pages/RegisterSupplierPage';
 import ProfileUserPage from "./Pages/ProfileUserPage";
+import ProfileSupplier from "./Pages/ProfileSupplier";
 import AdminUsersPage from "./Pages/AdminUsersPage";
 import AdminCRUDUserPage from "./Pages/AdminCRUDUserPage";
 import AdminCRUDSupplierPage from "./Pages/AdminCRUDSupplierPage";
@@ -24,6 +25,7 @@ function App() {
       <Navbar />
         <Switch>
         <Route exact path="/account" component={ProfileUserPage} />
+        <Route exact path="/accountsupplier" component={ProfileSupplier} />
         <Route exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
         <Route exact path="/admin" component={AdminPage} />
         <Route path="/" exact component={HomePage} />
