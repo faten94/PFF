@@ -4,10 +4,12 @@ const adminUsers = require('./controllers/adminUsers');
 const adminSuppliers = require('./controllers/adminSuppliers');
 const adminComments = require('./controllers/adminComments');
 const settingsUsers = require('./controllers/settingsUsers');
+const settingsSuppliers = require('./controllers/settingsSuppliers')
 const suppliers = require('./controllers/suppliers');
 const app = express();
 const router = express.Router();
 const auth = require('./middlewares/auth');
+const authSupplier = require('./middlewares/authSupplier');
 const admin = require('./middlewares/admin');
 
 
@@ -21,9 +23,9 @@ router.post('/supplierLogin', suppliers.login);
 router.get('/settings', auth, settingsUsers.getProfile);
 router.post('/settings', auth, settingsUsers.updateProfile);
 router.delete('/settings', auth, settingsUsers.deleteProfile);
-router.get('/settings/suppliers', auth, settingsUsers.getProfile);
-router.post('/settings/suppliers', auth, settingsUsers.updateProfile);
-router.delete('/settings/suppliers', auth, settingsUsers.deleteProfile);
+router.get('/settings/suppliers', authSupplier, settingsSuppliers.getProfile);
+router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile);
+router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
 
 router.get('/admin/users', auth, admin, adminUsers.getAllProfile)
 router.post('/admin/users', auth, admin, users.register)

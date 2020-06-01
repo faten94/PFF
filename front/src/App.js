@@ -1,13 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ProtectedRouteUser from "./protectedRoute";
-import AdminPage from "./Pages/Admin/AdminPage";
+
 import HomePage from './Pages/HomePage';
 import Navbar from './components/Navbar';
 import Logout from './components/logout/Logout';
-import RegisterUserPage from './Pages/RegisterUserPage';
+import Error404Page from "./Pages/Error404Page";
+
 import RegisterSupplierPage from './Pages/Supplier/RegisterSupplierPage';
+import ProfileSettingSupplierPage from './Pages/Supplier/ProfileSettingSupplierPage';
+import ProfileSupplier from "./Pages/Supplier/ProfileSupplier";
+
+import RegisterUserPage from './Pages/RegisterUserPage';
 import ProfileUserPage from "./Pages/ProfileUserPage";
+
+import AdminPage from "./Pages/Admin/AdminPage";
 import AdminUsersPage from "./Pages/Admin/AdminUsersPage";
 import AdminSuppliersPage from "./Pages/Admin/AdminSuppliersPage";
 import AdminDevisPage from "./Pages/Admin/AdminDevisPage";
@@ -16,7 +23,8 @@ import AdminCRUDUserPage from "./Pages/Admin/AdminCRUDUserPage";
 import AdminCRUDSupplierPage from "./Pages/Admin/AdminCRUDSupplierPage";
 import AdminCRUDCommentsPage from "./Pages/Admin/AdminCRUDCommentsPage";
 import AdminCRUDDevisPage from "./Pages/Admin/AdminCRUDDevisPage";
-import Error404Page from "./Pages/Error404Page";
+
+
 
 function App() {
   return (
@@ -25,6 +33,9 @@ function App() {
   
       <Navbar />
         <Switch>
+        <Route exact path="/account" component={ProfileUserPage} />
+        <Route exact path="/accountsupplier" component={ProfileSupplier} />
+        <Route exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
         <Route path="/" exact component={HomePage} />
         <ProtectedRouteUser exact path="/account" component={ProfileUserPage} />
         <ProtectedRouteUser path="/registeruser" component={RegisterUserPage} />
