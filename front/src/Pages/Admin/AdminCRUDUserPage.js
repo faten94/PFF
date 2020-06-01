@@ -6,6 +6,10 @@ import Cookies from 'js-cookie';
 class AdminCRUDUserPage extends Component {
     constructor(props) {
         super(props);
+        const url = window.location.href;
+        const urlArray = url.split('/');
+        const urlLength = urlArray.length-1
+        const userId = urlArray[urlLength]
         this.state = {
             firstname: "",
             oldfirstname: "",
@@ -20,7 +24,8 @@ class AdminCRUDUserPage extends Component {
             date: "",
             olddate: "",
             oldpassword: "",
-            password: ""
+            password: "",
+            userId: userId
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,8 +39,8 @@ class AdminCRUDUserPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var user = {
+        const headers = {'authorization': Cookies.get('token')}
+        const user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };
@@ -62,7 +67,7 @@ class AdminCRUDUserPage extends Component {
                 if (this.state.address == '') data.address = this.state.oldaddress
                 if (this.state.phone == '') data.phone = this.state.oldphone
                 if (this.state.date == '') data.date = this.state.olddate
-                axios.post('http://localhost:8080/settings', data, {headers: headers})
+                axios.post('http://localhost:8080/admin/users/settings/:userId', data, {headers: headers})
                 .then(res => {
                     window.location.reload(false)
                 })
@@ -72,7 +77,8 @@ class AdminCRUDUserPage extends Component {
     
     componentDidMount() {
         const headers = {'authorization': Cookies.get('token')}
-        axios.get('http://localhost:8080/settings', {headers: headers})
+        const data = {userId : this.state.userId}
+        axios.get('http://localhost:8080/admin/users/settings/'+this.state.userId, {headers: headers}, data)
         .then(res => {
             this.setState({
                 firstname: res.data.firstname,
@@ -112,7 +118,10 @@ class AdminCRUDUserPage extends Component {
             <br></br>
             <br></br>
             
-            <form onSubmit={this.handleSubmit}><table className="hoverTable">
+            <form onSubmit={this.handleSubmit}>
+            <table className="hoverTable">
+                <theard></theard>
+                <tbody>
             <tr>
             <td>Nom</td>
             <td>{this.state.oldfirstname}</td>
@@ -154,6 +163,7 @@ class AdminCRUDUserPage extends Component {
             <div><input type="password" onChange={this.handleChange} name="oldpassword" placeholder="Old password" required></input></div>
             <td><input type="submit" value="Submit" /></td>
             </tr>
+            </tbody>
             </table>
             </form>
             <br></br>

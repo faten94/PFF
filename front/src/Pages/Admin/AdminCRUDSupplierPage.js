@@ -34,8 +34,8 @@ class AdminCRUDSupplierPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var user = {
+        const headers = {'authorization': Cookies.get('token')}
+        const user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };

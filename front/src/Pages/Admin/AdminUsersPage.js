@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { isAuthenticated } from "../../auth/auth"
 import Cookies from 'js-cookie';
+import { Link } from "react-router-dom";
+
 
 class AdminUsersPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users :[],
+            users: [],
         };
     }
-    
+
     getAllUsers = () => {
         const headers = { 'authorization': Cookies.get('token') }
         axios
@@ -27,9 +29,9 @@ class AdminUsersPage extends Component {
 
     displayUsers = (users) => {
         const getAllUsers = users;
-        console.log("json", JSON.stringify(getAllUsers));
+        //  console.log("json", JSON.stringify(getAllUsers));
         const usersList = getAllUsers.map((user) => {
-            return (<div>
+            return (
                 <tr key={user.id}>
                     <td>{user.lastname}</td>
                     <td>{user.firstname}</td>
@@ -40,8 +42,12 @@ class AdminUsersPage extends Component {
                     <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>{user.date}</td>
+                    <td>
+                        <Link to={"/admin/user/"+user._id}>
+                            <button name={user._id} value={user._id}>{user._id}</button>
+                        </Link>
+                    </td>
                 </tr>
-            </div>
             )
         });
         return (usersList);
@@ -55,23 +61,27 @@ class AdminUsersPage extends Component {
         let users = this.state.users;
         return (
             <div>
-            <h1 className="title">Admin</h1>
+                <h1 className="title">Admin</h1>
 
-            <h2 className="title">CRUD User</h2>
-            
-                <table id='students'>
+                <h2 className="title">CRUD User</h2>
+
+                <table id='users'>
+
+                    <thead>
+                        <tr>
+                            <td>Nom</td>
+                            <td>Prenom</td>
+                            <td>Password</td>
+                            <td>Adresse</td>
+                            <td>Photo</td>
+                            <td>Telephone</td>
+                            <td>Email</td>
+                            <td>Role</td>
+                            <td>Date d'inscription</td>
+                            <td>id</td>
+                        </tr>
+                    </thead>
                     <tbody>
-                    <tr>
-                    <td>Nom</td>
-                    <td>Prenom</td>
-                    <td>Password</td>
-                    <td>Adresse</td>
-                    <td>Photo</td>
-                    <td>Telephone</td>
-                    <td>Email</td>
-                    <td>Role</td>
-                    <td>Date d'inscription</td>
-                </tr>
                         {this.displayUsers(users)}
                     </tbody>
                 </table>

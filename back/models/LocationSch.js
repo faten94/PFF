@@ -9,7 +9,7 @@ const LocationSchema = new Schema({
     
     date: { type: Date, default: Date.now }
     
-})
+});
 
-Const Location = mongoose.model('Location', LocationSchema)
-module.exports = Location
+const location = mongoose.model('location', LocationSchema);
+module.exports = location;

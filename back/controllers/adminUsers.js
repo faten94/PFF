@@ -10,6 +10,8 @@ dotenv.config();
 app.use(express.json());
 
 exports.UpdateProfile = async (req, res) => {
+    console.log('req.user '+req.user)
+    console.log('body '+req.body)
     id =  req.body._id
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
@@ -39,7 +41,7 @@ exports.getAllProfile = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    id =  req.body._id
+    const id =  req.body.userId
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)

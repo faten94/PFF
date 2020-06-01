@@ -35,8 +35,8 @@ class ProfileUserPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var user = {
+        const headers = {'authorization': Cookies.get('token')}
+        const user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };
@@ -73,8 +73,8 @@ class ProfileUserPage extends Component {
 }
 
 deleteAccount = () => {
-    var headers = {'authorization': Cookies.get('token')}
-    var user = {
+    const headers = {'authorization': Cookies.get('token')}
+    const user = {
         email: this.state.oldemail,
         password: this.state.oldpassword
     };
@@ -117,9 +117,6 @@ componentDidMount() {
 }
 
 render() {
-    if(Cookies.get('token') == undefined){
-        return <Error404/>
-    }
     return (
         <div>
         <h1 className="title">Compte</h1>

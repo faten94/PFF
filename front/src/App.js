@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import ProtectedRoute from "./protectedRoute";
+import ProtectedRouteUser from "./protectedRoute";
 import AdminPage from "./Pages/Admin/AdminPage";
 import HomePage from './Pages/HomePage';
 import Navbar from './components/Navbar';
@@ -22,14 +22,15 @@ function App() {
   
       <Navbar />
         <Switch>
-        <Route exact path="/account" component={ProfileUserPage} />
-        <Route exact path="/admin" component={AdminPage} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/registeruser" component={RegisterUserPage} />
-        <Route path="/registersupplier" component={RegisterSupplierPage} />
+        <ProtectedRouteUser exact path="/account" component={ProfileUserPage} />
+        <Route exact path="/admin" component={AdminPage} />
+        <ProtectedRouteUser path="/registeruser" component={RegisterUserPage} />
+        <ProtectedRouteUser path="/registersupplier" component={RegisterSupplierPage} />
         <Route path="/logout"><Logout /></Route>
+
         <Route path="/admin/users" component={AdminUsersPage} />
-        <Route path="/admin/cruduser" component={AdminCRUDUserPage} />
+        <Route path="/admin/user/:_id" component={AdminCRUDUserPage} />
         <Route path="/admin/crudsupplier" component={AdminCRUDSupplierPage} />
         <Route path="/admin/crudcomments" component={AdminCRUDCommentsPage} />
         <Route path="/admin/cruddevis" component={AdminCRUDDevisPage} />

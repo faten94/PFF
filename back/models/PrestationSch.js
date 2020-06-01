@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Payment = require('./PaymentSch')
-const Supplier = require('./SupplierSch')
-const Service = require('./ServiceSch')
+const payment = require('./PaymentSch')
+const supplier = require('./SupplierSch')
+const service = require('./ServiceSch')
 
 const PrestationSchema = new Schema({
  
@@ -13,11 +13,11 @@ const PrestationSchema = new Schema({
     price: { type: Number },	
     
         
-    Payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
+    payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
 
-    Supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
+    supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
 
-	Service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
+	service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
  
 })
 
