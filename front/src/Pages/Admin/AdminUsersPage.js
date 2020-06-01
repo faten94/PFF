@@ -61,6 +61,11 @@ class AdminUsersPage extends Component {
         let users = this.state.users;
         return (
             <div>
+                 <Link to="/admin">
+                    <button>
+                        Retour
+                    </button>
+                </Link>
                 <h1 className="title">Admin</h1>
 
                 <h2 className="title">CRUD User</h2>

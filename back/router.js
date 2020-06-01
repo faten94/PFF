@@ -26,8 +26,8 @@ router.delete('/settings/suppliers', auth, settingsUsers.deleteProfile);
 
 router.get('/admin/users', auth, admin, adminUsers.getAllProfile)
 router.post('/admin/users', auth, admin, users.register)
-router.get('/admin/users/settings/', auth, admin, adminUsers.getProfile)
-router.post('/admin/users/settings/:userId', auth, admin, adminUsers.UpdateProfile)
+router.get('/admin/users/settings/:userId', auth, admin, adminUsers.getProfile)
+router.post('/admin/users/settings/:userId', auth, admin, adminUsers.updateProfile)
 router.get('/admin/supplier', auth, admin, adminSuppliers.getAllProfile)
 router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)

@@ -9,10 +9,10 @@ const auth = require("../middlewares/auth");
 dotenv.config();
 app.use(express.json());
 
-exports.UpdateProfile = async (req, res) => {
-    console.log('req.user '+req.user)
+exports.updateProfile = async (req, res) => {
     console.log('body '+req.body)
-    id =  req.body._id
+    console.log(req.body.userId)
+    const id =  req.body.userId
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
         User.findByIdAndUpdate(id, req.body, function(err, result){
@@ -41,7 +41,9 @@ exports.getAllProfile = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    const id =  req.body.userId
+    console.log(req.params)
+    const id =  req.params.userId
+    console.log(id)
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)
