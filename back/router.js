@@ -2,6 +2,7 @@ const express = require('express');
 const users = require('./controllers/users');
 const adminUsers = require('./controllers/adminUsers');
 const adminSuppliers = require('./controllers/adminSuppliers');
+const adminComments = require('./controllers/adminComments');
 const settingsUsers = require('./controllers/settingsUsers');
 const suppliers = require('./controllers/suppliers');
 const app = express();
@@ -31,6 +32,11 @@ router.post('/admin/users/settings/:userId', auth, admin, adminUsers.updateProfi
 router.get('/admin/supplier', auth, admin, adminSuppliers.getAllProfile)
 router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
+router.post('/comment', auth, adminComments.createComment)
+router.get('/admin/comments', auth, admin, adminComments.getAllComments)
+router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.getComment)
+router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.updateComment)
+
 
 // router.param("userId", users.getUserFromId);
 
