@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { isAuthenticated } from "../../auth/auth"
 import Cookies from 'js-cookie';
 
 class AdminCRUDSupplierPage extends Component {
@@ -34,8 +33,8 @@ class AdminCRUDSupplierPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var user = {
+        const headers = {'authorization': Cookies.get('token')}
+        const user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };

@@ -56,12 +56,32 @@ class  LoginForm extends React.Component {
 
 
 
+loginSupplier = (e) => {
+  // console.log(this.state);
+  axios.post('http://localhost:8080/supplierLogin', {
+  email: this.state.email,
+  password: this.state.password
+})
+.then(function (response) {
+  // Quand resulat OK => Redirige vers la bonne page
+  console.log("on est bien connecte", response);
+  console.log(response.data['token'])
+  Cookies.set('token', response.data['token'])
+  window.location.reload(false)
+})
+.catch(function (error) {
+  // alert(error.response.data.error);
+  console.log('ca marche pas')
+});
+}
+
 render() {
   return (
     <div className="formLoginDiv">
     <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
     <input type="password" placeholder="Password" value={this.state.password}  onChange={this.handlePasswordChange} />
-    <button onClick={this.loginUser}>Connection</button>
+    <button onClick={this.loginUser}>Connection User</button>
+    <button onClick={this.loginSupplier}>Connection Supplier</button>
     </div>
     );
   }

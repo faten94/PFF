@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { isAuthenticated } from "../../auth/auth"
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 

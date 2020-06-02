@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Service = require('./ServiceSch')
+const service = require('./ServiceSch')
+const location = require('./LocationSch')
 
 
 const SupplierSchema = new Schema({

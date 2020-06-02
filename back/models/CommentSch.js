@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const User = require('./UserSch')
-const Supplier = require('./SupplierSch')
+const user = require('./UserSch')
+const supplier = require('./SupplierSch')
 
 
 const CommentSchema = new Schema({
@@ -12,9 +12,9 @@ const CommentSchema = new Schema({
     
     note: { type: Number },      
 
-    User: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' }],
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' }],
 
-    Supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }]
+    supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }]
 
     
 })
