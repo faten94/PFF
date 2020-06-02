@@ -4,6 +4,7 @@ const adminUsers = require('./controllers/adminUsers');
 const adminSuppliers = require('./controllers/adminSuppliers');
 const settingsUsers = require('./controllers/settingsUsers');
 const suppliers = require('./controllers/suppliers');
+const adminQuotes = require('./controllers/adminquotes')
 const app = express();
 const router = express.Router();
 const auth = require('./middlewares/auth');
@@ -31,6 +32,11 @@ router.post('/admin/users/settings/:userId', auth, admin, adminUsers.updateProfi
 router.get('/admin/supplier', auth, admin, adminSuppliers.getAllProfile)
 router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
+router.get('/admin/quotes', auth, admin, adminQuotes.getAllQuotes)
+router.get('/admin/quotes/settings/', auth, admin, adminQuotes.getQuote)
+router.post('/admin/quotes/settings/', auth, admin, adminQuotes.createQuote)
+router.put('/admin/quotes/settings/', auth, admin, adminQuotes.updateQuote)
+
 
 // router.param("userId", users.getUserFromId);
 

@@ -16,6 +16,8 @@ import AdminCRUDUserPage from "./Pages/Admin/AdminCRUDUserPage";
 import AdminCRUDSupplierPage from "./Pages/Admin/AdminCRUDSupplierPage";
 import AdminCRUDCommentsPage from "./Pages/Admin/AdminCRUDCommentsPage";
 import AdminCRUDDevisPage from "./Pages/Admin/AdminCRUDDevisPage";
+import AdminUsersCreate from "./Pages/Admin/AdminUsersCreate";
+import AdminQuoteCreate from "./Pages/Admin/AdminQuoteCreate";
 import Error404Page from "./Pages/Error404Page";
 
 function App() {
@@ -33,9 +35,11 @@ function App() {
 
         <Route exact path="/admin" component={AdminPage} />
         <Route path="/admin/users" component={AdminUsersPage} />
+        <Route path="/admin/user/create" component={AdminUsersCreate} />
         <Route path="/admin/suppliers" component={AdminSuppliersPage} />
         <Route path="/admin/comments" component={AdminCommentsPage} />
         <Route path="/admin/quotes" component={AdminDevisPage} />
+        <Route path="/admin/quote/create" component={AdminQuoteCreate} />
         <Route path="/admin/user/:_id" component={AdminCRUDUserPage} />
         <Route path="/admin/supplier/:id" component={AdminCRUDSupplierPage} />
         <Route path="/admin/comment/:id" component={AdminCRUDCommentsPage} />
