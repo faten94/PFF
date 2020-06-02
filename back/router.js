@@ -14,6 +14,9 @@ const admin = require('./middlewares/admin');
 const service = require('./controllers/service');
 
 
+
+
+
 app.use('/', router);
 
 router.post('/register', users.register);
@@ -40,7 +43,10 @@ router.get('/admin/comments', auth, admin, adminComments.getAllComments)
 router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.getComment)
 router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.updateComment)
 
-router.get('/service', service.GetAllSupplier)
+router.get('/service', service.service)
+
+
+//router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)
 
 // router.param("userId", users.getUserFromId);
