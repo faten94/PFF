@@ -40,11 +40,11 @@ class AdminCRUDCommentsPage extends Component {
                 user: this.state.user,
                 supplier: this.state.supplier,
             }
-            if (this.state.content == '') data.content = this.state.oldcontent
-            if (this.state.date == '') data.date = this.state.olddate
-            if (this.state.note == '') data.note = this.state.oldnote
-            if (this.state.user == '') data.user = this.state.olduser
-            if (this.state.supplier == '') data.supplier= this.state.oldsupplier
+            if (this.state.content === '') data.content = this.state.oldcontent
+            if (this.state.date === '') data.date = this.state.olddate
+            if (this.state.note === '') data.note = this.state.oldnote
+            if (this.state.user === '') data.user = this.state.olduser
+            if (this.state.supplier === '') data.supplier= this.state.oldsupplier
             
             axios.post('http://localhost:8080/admin/comments/settings/:commentId', data, {headers: headers})
             .then(res => {

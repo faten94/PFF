@@ -4,12 +4,10 @@ const adminUsers = require('./controllers/adminUsers');
 const adminSuppliers = require('./controllers/adminSuppliers');
 const adminComments = require('./controllers/adminComments');
 const settingsUsers = require('./controllers/settingsUsers');
-<<<<<<< HEAD
 const service = require("./controllers/service")
-=======
 const settingsSuppliers = require('./controllers/settingsSuppliers')
->>>>>>> ae250a4ddd6bb1c5e4891fb1108b102097c82493
 const suppliers = require('./controllers/suppliers');
+const adminQuotes = require('./controllers/adminQuotes')
 const app = express();
 const router = express.Router();
 const auth = require('./middlewares/auth');
@@ -38,6 +36,10 @@ router.post('/admin/users/settings/:userId', auth, admin, adminUsers.updateProfi
 router.get('/admin/supplier', auth, admin, adminSuppliers.getAllProfile)
 router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
+router.get('/admin/quotes', auth, admin, adminQuotes.getAllQuotes)
+router.get('/admin/quotes/settings/', auth, admin, adminQuotes.getQuote)
+//router.post('/admin/quotes/settings/', auth, admin, adminQuotes.createQuote)
+router.put('/admin/quotes/settings/', auth, admin, adminQuotes.updateQuote)
 router.post('/comment', auth, adminComments.createComment)
 router.get('/admin/comments', auth, admin, adminComments.getAllComments)
 router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.getComment)
@@ -45,15 +47,5 @@ router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.up
 
 router.get('/service', service.GetAllSupplier)
 router.get('/services', service.GetAllSupplierByService)
-
-// router.param("userId", users.getUserFromId);
-
-// router.param("userId",function(req, res, next, id){
-//     console.log('router.param id'+id)
-//     req.user =  users.getUserFromId(id)
-//     console.log('router.param req.user'+req.user)
-//     next()
-// });
-
 
 module.exports = router;
