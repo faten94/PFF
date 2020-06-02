@@ -45,8 +45,8 @@ function App() {
         <Route exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
         <Route path="/" exact component={HomePage} />
         <ProtectedRouteUser exact path="/account" component={ProfileUserPage} />
-        <ProtectedRouteUser path="/registeruser" component={RegisterUserPage} />
-        <ProtectedRouteUser path="/registersupplier" component={RegisterSupplierPage} />
+        <Route path="/registeruser" component={RegisterUserPage} />
+        <Route path="/registersupplier" component={RegisterSupplierPage} />
         <Route path="/logout"><Logout /></Route>
 
         <Route exact path="/admin" component={AdminPage} />
