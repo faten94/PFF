@@ -5,59 +5,58 @@ import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 
 
-class AdminUsersPage extends Component {
+class AdminDevisPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            devis: [],
         };
     }
 
-    getAllUsers = () => {
+    getAllDevis = () => {
         const headers = { 'authorization': Cookies.get('token') }
         axios
-            .get("http://localhost:8080/admin/users", { headers: headers })
+            .get("http://localhost:8080/admin/devis", { headers: headers })
             .then((response) => {
-                console.log("getAllusers response", response);
-                console.log("getAllusers response.data", response.data);
-                this.setState({ users: response.data })
+                console.log("getAlldevis response", response);
+                console.log("getAlldevis response.data", response.data);
+                this.setState({ devis: response.data })
             })
             .catch((err) => {
                 console.log(err);
             })
     }
 
-    displayUsers = (users) => {
-        const getAllUsers = users;
-        //  console.log("json", JSON.stringify(getAllUsers));
-        const usersList = getAllUsers.map((user) => {
+    displayDevis = (devis) => {
+        const getAllDevis = devis;
+        //  console.log("json", JSON.stringify(getAllDevis));
+        const devisList = getAllDevis.map((devis) => {
             return (
-                <tr key={user.id}>
-                    <td>{user.lastname}</td>
-                    <td>{user.firstname}</td>
-                    <td>{user.address}</td>
-                    <td>{user.photo}</td>
-                    <td>{user.phone}</td>
-                    <td>{user.email}</td>
-                    <td>{user.role}</td>
-                    <td>{user.date}</td>
+                <tr key={devis.id}>
+                    <td>{devis.content}</td>
+                    <td>{devis.statut}</td>
+                    <td>{devis.daterdv}</td>
+                    <td>{devis.payment}</td>
+                    <td>{devis.supplier}</td>
+                    <td>{devis.photo}</td>
+                    <td>{devis.date}</td>
                     <td>
-                        <Link to={"/admin/user/"+user._id}>
-                            <button name={user._id} value={user._id}>{user._id}</button>
+                        <Link to={"/admin/devis/"+devis._id}>
+                            <button name={devis._id} value={devis._id}>{devis._id}</button>
                         </Link>
                     </td>
                 </tr>
             )
         });
-        return (usersList);
+        return (devisList);
     }
 
     async componentDidMount() {
-        await this.getAllUsers();
+        await this.getAllDevis();
     }
 
     render() {
-        let users = this.state.users;
+        let devis = this.state.devis;
         return (
             <div>
                  <Link to="/admin">
@@ -65,27 +64,30 @@ class AdminUsersPage extends Component {
                         Retour
                     </button>
                 </Link>
+                {/* <Link to="/admin/quote/create">
+                    <button>
+                        Créer un devis
+                    </button>
+                </Link> */}
                 <h1 className="title">Admin</h1>
 
-                <h2 className="title">CRUD User</h2>
+                <h2 className="title">CRUD Devis</h2>
 
-                <table id='users'>
+                <table id='devis'>
 
                     <thead>
                         <tr>
-                            <td>Nom</td>
-                            <td>Prenom</td>
-                            <td>Adresse</td>
-                            <td>Photo</td>
-                            <td>Telephone</td>
-                            <td>Email</td>
-                            <td>Role</td>
-                            <td>Date d'inscription</td>
-                            <td>id</td>
+                            <td>content</td>
+                            <td>statut</td>
+                            <td>daterdv</td>
+                            <td>payment</td>
+                            <td>supplier</td>
+                            {/* <td>photo</td> */}
+                            <td>date de création</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.displayUsers(users)}
+                        {this.displayDevis(devis)}
                     </tbody>
                 </table>
             </div>
@@ -93,4 +95,4 @@ class AdminUsersPage extends Component {
     };
 }
 
-export default AdminUsersPage;
+export default AdminDevisPage;
