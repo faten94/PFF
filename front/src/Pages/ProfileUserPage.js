@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { isAuthenticated } from "../auth/auth"
-import Error404 from './Error404Page'
+import Error404 from './Error404Page';
 import Cookies from 'js-cookie';
 
 class ProfileUserPage extends Component {
@@ -35,8 +34,8 @@ class ProfileUserPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        const headers = {'authorization': Cookies.get('token')}
-        const user = {
+        var headers = {'authorization': Cookies.get('token')}
+        var user = {
             email: this.state.oldemail,
             password: this.state.oldpassword
         };
@@ -73,8 +72,8 @@ class ProfileUserPage extends Component {
 }
 
 deleteAccount = () => {
-    const headers = {'authorization': Cookies.get('token')}
-    const user = {
+    var headers = {'authorization': Cookies.get('token')}
+    var user = {
         email: this.state.oldemail,
         password: this.state.oldpassword
     };
@@ -117,6 +116,9 @@ componentDidMount() {
 }
 
 render() {
+    if(Cookies.get('token') == undefined){
+        return <Error404/>
+    }
     return (
         <div>
         <h1 className="title">Compte</h1>
@@ -136,7 +138,8 @@ render() {
         <br></br>
         <br></br>
         
-        <form onSubmit={this.handleSubmit}><table className="hoverTable">
+        <form onSubmit={this.handleSubmit}>
+            <table className="hoverTable">
         <tr>
         <td>Nom</td>
         <td>{this.state.oldfirstname}</td>
