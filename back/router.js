@@ -3,12 +3,12 @@ const users = require('./controllers/users');
 const adminUsers = require('./controllers/adminUsers');
 const adminSuppliers = require('./controllers/adminSuppliers');
 const settingsUsers = require('./controllers/settingsUsers');
+const service = require("./controllers/service")
 const suppliers = require('./controllers/suppliers');
 const app = express();
 const router = express.Router();
 const auth = require('./middlewares/auth');
 const admin = require('./middlewares/admin');
-const service = require('./controllers/service');
 
 
 app.use('/', router);
@@ -33,7 +33,7 @@ router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
 
 router.get('/service', service.GetAllSupplier)
-//router.get('/service', service.GetAllSupplierByService)
+router.get('/services', service.GetAllSupplierByService)
 
 
 
