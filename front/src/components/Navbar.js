@@ -1,29 +1,37 @@
 import React from 'react';
 import './Navbar.css';
-import LoginForm from './loginform/LoginForm';
 import { Link } from 'react-router-dom';
+import Logo from '../images/logo.png'
 import Cookies from 'js-cookie';
 
 
 function Navbar() {
-  if(!Cookies.get('token')){
+  if(Cookies.get('token')){
     return (
-      <div className="navbar" style={{backgroundColor: "cornflowerblue"}} >
-      <Link to="/registeruser">Inscription</Link>
-      <Link to="/registersupplier">Envie de proposer vos services ?</Link>
-
-      <LoginForm />
-
-
+      <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
+      <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
+      <Link to="/account">Compte</Link>
+      <Link to= "/logout">Logout</Link>
+      </div>
+      
+      )
+    }
+    else if(Cookies.get('supplierToken')){
+      return (
+        <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
+        <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
+        <Link to="/accountsupplier">Compte</Link>
+        <Link to ="/logout">Logout</Link>
+        </div>
+      )
+    }
+    return (    
+      <div className="navbar" style={{backgroundColor: "#2D4F6C"}}> 
+        <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
+        <Link to="/registeruser">Inscription</Link>
+        <Link to="/loginUser">Connexion</Link>
       </div>
       );
-    }
-    return (
-      <div className="navbar" style={{backgroundColor: "cornflowerblue"}} >
-      <Link to="/account">Compte</Link>
-      <li className="nav-item"><a className="nav-link active" href="/Logout">Logout</a></li>
-      </div>
-      )
     }
 
     export default Navbar;

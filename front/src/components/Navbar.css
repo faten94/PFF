@@ -15,3 +15,9 @@
     padding: 2px 5px 2px 5px;
     text-decoration: none;
 }
+.logo { 
+    position : fixed; 
+    left : 10px; 
+    top : 10px;
+    width: 130px; 
+}

@@ -37,11 +37,11 @@ class ProfileSettingSupplierPage extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var supplier = {
-            email: this.state.oldemail,
-            password: this.state.oldpassword
-        };
+        var headers = {'authorization': Cookies.get('supplierToken')}
+        // var supplier = {
+        //     email: this.state.oldemail,
+        //     password: this.state.oldpassword
+        // };
         
         axios.post('http://localhost:8080/supplierLogin', {
         email: this.state.email,
@@ -67,13 +67,13 @@ class ProfileSettingSupplierPage extends Component {
                 service: this.state.service
                 
             }
-            if (this.state.password == '') data.password = this.state.oldpassword
-            if (this.state.lastname == '') data.lastname = this.state.oldlastname
-            if (this.state.firstname == '') data.firstname = this.state.oldfirstname
-            if (this.state.email == '') data.email = this.state.oldemail
-            if (this.state.address == '') data.address = this.state.oldaddress
-            if (this.state.phone == '') data.phone = this.state.oldphone
-            if (this.state.date == '') data.date = this.state.olddate
+            if (this.state.password === '') data.password = this.state.oldpassword
+            if (this.state.lastname === '') data.lastname = this.state.oldlastname
+            if (this.state.firstname === '') data.firstname = this.state.oldfirstname
+            if (this.state.email === '') data.email = this.state.oldemail
+            if (this.state.address === '') data.address = this.state.oldaddress
+            if (this.state.phone === '') data.phone = this.state.oldphone
+            if (this.state.date === '') data.date = this.state.olddate
             axios.post('http://localhost:8080/settings/suppliers', data, {headers: headers})
             .then(res => {
                 window.location.reload(false)
@@ -84,7 +84,7 @@ class ProfileSettingSupplierPage extends Component {
 }
 
 componentDidMount() {
-    const headers = {'authorization': Cookies.get('token')}
+    const headers = {'authorization': Cookies.get('supplierToken')}
     axios.get('http://localhost:8080/settings/suppliers', {headers: headers})
     .then(res => {
         this.setState({
@@ -121,11 +121,11 @@ componentDidMount() {
     .catch(error => console.log(error));
 }
 deleteAccount = () => {
-    var headers = {'authorization': Cookies.get('token')}
-    var user = {
-        email: this.state.oldemail,
-        password: this.state.oldpassword
-    };
+    var headers = {'authorization': Cookies.get('supplierToken')}
+    // var user = {
+    //     email: this.state.oldemail,
+    //     password: this.state.oldpassword
+    // };
     
     axios.post('http://localhost:8080/supplierLogin', {
     email: this.state.email,
@@ -135,7 +135,7 @@ deleteAccount = () => {
     if(res.status===200){
         axios.delete('http://localhost:8080/settings/suppliers', {headers: headers})
         .then(res => {
-            Cookies.remove('token');
+            Cookies.remove('supplierToken');
             window.location.reload(false)
         })
     }
@@ -144,14 +144,14 @@ deleteAccount = () => {
 
 
 render() {
-    if(Cookies.get('token') == undefined){
+    if(Cookies.get('supplierToken') === undefined){
         return <Error404/>
     }
     return (
         <div>
         <h1 className="title">Editer</h1>
         
-        <img class="photo"/>
+        <img class="photo" alt="user"/>
         
         <br></br>
         
@@ -263,7 +263,7 @@ render() {
         onChange={this.handleChange}
         name="city"
         id="phone"
-        placeholder="VIlle"
+        placeholder="Ville"
         /></td>
         
         </tr>

@@ -8,7 +8,7 @@ class SearchBar extends Component{
     super(props);
     this.state = {
       searchSupplier:"",
-     placeHolder: "Wath are you search ?",
+     placeHolder: "Chercher un service...",
      inputvalue: ""
 
    }
@@ -30,7 +30,7 @@ class SearchBar extends Component{
   render(){
       return (
 
-        <div>
+        <div className="search-bar">
 
 
           <input onChange = {this.handleChange.bind(this)} placeholder = {this.state.placeHolder}/>
