@@ -94,8 +94,6 @@ componentDidMount() {
             oldlastname: res.data.lastname,
             email: res.data.email,
             oldemail: res.data.email,
-            password :res.data.password,
-            oldpassword: res.data.oldpassword,
             photo: res.data.photo,
             oldphoto: res.data.oldphoto,
             typesupplier: res.data.typesupplier,
@@ -281,13 +279,13 @@ render() {
         /></td>
         </tr>
         <tr>
-        <td>Expertise</td>
-        <td>{this.state.expertise}</td>
+        <td>Service</td>
+        <td>{this.state.service}</td>
         <td>
         <label>
-        <input list="expertise" name="expertise" onChange={this.handleChange}/>
+        <input list="service" name="service" onChange={this.handleChange}/>
         </label>
-        <datalist id="expertise">
+        <datalist id="service">
         <option value="Plomberie" />
         <option value="Menage" />
         <option value="Cuisine" />
@@ -296,8 +294,11 @@ render() {
         <option value="Clown" />
         </datalist>
         </td>
-        </tr>   
-        <button type="submit" value="Mettre à jour">
+        </tr>
+        <td>Confirmation</td>
+        <td><input type="password" onChange={this.handleChange} name="oldpassword" placeholder="Old password" required></input></td>  
+        <button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>
+        <br></br>
         Valider les modifications
         </button>
         <br></br>

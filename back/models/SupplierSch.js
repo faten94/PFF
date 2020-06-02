@@ -34,7 +34,7 @@ const SupplierSchema = new Schema({
     
     location: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LocationSch' }],
 
-    service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }]
+    service: {type: String}
 })
 
 const Supplier = mongoose.model('Supplier', SupplierSchema)
