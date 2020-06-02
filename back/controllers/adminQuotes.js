@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 const Devis = require('../models/DevisSch')
 
-dotenv.config();
 app.use(express.json());
 
-exports.updateQuotes = async (req, res) => {
+exports.updateQuote = async (req, res) => {
     console.log('body '+req.body)
     console.log(req.body.quoteId)
     const id =  req.body.quoteId
@@ -40,5 +39,3 @@ exports.deleteQuote = (req, res) => {
         res.sendStatus(200)
     })
 }
-
-exports.deleteQuote

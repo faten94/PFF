@@ -6,7 +6,7 @@ const adminComments = require('./controllers/adminComments');
 const settingsUsers = require('./controllers/settingsUsers');
 const settingsSuppliers = require('./controllers/settingsSuppliers')
 const suppliers = require('./controllers/suppliers');
-const adminQuotes = require('./controllers/adminquotes')
+const adminQuotes = require('./controllers/adminQuotes')
 const app = express();
 const router = express.Router();
 const auth = require('./middlewares/auth');
@@ -38,7 +38,7 @@ router.post('/admin/supplier', auth, admin, users.register)
 router.put('/admin/supplier', auth, admin, adminSuppliers.UpdateProfile)
 router.get('/admin/quotes', auth, admin, adminQuotes.getAllQuotes)
 router.get('/admin/quotes/settings/', auth, admin, adminQuotes.getQuote)
-router.post('/admin/quotes/settings/', auth, admin, adminQuotes.createQuote)
+//router.post('/admin/quotes/settings/', auth, admin, adminQuotes.createQuote)
 router.put('/admin/quotes/settings/', auth, admin, adminQuotes.updateQuote)
 router.post('/comment', auth, adminComments.createComment)
 router.get('/admin/comments', auth, admin, adminComments.getAllComments)

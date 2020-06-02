@@ -7,9 +7,10 @@ class SearchBar extends Component{
   constructor(props){
     super(props);
     this.state = {
-      servic:"",
-     placeHolder: "Wath are you search ?",
-     data: [],
+      data: [],
+      searchSupplier:"",
+     placeHolder: "Chercher un service...",
+     inputvalue: ""
 
    }
   }
@@ -43,7 +44,7 @@ class SearchBar extends Component{
   render(){
       return (
 
-        <div>
+        <div className="search-bar">
 
 
           <input onChange = {this.handleChange.bind(this)} placeholder = {this.state.placeHolder}/>
