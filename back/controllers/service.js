@@ -22,7 +22,7 @@ app.use(express.json());
                 else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
             })
             console.log('je suis la')
-            
+
         }
         // exports.GetAllSupplierByService = async(req, res) => {
 
@@ -32,8 +32,3 @@ app.use(express.json());
         //         else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
         //     })
         //     console.log('je suis la')
-
-
-
-
-
