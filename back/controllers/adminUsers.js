@@ -21,9 +21,11 @@ exports.UpdateProfile = async (req, res) => {
 }
 
 exports.verifyAdmin = function (req, res, id) {
+    console.log("admin verify id",id);
     return User.findById(id, function (err, user) {
         if(err) throw err;
         if(user.role == 'admin'){
+            console.log('verify admin ok')
             return 'admin'
         }
     })
@@ -31,6 +33,14 @@ exports.verifyAdmin = function (req, res, id) {
 
 exports.getAllProfile = (req, res) => {
     User.find(function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}
+
+exports.getProfile = (req, res) => {
+    id =  req.body._id
+    User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)
     })
