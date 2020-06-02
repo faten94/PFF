@@ -31,7 +31,7 @@ class SearchBar extends Component{
       return (
 
         <div>
-      
+
 
           <input onChange = {this.handleChange.bind(this)} placeholder = {this.state.placeHolder}/>
 

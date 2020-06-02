@@ -6,7 +6,9 @@ import SearchBar from '../components/search/SearchBar';
 function HomePage() {
   return (
     <div className="homeFormDiv">
+
     <SearchBar/>
+
 
     </div>
   );

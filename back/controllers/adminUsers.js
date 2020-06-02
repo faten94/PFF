@@ -9,8 +9,10 @@ const auth = require("../middlewares/auth");
 dotenv.config();
 app.use(express.json());
 
-exports.UpdateProfile = async (req, res) => {
-    id =  req.body._id
+exports.updateProfile = async (req, res) => {
+    console.log('body '+req.body)
+    console.log(req.body.userId)
+    const id =  req.body.userId
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
         User.findByIdAndUpdate(id, req.body, function(err, result){
@@ -21,9 +23,11 @@ exports.UpdateProfile = async (req, res) => {
 }
 
 exports.verifyAdmin = function (req, res, id) {
+    console.log("admin verify id",id);
     return User.findById(id, function (err, user) {
         if(err) throw err;
         if(user.role == 'admin'){
+            console.log('verify admin ok')
             return 'admin'
         }
     })
@@ -31,6 +35,16 @@ exports.verifyAdmin = function (req, res, id) {
 
 exports.getAllProfile = (req, res) => {
     User.find(function (err, user) {
+        if(err) throw err;
+        res.json(user)
+    })
+}
+
+exports.getProfile = (req, res) => {
+    console.log(req.params)
+    const id =  req.params.userId
+    console.log(id)
+    User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)
     })
