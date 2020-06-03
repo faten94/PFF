@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           Node-version: ${{ matrix.node-version }}
+      - name: install axios
+        run: npm i axios
       - name: Nominal Run
         run: npm run back
         # with:
