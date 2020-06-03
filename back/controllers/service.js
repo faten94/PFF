@@ -13,11 +13,11 @@ app.use(express.json());
  console.log('blallalal')
  exports.service = async(req, res) => {
 
-  // console.log(req.body)
+  console.log(req.body)
    //console.log(req.params)
-   console.log(req.query)
+   //console.log(req.query)
 
-   Supplier.find ({service: req.query.service}, function(err,docs){
+   Supplier.find ({service: req.body.service}, function(err,docs){
   if(!err) res.send(docs)
 
  })

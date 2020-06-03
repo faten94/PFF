@@ -43,7 +43,7 @@ router.get('/admin/comments', auth, admin, adminComments.getAllComments)
 router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.getComment)
 router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.updateComment)
 
-router.get('/service', service.service)
+router.post('/service', service.service)
 
 
 //router.get('/services', service.GetAllSupplierByService)
