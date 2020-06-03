@@ -13,7 +13,6 @@ const router = express.Router();
 const auth = require('./middlewares/auth');
 const authSupplier = require('./middlewares/authSupplier');
 const admin = require('./middlewares/admin');
-const service = require('./controllers/service');
 const comments = require('./controllers/comments')
 
 
