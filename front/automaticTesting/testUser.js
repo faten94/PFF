@@ -15,6 +15,7 @@ const newaddress = 'New 1 avenue Test';
 const newphone = 'New 01 23 45 67 89';
 let token = '';
 
+module.exports = function() {
 // Test of the register route
 axios.post('http://localhost:8080/register', {
 firstname: firstname,
@@ -83,3 +84,4 @@ phone: phone
 .catch(function (error) {
     alert(error.response.data.error);
 });
+}
