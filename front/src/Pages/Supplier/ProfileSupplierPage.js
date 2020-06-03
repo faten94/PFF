@@ -4,7 +4,8 @@ import Error404 from '../Error404Page';
 import Cookies from 'js-cookie';
 import Avatar from '../../images/avatar.png'
 import { Link } from "react-router-dom";
-
+import {DisplayMapClass} from '../../components/DisplayMapClass';
+import Calendar from '../../components/calendar'
 
 
 class ProfileSupplierPage extends Component {
@@ -65,6 +66,7 @@ class ProfileSupplierPage extends Component {
         return (
             <div className="container">
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
+                    <div> <DisplayMapClass/></div>
                     <div>  
                         <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="400"/>
                     </div>
@@ -80,6 +82,7 @@ class ProfileSupplierPage extends Component {
                         <p>Siret : {this.state.siret} </p>
                         <p>Service: {this.state.service}</p>
                     </div>             
+                    <div> <Calendar/> </div>
                 </div>             
             </div>
                     
