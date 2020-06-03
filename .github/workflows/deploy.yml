@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Nominal Run
-        run: npm run dev &
+        run: npm run back
         # with:
         #   node-version: 13.14
       - name: User back testing
-        run: node ./../front/automaticTesting/testUser.js
+        run: npm run testback
         # with:
         #   node-version: 13.14        
