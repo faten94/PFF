@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import axios from "axios";
-//import './SearchBar';
-
 
 class SearchBar extends Component{
   constructor(props){
     super(props);
     this.state = {
       service:"",
-     placeHolder: " ?",
      data: [],
    }
    this.DisplaySupplier = this.DisplaySupplier.bind(this)
@@ -36,13 +33,9 @@ handleServiceChange = (e) => {
   DisplaySupplier = (data) =>{
     
     if (!data.length) return null
-    
-    console.log(data)
     return data.map((supplier, index)=>(
       <div key={index} className='display'>
-      <p><a href= "http://localhost:3000/registeruser">{supplier.lastname}</a></p>
-      //<p><a href= "http://localhost:3000/accountsupplier/{supplier._id}"  >{supplier.lastname}</a></p>
-      <h5> {supplier._id} </h5>
+      <p><a href= {"http://localhost:3000/accountsupplier/" + supplier._id }>{supplier.lastname} à {supplier.city} </a></p>
       </div>
     ))
   }
@@ -51,12 +44,11 @@ handleServiceChange = (e) => {
   render(){
       return (
         <div>
-          <input value={this.state.service} onChange = {this.handleServiceChange}  placeholder = {this.state.placeHolder}/>
-
-          <button  onClick={this.getSupplierService}> Search</button>
+          <input value={this.state.service} onChange = {this.handleServiceChange}  placeholder = " Votre recherche" />
+            <button  onClick={this.getSupplierService}> Search</button>
               <div>
                 {this.DisplaySupplier(this.state.data)}
-                </div>
+              </div>
         </div>
     )
   }
