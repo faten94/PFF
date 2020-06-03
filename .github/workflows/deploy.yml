@@ -10,8 +10,10 @@ jobs:
         node-version: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v1
+        with:
+          ref: devops
       - name: My first step
-        uses: ./.github/actions/PFF
+        uses: ./.github/actions/automatic-tests
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
