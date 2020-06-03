@@ -10,11 +10,11 @@ import Error404Page from "./Pages/Error404Page";
 import RegisterSupplierPage from './Pages/Supplier/RegisterSupplierPage';
 import LoginSupplierPage from './Pages/Supplier/LoginSupplierPage';
 import ProfileSettingSupplierPage from './Pages/Supplier/ProfileSettingSupplierPage';
-import ProfileSupplier from "./Pages/Supplier/ProfileSupplier";
+import ProfileSupplierPage from "./Pages/Supplier/ProfileSupplierPage";
 
 import RegisterUserPage from './Pages/User/RegisterUserPage';
 import LoginUserPage from './Pages/User/LoginUserPage'
-import ProfileUserPage from "./Pages/User/ProfileUserPage";
+import ProfileSettingUserPage from "./Pages/User/ProfileSettingUserPage";
 
 
 import AdminPage from "./Pages/Admin/AdminPage";
@@ -32,9 +32,6 @@ import AdminQuoteCreate from "./Pages/Admin/AdminQuoteCreate";
 
 
 function App() {
-
-
-
 
   return (
     <div className="container">
@@ -55,10 +52,11 @@ function App() {
           <Route path="/loginSupplier" component={LoginSupplierPage} />
 
           {/* Users */}
-          <ProtectedRouteUser exact path="/account" component={ProfileUserPage} />
+
+          <ProtectedRouteUser exact path="/account/edit" component={ProfileSettingUserPage} />
 
           {/* Suppliers */}
-          <ProtectedRouteSupplier exact path="/accountsupplier" component={ProfileSupplier} />
+          <Route exact path="/accountsupplier/:id" component={ProfileSupplierPage} />
           <ProtectedRouteSupplier  exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
           
           {/* Admin */}
