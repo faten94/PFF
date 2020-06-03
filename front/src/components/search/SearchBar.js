@@ -9,6 +9,8 @@ class SearchBar extends Component{
      placeHolder: " ?",
      data: [],
    }
+   this.handleServiceChange = this.handleServiceChange.bind(this);
+
   }
 
 handleServiceChange = (e) => {
@@ -37,14 +39,16 @@ handleServiceChange = (e) => {
         <div>
           <input value={this.state.service} onChange = {this.handleServiceChange}  placeholder = {this.state.placeHolder}/>
 
-          <button  onClick={this.getSupplierService}> Search</button>
+          <button  onClick={this.getSupplierService.bind(this)}> Search</button>
               <div>
+
                     {
                         this.state.data.map((i) =>
                             <p>{i.lastname}</p>
                         )
                     }
                 </div>
+
         </div>
     )
   }

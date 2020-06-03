@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 class LoginUserPage extends Component {
-  constructor(props){  
+  constructor(props){
     super(props)
     console.log(props);
     this.state = {
@@ -14,22 +14,22 @@ class LoginUserPage extends Component {
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    
+
   }
   
-  
+
   handleEmailChange = (e) => {
     this.setState({
       email: e.target.value
     })
   }
-  
+
   handlePasswordChange = (e) => {
     this.setState({
       password: e.target.value
     })
   }
-  
+
   loginSupplier = (e) => {
     // console.log(this.state);
     axios.post('http://localhost:8080/supplierLogin', {
@@ -55,9 +55,9 @@ if(Cookies.get('supplierToken')){
   return <Redirect to = "/"/>
 }
   return (
-    
+
     <div className="container">
-    
+
     <td><Link to ="/loginUser">Connexion Utilisateur</Link></td>
     <td><Link to ="/loginSupplier">Connexion Fournisseur</Link></td>
 
@@ -73,4 +73,4 @@ if(Cookies.get('supplierToken')){
     )}
   }
 
-    export default LoginUserPage; 
+    export default LoginUserPage;
