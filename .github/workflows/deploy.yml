@@ -9,8 +9,8 @@ jobs:
     name: Build and Run
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with: Build Code
+      # - uses: actions/checkout@v1
+      #   with: Build Code
         node-version: 13.14
         run: npm run dev &
         name: Nominal Run
