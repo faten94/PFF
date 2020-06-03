@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
 
 class ProfileSupplierPage extends Component {
     constructor(props){
+        const url = window.location.href;
+        const urlArray = url.split('/');
+        const urlLength = urlArray.length-1
+        const supplierId = urlArray[urlLength]
         super(props);
         this.state = {
             lastname:"",
@@ -26,20 +30,29 @@ class ProfileSupplierPage extends Component {
             date:"",
             location:"",
             service:"",
+            supplierId: supplierId
         }
     }
     
     componentDidMount() {
-        const headers = {'authorization': Cookies.get('supplierToken')}
-        axios.get('http://localhost:8080/settings/suppliers', {headers: headers})
+        const params = {supplierId : this.state.supplierId}
+        
+        axios.get('http://localhost:8080/settings/suppliers/'+this.state.supplierId, {params})
         .then(res => {
             this.setState({
                 firstname: res.data.firstname,
                 lastname: res.data.lastname,
                 email: res.data.email,
+                photo: res.data.photo,
+                typesupplier: res.data.typesupplier,
+                siret : res.data.siret,
+                zip: res.data.zip,
                 city: res.data.city,
                 address: res.data.address,
                 phone: res.data.phone,
+                expertise: res.data.expertise,
+                service: res.data.service,
+                location: res.data.location,
                 date: res.data.date,
             })
         })
@@ -48,9 +61,7 @@ class ProfileSupplierPage extends Component {
     
     
     render() {
-        if(Cookies.get('supplierToken') === undefined){
-            return <Error404/>
-        }
+
         return (
             <div className="container">
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
@@ -61,14 +72,15 @@ class ProfileSupplierPage extends Component {
                     <div>
                         <p>Adresse : {this.state.address}</p>
                         <p>Ville : {this.state.city}</p>
+                        <p>Code postal : {this.state.zip}</p> 
                         <p>Email : {this.state.email}</p>
                         <p>Téléphone : {this.state.phone}</p>
                         <p>Date d'inscription : {this.state.date}</p>           
+                        <p>Type de fournisseur : {this.state.typesupplier}</p>
+                        <p>Siret : {this.state.siret} </p>
+                        <p>Service: {this.state.service}</p>
                     </div>             
-                </div>  
-                <Link to = {"/accountSupplier/edit/"} className="btn btn-raised btn-success mr-5">
-                                Editer
-                </Link>             
+                </div>             
             </div>
                     
             )
