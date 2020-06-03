@@ -24,7 +24,6 @@ jobs:
         run: npm run back
         # with:
         #   node-version: 13.14
-      - name: User back testing
         run: npm run testback
         # with:
         #   node-version: 13.14        
