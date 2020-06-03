@@ -4,7 +4,7 @@ import Error404 from '../Error404Page';
 import Cookies from 'js-cookie';
 import Avatar from '../../images/avatar.png'
 import { Link } from "react-router-dom";
-
+import CommentSupplier from '../../components/commentsupplier/commentSupplier'
 
 
 class ProfileSupplierPage extends Component {
@@ -81,6 +81,7 @@ class ProfileSupplierPage extends Component {
                         <p>Service: {this.state.service}</p>
                     </div>             
                 </div>             
+           <CommentSupplier/>
             </div>
                     
             )
