@@ -6,7 +6,7 @@ class SearchBar extends Component{
     super(props);
     this.state = {
       service:"",
-     placeHolder: "Wath are you search ?",
+     placeHolder: " ?",
      data: [],
    }
   }
@@ -30,6 +30,8 @@ handleServiceChange = (e) => {
       });
     })
   }
+
+
   render(){
       return (
         <div>

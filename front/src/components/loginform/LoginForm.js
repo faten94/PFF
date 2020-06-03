@@ -1,8 +1,6 @@
 import React from 'react';
 import './LoginForm.css';
 import axios from "axios";
-import { authenticate } from "../../auth/auth";
-import {Redirect} from "react-router-dom"
 import Cookies from 'js-cookie';
 
 class  LoginForm extends React.Component {
@@ -54,8 +52,6 @@ class  LoginForm extends React.Component {
 
    }
 
-
-
 loginSupplier = (e) => {
   // console.log(this.state);
   axios.post('http://localhost:8080/supplierLogin', {
@@ -79,7 +75,8 @@ render() {
   return (
     <div className="formLoginDiv">
     <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
-    <input type="password" placeholder="Password" value={this.state.password}  onChange={this.handlePasswordChange} />
+    <br></br>
+    <input type="password" placeholder="Mot de passe" value={this.state.password}  onChange={this.handlePasswordChange} />
     <button onClick={this.loginUser}>Connection User</button>
     <button onClick={this.loginSupplier}>Connection Supplier</button>
     </div>

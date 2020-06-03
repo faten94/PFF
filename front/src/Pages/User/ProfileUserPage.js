@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import Error404 from './Error404Page';
 import Cookies from 'js-cookie';
 
 class ProfileUserPage extends Component {
@@ -35,10 +34,10 @@ class ProfileUserPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
         var headers = {'authorization': Cookies.get('token')}
-        var user = {
-            email: this.state.oldemail,
-            password: this.state.oldpassword
-        };
+        // var user = {
+        //     email: this.state.oldemail,
+        //     password: this.state.oldpassword
+        // };
 
         axios.post('http://localhost:8080/login', {
         email: this.state.email,
@@ -55,13 +54,13 @@ class ProfileUserPage extends Component {
                 date: this.state.date,
                 password: this.state.password
             }
-            if (this.state.password == '') data.password = this.state.oldpassword
-            if (this.state.lastname == '') data.lastname = this.state.oldlastname
-            if (this.state.firstname == '') data.firstname = this.state.oldfirstname
-            if (this.state.email == '') data.email = this.state.oldemail
-            if (this.state.address == '') data.address = this.state.oldaddress
-            if (this.state.phone == '') data.phone = this.state.oldphone
-            if (this.state.date == '') data.date = this.state.olddate
+            if (this.state.password === '') data.password = this.state.oldpassword
+            if (this.state.lastname === '') data.lastname = this.state.oldlastname
+            if (this.state.firstname === '') data.firstname = this.state.oldfirstname
+            if (this.state.email === '') data.email = this.state.oldemail
+            if (this.state.address === '') data.address = this.state.oldaddress
+            if (this.state.phone === '') data.phone = this.state.oldphone
+            if (this.state.date === '') data.date = this.state.olddate
             axios.post('http://localhost:8080/settings', data, {headers: headers})
             .then(res => {
                 window.location.reload(false)
@@ -73,10 +72,10 @@ class ProfileUserPage extends Component {
 
 deleteAccount = () => {
     var headers = {'authorization': Cookies.get('token')}
-    var user = {
-        email: this.state.oldemail,
-        password: this.state.oldpassword
-    };
+    // var user = {
+    //     email: this.state.oldemail,
+    //     password: this.state.oldpassword
+    // };
 
     axios.post('http://localhost:8080/login', {
     email: this.state.email,
@@ -116,9 +115,7 @@ componentDidMount() {
 }
 
 render() {
-    if(Cookies.get('token') == undefined){
-        return <Error404/>
-    }
+ 
     return (
         <div>
         <h1 className="title">Compte</h1>

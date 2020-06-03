@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 class Logout extends React.Component {
   render(){
     Cookies.remove('token');
+    Cookies.remove('supplierToken');
     window.location.reload(false)
     return <Redirect to = {{ pathname: "/" }} />;
   }

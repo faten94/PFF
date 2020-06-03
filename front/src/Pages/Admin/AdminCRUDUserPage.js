@@ -50,13 +50,13 @@ class AdminCRUDUserPage extends Component {
             date: this.state.date,
             password: this.state.password
         }
-        if (this.state.password == '') data.password = this.state.oldpassword
-        if (this.state.lastname == '') data.lastname = this.state.oldlastname
-        if (this.state.firstname == '') data.firstname = this.state.oldfirstname
-        if (this.state.email == '') data.email = this.state.oldemail
-        if (this.state.address == '') data.address = this.state.oldaddress
-        if (this.state.phone == '') data.phone = this.state.oldphone
-        if (this.state.date == '') data.date = this.state.olddate
+        if (this.state.password === '') data.password = this.state.oldpassword
+        if (this.state.lastname === '') data.lastname = this.state.oldlastname
+        if (this.state.firstname === '') data.firstname = this.state.oldfirstname
+        if (this.state.email === '') data.email = this.state.oldemail
+        if (this.state.address === '') data.address = this.state.oldaddress
+        if (this.state.phone === '') data.phone = this.state.oldphone
+        if (this.state.date === '') data.date = this.state.olddate
         axios.post('http://localhost:8080/admin/users/settings/:userId', data, {headers: headers})
         .then(res => {
             window.location.reload(false)

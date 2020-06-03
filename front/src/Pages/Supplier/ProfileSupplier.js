@@ -30,7 +30,7 @@ class ProfileSupplier extends Component {
     }
     
     componentDidMount() {
-        const headers = {'authorization': Cookies.get('token')}
+        const headers = {'authorization': Cookies.get('supplierToken')}
         axios.get('http://localhost:8080/settings/suppliers', {headers: headers})
         .then(res => {
             this.setState({
@@ -48,7 +48,7 @@ class ProfileSupplier extends Component {
     
     
     render() {
-        if(Cookies.get('token') == undefined){
+        if(Cookies.get('supplierToken') === undefined){
             return <Error404/>
         }
         return (
