@@ -1,5 +1,4 @@
-const axios = require('axios');
-// import axios from "axios";
+import axios from "axios";
 
 const firstname = 'Automatic testing';
 const lastname = 'Automatic testing';
