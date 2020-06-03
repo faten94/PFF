@@ -22,7 +22,7 @@ class ProfileSupplierPage extends Component {
             photo:"",
             typesupplier:"",
             siret:"",
-            adress:"",
+            address:"",
             zip:"",
             city:"",
             phone:"",
