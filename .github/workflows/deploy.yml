@@ -1,29 +1,16 @@
 name: First automatic test
 
 on: [push]
-# push:
-  #   branches: [dev]
-  
-  jobs:
-    build-and-run:
-      name: Build and Run
-      runs-on: ubuntu-latest
-      steps:
-        # - uses: actions/checkout@v1
-        #   with: Build Code
-        - name: Nominal Run
-          run: npm run dev &
-          with:
-            node-version: 13.14
-        - name: User back testing
-          run: node ./front/automaticTesting/testUser.js
-          with:
-            node-version: 13.14        
-        
-        # deploy:
-          #   runs-on: ubuntu-latest
-          #   steps:
-            #     - uses: actions/wtf
-            #       with:
-              #       node-version: 13.14
-              #       run: npm run dev
+jobs:
+  build-and-run:
+    name: Build and Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Nominal Run
+        run: npm run dev &
+        with:
+          node-version: 13.14
+      - name: User back testing
+        run: node ./front/automaticTesting/testUser.js
+        with:
+          node-version: 13.14        
