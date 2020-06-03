@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 
 
-class ProfileSupplier extends Component {
+class ProfileSupplierPage extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -76,4 +76,4 @@ class ProfileSupplier extends Component {
         }
     }
     
-    export default ProfileSupplier;
+    export default ProfileSupplierPage;
