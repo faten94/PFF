@@ -16,19 +16,28 @@ app.use(express.json());
 
     exports.GetAllSupplier = async(req, res) => {
 
-            Supplier.find((err, docs)=>{
+            Supplier.find((err, docs) => {
                 console.log(docs)
                 if(!err) res.send(docs)
-                else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
+                else console.log('erreur recuperation supplier' + JSON.stringify(err,undefined,2))
             })
             console.log('je suis la')
-
+                   
         }
-        // exports.GetAllSupplierByService = async(req, res) => {
 
-        //     Supplier.find((err, docs)=>{
-        //         console.log(docs)
-        //         if(!err) res.send(docs)
-        //         else console.log('erreur recuperation suppliet' + JSON.stringify(err,undefined,2))
-        //     })
-        //     console.log('je suis la')
+        
+        exports.GetAllSupplierByService = async(req, res) => {
+
+            console.log('ds le service')
+
+            Supplier.find ({service: 'Plombier'},  function(err,docs){
+                if(!err) res.send(docs)
+                 console.log(docs)
+
+           })
+        }
+
+
+
+
+

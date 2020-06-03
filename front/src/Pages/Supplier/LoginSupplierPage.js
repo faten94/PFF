@@ -38,9 +38,9 @@ class LoginUserPage extends Component {
   })
   .then(function (response) {
     // Quand resulat OK => Redirige vers la bonne page
-    console.log("on est bien connecte", response);
-    console.log(response.data['token'])
+    console.log("on est bien connecte", response);   
     Cookies.set('supplierToken', response.data['token'])
+    console.log(response.data['token'])
     window.location.reload(false)
   })
   .catch(function (error) {
