@@ -26,7 +26,6 @@ handleServiceChange = (e) => {
       service: this.state.service
     })
     .then((resultFromServer)=>{
-      console.log(resultFromServer);
       this.setState({
         data: resultFromServer.data
 
@@ -37,11 +36,13 @@ handleServiceChange = (e) => {
   DisplaySupplier = (data) =>{
     
     if (!data.length) return null
-
+    
+    console.log(data)
     return data.map((supplier, index)=>(
       <div key={index} className='display'>
-      <button>{supplier.lastname}</button>
-      <h5> {supplier.city} </h5>
+      <p><a href= "http://localhost:3000/registeruser">{supplier.lastname}</a></p>
+      //<p><a href= "http://localhost:3000/accountsupplier/{supplier._id}"  >{supplier.lastname}</a></p>
+      <h5> {supplier._id} </h5>
       </div>
     ))
   }
