@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import Avatar from '../../images/avatar.png'
 import { Link } from "react-router-dom";
 import {DisplayMapClass} from '../../components/DisplayMapClass';
-
+import Calendar from '../../components/calendar'
 
 
 class ProfileSupplierPage extends Component {
@@ -82,6 +82,7 @@ class ProfileSupplierPage extends Component {
                         <p>Siret : {this.state.siret} </p>
                         <p>Service: {this.state.service}</p>
                     </div>             
+                    <div> <Calendar/> </div>
                 </div>             
             </div>
                     
