@@ -10,8 +10,8 @@ function Navbar() {
     return (
       <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
       <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-      <Link to="/account/edit">Compte</Link>
-      <Link to= "/logout">Logout</Link>
+      <Link to="/account/edit" className="butt">Compte</Link>
+      <Link to= "/logout" className="butt" >Logout</Link>
       </div>
       
       )
@@ -20,16 +20,16 @@ function Navbar() {
       return (
         <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
         <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-        <Link to="/accountsupplier/edit">Compte</Link>
-        <Link to ="/logout">Logout</Link>
+        <Link to="/supplier/edit" className="butt">Compte</Link>
+        <Link to ="/logout" className="butt">Logout</Link>
         </div>
       )
     }
     return (    
       <div className="navbar" style={{backgroundColor: "#2D4F6C"}}> 
         <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-        <Link to="/registeruser">Inscription</Link>
-        <Link to="/loginUser">Connexion</Link>
+        <Link to="/registeruser" className="butt">Inscription</Link>
+        <Link to="/loginUser" className="butt">Connexion</Link>
       </div>
       );
     }

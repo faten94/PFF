@@ -34,10 +34,10 @@ class ProfileUserPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
         var headers = {'authorization': Cookies.get('token')}
-        // var user = {
-        //     email: this.state.oldemail,
-        //     password: this.state.oldpassword
-        // };
+        var user = {
+            email: this.state.oldemail,
+            password: this.state.oldpassword
+        };
 
         axios.post('http://localhost:8080/login', {
         email: this.state.email,
