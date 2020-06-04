@@ -23,6 +23,6 @@ jobs:
       - name: Nominal Run
         run: |
           npm run back
-          npm run testback
+          npm run testUser
           npm run testSupplier
       # - run: npm run testback
