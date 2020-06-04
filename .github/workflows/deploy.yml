@@ -18,13 +18,11 @@ jobs:
           Node-version: ${{ matrix.node-version }}
       - name: install axios
         run: npm i axios
-      - name: install module sback
+      - name: install modules back
         run: npm i --prefix ./back
       - name: Nominal Run
-        run: npm run back
-        # with:
-        #   node-version: 13.14
-      # - name: User back testing
-      - run: npm run testback
-        # with:
-        #   node-version: 13.14        
+        run: |
+          npm run back
+          npm run testback
+          npm run testSupplier
+      # - run: npm run testback

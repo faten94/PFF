@@ -10,7 +10,8 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "back": "npm start --prefix ./back &",
-    "testback": "node ./front/automaticTesting/testUser.js"
+    "testUser": "node ./front/automaticTesting/testUser.js",
+    "testSupplier": "node ./front/automaticTesting/testSupplier.js"
   },
   "repository": {
     "type": "git",
