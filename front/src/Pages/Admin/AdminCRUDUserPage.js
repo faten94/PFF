@@ -88,7 +88,7 @@ class AdminCRUDUserPage extends Component {
     
     render() {
         return (
-            <div>
+            <div className="container">
                  <Link to="/admin/users">
                     <button>
                         Retour

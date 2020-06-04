@@ -58,7 +58,7 @@ class AdminUsersPage extends Component {
     render() {
         let users = this.state.users;
         return (
-            <div>
+            <div className="container">
                 <Link to="/admin">
                     <button>
                         Retour

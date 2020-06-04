@@ -55,7 +55,7 @@ class AdminCommentsPage extends Component {
     render() {
         let comments = this.state.comments;
         return (
-            <div>
+            <div className="container">
                  <Link to="/admin">
                     <button>
                         Retour

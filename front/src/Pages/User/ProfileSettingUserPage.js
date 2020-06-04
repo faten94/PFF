@@ -117,7 +117,7 @@ componentDidMount() {
 render() {
  
     return (
-        <div>
+        <div className="container">
         <h1 className="title">Compte</h1>
 
         <img className="photo"

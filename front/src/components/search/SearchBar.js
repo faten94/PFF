@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import './SearchBar.css';
 
 class SearchBar extends Component{
   constructor(props){

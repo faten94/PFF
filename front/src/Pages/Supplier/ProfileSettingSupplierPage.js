@@ -148,7 +148,7 @@ render() {
         return <Error404/>
     }
     return (
-        <div>
+        <div className= "container">
         <h1 className="title">Editer</h1>
         
         <img class="photo" alt="user"/>

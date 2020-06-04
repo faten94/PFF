@@ -94,6 +94,7 @@ render() {
       return (<Redirect to = "/loginUser"/>)
   }
   return (
+<div className="container">
     <div className="registerFormDiv">
     <td><Link to ="/registerUser">Inscription Utilisateur</Link></td>
     <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
@@ -125,6 +126,7 @@ render() {
     <button type= "button" onClick={this.registerUser} >Register</button>
     </div>
     </div>
+</div>
     );
   }
 }

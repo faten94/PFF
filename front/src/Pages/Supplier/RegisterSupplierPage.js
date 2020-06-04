@@ -149,6 +149,7 @@ class RegisterSupplierPage extends React.Component {
 
 render() {
   return (
+    <div className="container">
     <div className="registerFormDiv">
     <td><Link to ="/registerUser">Inscription Utilisateur</Link></td>
     <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
@@ -222,6 +223,7 @@ render() {
     
     <div className="formItem">
     <button type= "button" onClick={this.registerSupplier} >Register</button>
+    </div>
     </div>
     </div>
     );

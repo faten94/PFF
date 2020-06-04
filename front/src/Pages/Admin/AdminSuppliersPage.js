@@ -66,7 +66,7 @@ class AdminSuppliersPage extends Component {
     render() {
         let suppliers = this.state.suppliers;
         return (
-            <div>
+            <div className="container">
                 <Link to="/admin">
                     <button>
                         Retour
