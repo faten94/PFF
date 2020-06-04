@@ -12,9 +12,9 @@ const CommentSchema = new Schema({
     
     note: { type: Number },      
 
-    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' }],
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' },
 
-    supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }]
+    supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }
 
     
 })
