@@ -25,4 +25,5 @@ jobs:
           npm run back
           npm run testUser
           npm run testSupplier
-      # - run: npm run testback
+      - run: npm run testUser
+      - run: npm run testSupplier
