@@ -10,10 +10,10 @@ supplier.use(cors())
 dotenv.config();
 app.use(express.json());
 
- console.log('blallalal')
+ //console.log('blallalal')
  exports.service = async(req, res) => {
 
-  console.log(req.body)
+  //console.log(req.body)
    //console.log(req.params)
    //console.log(req.query)
 

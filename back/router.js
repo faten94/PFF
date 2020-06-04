@@ -13,6 +13,8 @@ const router = express.Router();
 const auth = require('./middlewares/auth');
 const authSupplier = require('./middlewares/authSupplier');
 const admin = require('./middlewares/admin');
+const devis = require('./controllers/devis');
+
 
 
 
@@ -64,7 +66,7 @@ router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.get
 router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.updateComment)
 
 router.post('/service', service.service)
-
+router.post('/devis', devis.devis)
 
 //router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)
