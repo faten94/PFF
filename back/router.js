@@ -39,6 +39,7 @@ router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile
 router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
 
 //comments supplier
+router.post("/suppliers/createComment/:supplierId", comments.createComment)
 router.get('/suppliers/comments/:supplierId', comments.getCommentsbySupplier);
 
 
