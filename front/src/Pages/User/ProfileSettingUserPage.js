@@ -137,6 +137,10 @@ render() {
 
         <form onSubmit={this.handleSubmit}>
             <table className="hoverTable">
+
+                <thead></thead>
+
+                <tbody>
         <tr>
         <td>Nom</td>
         <td>{this.state.oldfirstname}</td>
@@ -150,17 +154,17 @@ render() {
         <tr>
         <td>Adresse</td>
         <td>{this.state.oldaddress}</td>
-        <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new address"/></div>
+        <div><input name="address" onChange={this.handleChange} type="text" placeholder="new address"/></div>
         </tr>
         <tr>
         <td>Numero de telephone</td>
         <td>{this.state.oldphone}</td>
-        <div><input name="email" onChange={this.handleChange} type="text" placeholder="new phone numner"/></div>
+        <div><input name="phone" onChange={this.handleChange} type="text" placeholder="new phone numner"/></div>
         </tr>
         <tr>
         <td>Adresse email</td>
         <td>{this.state.oldemail}</td>
-        <div><input name="email" onChange={this.handleChange} type="text" placeholder="new email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Invalid email')" oninput="this.setCustomValidity('')"/></div>
+        <div><input name="email" onChange={this.handleChange} type="text" placeholder="new email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onInvalid="this.setCustomValidity('Invalid email')" onInput="this.setCustomValidity('')"/></div>
         </tr>
         <tr>
         <td>Mot de passe</td>
@@ -180,6 +184,8 @@ render() {
         <td><button value="Delete" onClick={this.deleteAccount} href="/Logout">Supprimer le compte</button></td>
 
         </tr>
+
+        </tbody>
         </table>
         </form>
         <br></br>
