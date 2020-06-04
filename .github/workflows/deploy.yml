@@ -21,9 +21,6 @@ jobs:
       - name: install modules back
         run: npm i --prefix ./back
       - name: Nominal Run
-        run: |
-          npm run back
-          npm run testUser
-          npm run testSupplier
+        run: npm run back
       - run: npm run testUser
       - run: npm run testSupplier

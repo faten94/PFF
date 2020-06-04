@@ -30,7 +30,6 @@ exports.deleteProfile = (req, res) => {
 
 exports.getProfile = (req, res) => {
     id = getId.getId(req, res)
-    console.log(id)
     Supplier.findById(id, function (err, supplier) {
         if(err) throw err;
         res.json(supplier)
