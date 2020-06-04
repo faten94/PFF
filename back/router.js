@@ -13,6 +13,7 @@ const router = express.Router();
 const auth = require('./middlewares/auth');
 const authSupplier = require('./middlewares/authSupplier');
 const admin = require('./middlewares/admin');
+const comments = require('./controllers/comments')
 
 
 app.use('/', router);
@@ -33,6 +34,10 @@ router.delete('/settings', auth, settingsUsers.deleteProfile);
 router.get('/settings/suppliers/:supplierId', settingsSuppliers.getProfile);
 router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile);
 router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
+
+//comments supplier
+router.get('/suppliers/comments/:supplierId', comments.getCommentsbySupplier);
+
 
 //ADMIN
     //ADMIN USER
