@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 class Calendar extends Component {
 
@@ -19,7 +20,8 @@ class Calendar extends Component {
       startdate: new Date(),
       content: [],
       supplierId: supplierId,
-      user: ""
+      user: "",
+      x: false
     }
     this.handelStartdatechange = this.handelStartdatechange.bind(this);
     this.handelContentchange = this.handelContentchange.bind(this);
@@ -51,11 +53,13 @@ class Calendar extends Component {
             console.log("Success")
         })
         .catch((err) => {
-            console.log(err)
+            console.log("err")
+
         })
 
   }
   render(){
+    if(Cookies.get('token')){
     return (
         <div>
 
@@ -77,5 +81,21 @@ class Calendar extends Component {
     );
 
   }
+  else {
+    return (
+    <div>
+    <Link to ="/registeruser">si vous voulez faire une demmande de devis, veuillez vous inscrire  </Link>
+<br/>
+
+    ou
+    <br/>
+    <Link to ="/loginUser">si vous voulez faire une demmande de devis, veuillez vous connecter </Link>
+    </div>
+  );
 }
+}
+}
+
+
+
 export default Calendar
