@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Error404 from '../Error404Page';
-import Cookies from 'js-cookie';
 import Avatar from '../../images/avatar.png'
-import { Link } from "react-router-dom";
 import {DisplayMapClass} from '../../components/DisplayMapClass';
 import Calendar from '../../components/calendar'
+import CommentSupplier from '../../components/commentsupplier/commentSupplier'
 
 
 class ProfileSupplierPage extends Component {
@@ -84,6 +82,7 @@ class ProfileSupplierPage extends Component {
                     </div>             
                     <div> <Calendar/> </div>
                 </div>             
+           <CommentSupplier/>
             </div>
                     
             )

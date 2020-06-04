@@ -31,8 +31,10 @@ handleServiceChange = (e) => {
   }
 
   DisplaySupplier = (data) =>{
-    
+
     if (!data.length) return null
+
+
     return data.map((supplier, index)=>(
       <div key={index} className='display'>
       <p><a href= {"http://localhost:3000/accountsupplier/" + supplier._id }>{supplier.lastname} à {supplier.city} </a></p>
