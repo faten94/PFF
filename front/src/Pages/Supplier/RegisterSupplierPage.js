@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 //import './RegisterForm.css';
 
 class RegisterSupplierPage extends React.Component {
@@ -19,7 +19,8 @@ class RegisterSupplierPage extends React.Component {
       zip: "",
       city: "",
       expertise: "",
-      service: ""
+      service: "",
+      redirect: false
       
       
     }
@@ -142,12 +143,17 @@ class RegisterSupplierPage extends React.Component {
   .then(function (response) {
     // Quand resulat OK => Redirige vers la bonne page
   })
+  .then(() => this.setState({ redirect: true })) 
   .catch(function (error) {
     alert(error.response.data.error);
   });
 }
 
 render() {
+
+  if (this.state.redirect) {
+    return (<Redirect to = "/loginSupplier"/>)
+}
   return (
     <div className="container">
     <div className="registerFormDiv">
@@ -155,10 +161,10 @@ render() {
     <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
     <h1>Formulaire d'inscription Fournisseur</h1>
     <div className="formItem">
-    <input type="text" placeholder="First name" value={this.state.firstname} onChange={this.handleFirstnameChange} />
+    <input type="text" placeholder="Prenom" value={this.state.firstname} onChange={this.handleFirstnameChange} />
     </div>
     <div className="formItem">
-    <input type="text" placeholder="Last name" value={this.state.lastname} onChange={this.handleLastnameChange} />
+    <input type="text" placeholder="Nom" value={this.state.lastname} onChange={this.handleLastnameChange} />
     </div>
     <div className="formItem">
     <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
@@ -171,10 +177,10 @@ render() {
     </div>
     
     <div className="formItem">
-    <input type="number" placeholder="Zip" value={this.state.zip} onChange={this.handleZipeChange}/>
+    <input type="number" placeholder="Code postal" value={this.state.zip} onChange={this.handleZipeChange}/>
     </div>
     <div className="formItem">
-    <input type="text" placeholder="City" value={this.state.city} onChange={this.handleCityChange}/>
+    <input type="text" placeholder="Ville" value={this.state.city} onChange={this.handleCityChange}/>
     </div>
     
     <div className="formItem">
@@ -182,18 +188,18 @@ render() {
     </div>
     
     <div className="formItem">
-    <input type="texte" placeholder="Phone" value={this.state.phone} onChange={this.handlePhoneChange} />
+    <input type="texte" placeholder="Telephone" value={this.state.phone} onChange={this.handlePhoneChange} />
     </div>
     <div className="formItem">
-    <input type="text" placeholder="taper ta proffesion" value={this.state.service} onChange={this.handleServiceChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordChange} />
+    <input type="text" placeholder="Votre Profession" value={this.state.service} onChange={this.handleServiceChange} />
     </div>
     
     <div className="formItem">
-    <input type="password" placeholder="Confirm password" />
+    <input type="password" placeholder="Mot de passe" value={this.state.password} onChange={this.handlePasswordChange} />
+    </div>
+    
+    <div className="formItem">
+    <input type="password" placeholder="Confirmer le mot de passe" />
     </div>
     
     <div className="formItem">
