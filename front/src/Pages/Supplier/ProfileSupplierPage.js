@@ -64,7 +64,6 @@ class ProfileSupplierPage extends Component {
         return (
             <div className="container">
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
-
                     <div>
                         <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="400"/>
                     </div>
