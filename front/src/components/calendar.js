@@ -84,12 +84,12 @@ class Calendar extends Component {
   else {
     return (
     <div>
-    <Link to ="/registeruser">si vous voulez faire une demmande de devis, veuillez vous inscrire  </Link>
+    <Link to ="/registeruser">pour prendre un RDV ou passer votre demande vous devez devez vous inscrire  </Link>
 <br/>
 
-    ou
+    sinon
     <br/>
-    <Link to ="/loginUser">si vous voulez faire une demmande de devis, veuillez vous connecter </Link>
+    <Link to ="/loginUser">si vous avez deja un compte, veuillez vous connecter </Link>
     </div>
   );
 }
