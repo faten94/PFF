@@ -1,4 +1,4 @@
-name: First automatic test
+name: Backend automatic testing
 
 on: [push]
 jobs:
