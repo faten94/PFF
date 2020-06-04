@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 class Calendar extends Component {
 
@@ -17,7 +18,8 @@ class Calendar extends Component {
     this.state={
       startdate: new Date(),
       content: [],
-      supplierId: supplierId
+      supplierId: supplierId,
+      user: ""
     }
     this.handelStartdatechange = this.handelStartdatechange.bind(this);
     this.handelContentchange = this.handelContentchange.bind(this);
@@ -37,17 +39,20 @@ class Calendar extends Component {
     })
   }
   Devis = (e) =>{
+    const headers = { 'authorization': Cookies.get('token') }
     axios.post("http://localhost:8080/devis" ,{
       supplierId: this.state.supplierId,
       content: this.state.content,
       startdate: this.state.startdate
 
-    })
-    .then((response)=>{
-      console.log(response)
-
-
-    })
+    }
+    , { headers: headers })
+        .then((response) => {
+            console.log("Success")
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 
   }
   render(){
