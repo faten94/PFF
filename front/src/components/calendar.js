@@ -47,7 +47,13 @@ class Calendar extends Component {
 
         <DatePicker selected={this.state.startdate}
 
-        onChange={this.handelStartdatechange}/>
+        onChange={this.handelStartdatechange}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            timeCaption="time"
+            dateFormat="MMMM d, yyyy h:mm aa"
+        />
 
           <div>
           <input type="text" placeholder="rediger votre probleme" value={this.state.content} onChange={this.handelContentchange} />
