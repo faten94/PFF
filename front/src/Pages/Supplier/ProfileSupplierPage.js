@@ -66,7 +66,7 @@ class ProfileSupplierPage extends Component {
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
                     {/* <div> <DisplayMapClass/></div> */}
                     <div>  
-                        <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="400"/>
+                        <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="200"/>
                     </div>
                 <div>
                     <div>
