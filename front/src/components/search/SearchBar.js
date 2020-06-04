@@ -45,7 +45,7 @@ handleServiceChange = (e) => {
 
   render(){
       return (
-        <div>
+        <div className="search">
           <input value={this.state.service} onChange = {this.handleServiceChange}  placeholder = " Votre recherche" />
             <button  onClick={this.getSupplierService}> Search</button>
               <div>
