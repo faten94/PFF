@@ -32,10 +32,10 @@ class ProfileSupplierPage extends Component {
             supplierId: supplierId
         }
     }
-    
+
     componentDidMount() {
         const params = {supplierId : this.state.supplierId}
-        
+
         axios.get('http://localhost:8080/settings/suppliers/'+this.state.supplierId, {params})
         .then(res => {
             this.setState({
@@ -57,37 +57,36 @@ class ProfileSupplierPage extends Component {
         })
         .catch(error => console.log(error));
     }
-    
-    
+
+
     render() {
 
         return (
             <div className="container">
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
-                    <div> <DisplayMapClass/></div>
-                    <div>  
+                  
+                    <div>
                         <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="400"/>
                     </div>
                 <div>
                     <div>
                         <p>Adresse : {this.state.address}</p>
                         <p>Ville : {this.state.city}</p>
-                        <p>Code postal : {this.state.zip}</p> 
+                        <p>Code postal : {this.state.zip}</p>
                         <p>Email : {this.state.email}</p>
                         <p>Téléphone : {this.state.phone}</p>
-                        <p>Date d'inscription : {this.state.date}</p>           
+                        <p>Date d'inscription : {this.state.date}</p>
                         <p>Type de fournisseur : {this.state.typesupplier}</p>
                         <p>Siret : {this.state.siret} </p>
                         <p>Service: {this.state.service}</p>
-                    </div>             
+                    </div>
                     <div> <Calendar/> </div>
                 </div>             
            <CommentSupplier/>
-            </div>
-                    
+                </div>
             )
-            
+
         }
     }
-    
+
     export default ProfileSupplierPage;
