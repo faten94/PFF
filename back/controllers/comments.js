@@ -11,9 +11,8 @@ app.use(express.json());
 
 exports.createComment = async (req,res, next) => {
       
-        console.log("Body BACK: ", req.body)
-        req.body.user =  getId.getId(req, res)
-        // console.log("user Id: ", user)
+        // console.log("Body BACK: ", req.body)
+        req.body.user =  getId.getId(req, res)        
         const comment = new Comment(req.body);
         comment.save();
         res.status(200).json({ message: "Comment complete." });
