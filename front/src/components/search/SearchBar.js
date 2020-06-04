@@ -1,29 +1,28 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import './SearchBar';
-
 
 class SearchBar extends Component{
   constructor(props){
     super(props);
     this.state = {
-      data: [],
-      searchSupplier:"",
-     placeHolder: "Chercher un service...",
-     inputvalue: ""
-
+      service:"",
+     data: [],
    }
+   this.DisplaySupplier = this.DisplaySupplier.bind(this)
   }
-  handleChange(event){
-    //console.log(event);
-    this.setState({servic:event.target.value});
 
-  }
-  getSupplierService(){
-    axios.get('http://localhost:8080/services',{servic: this.state.service
-    }).then((resultFromServer)=>{
+handleServiceChange = (e) => {
+  console.log(e.target.value);
+     this.setState({
+       service: e.target.value
+     })
+   }
+  getSupplierService = (e) =>  {
+    axios.post('http://localhost:8080/service',{
 
-      console.log(resultFromServer);
+      service: this.state.service
+    })
+    .then((resultFromServer)=>{
       this.setState({
         data: resultFromServer.data
 
@@ -31,40 +30,32 @@ class SearchBar extends Component{
     })
   }
 
-  filterArray = () => {
-        var searchString = this.state.service;
-        var responseData = this.state.data
-        if(searchString.length > 0){
-            // console.log(responseData[i].name);
-            responseData = responseData.filter(l => {
-                console.log( l.lastname.toLowerCase().match(searchString));
-            })
-        }
-    }
-  render(){
-      return (
+  DisplaySupplier = (data) =>{
 
-        <div className="search-bar">
+    if (!data.length) return null
 
 
-          <input onChange = {this.handleChange.bind(this)} placeholder = {this.state.placeHolder}/>
-          <button type='submit'onClick={this.getSupplierService.bind(this)}> Search</button>
-              <div>
-                    {
-                        this.state.data.map((i) =>
-                            <p>{i.lastname}</p>
-
-                        )
-                    }
-                </div>
-
-        </div>
-
-
-    )
+    return data.map((supplier, index)=>(
+      <div key={index} className='display'>
+      <p><a href= {"http://localhost:3000/accountsupplier/" + supplier._id }>{supplier.lastname} à {supplier.city} </a></p>
+      </div>
+    ))
   }
 
+
+  render(){
+      return (
+        <div>
+          <input value={this.state.service} onChange = {this.handleServiceChange}  placeholder = " Votre recherche" />
+            <button  onClick={this.getSupplierService}> Search</button>
+              <div>
+                {this.DisplaySupplier(this.state.data)}
+              </div>
+        </div>
+    )
+  }
 }
+
 
 
 export default SearchBar;

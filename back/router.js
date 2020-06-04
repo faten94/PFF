@@ -16,6 +16,9 @@ const admin = require('./middlewares/admin');
 const comments = require('./controllers/comments')
 
 
+
+
+
 app.use('/', router);
 // Register Login Users
 router.post('/register', users.register);
@@ -65,7 +68,10 @@ router.get('/admin/comments', auth, admin, adminComments.getAllComments)
 router.get('/admin/comments/settings/:commentId', auth, admin, adminComments.getComment)
 router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.updateComment)
 
-router.get('/service', service.GetAllSupplier)
-router.get('/services', service.GetAllSupplierByService)
+router.post('/service', service.service)
+
+
+//router.get('/services', service.GetAllSupplierByService)
+//router.get('/service', service.GetAllSupplierByService)
 
 module.exports = router;
