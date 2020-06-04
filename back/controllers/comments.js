@@ -4,12 +4,16 @@ const Comment = require('../models/CommentSch')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require("dotenv");
-const auth = require("../middlewares/auth");
+const getId = require("../middlewares/getId");
 
 dotenv.config();
 app.use(express.json());
 
 exports.createComment = async (req,res, next) => {
+      
+        console.log("Body BACK: ", req.body)
+        req.body.user =  getId.getId(req, res)
+        // console.log("user Id: ", user)
         const comment = new Comment(req.body);
         comment.save();
         res.status(200).json({ message: "Comment complete." });
@@ -38,7 +42,6 @@ exports.getAllComments = (req, res) => {
 
 
 exports.getCommentsbySupplier = (req, res) => {
-    console.log("pouet",req.params)
     Comment.find({supplier: req.params.supplierId})
        .exec((err, commentaire) => {
         if (err){
