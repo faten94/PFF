@@ -6,10 +6,18 @@ import axios from "axios";
 class Calendar extends Component {
 
   constructor(props){
+    const url = window.location.href;
+    const urlArray = url.split('/');
+    const urlLength = urlArray.length - 1
+    const supplierId = urlArray[urlLength]
+    console.log(props);
+
     super(props)
+
     this.state={
       startdate: new Date(),
-      content: []
+      content: [],
+      supplierId: supplierId
     }
     this.handelStartdatechange = this.handelStartdatechange.bind(this);
     this.handelContentchange = this.handelContentchange.bind(this);
@@ -29,7 +37,8 @@ class Calendar extends Component {
     })
   }
   Devis = (e) =>{
-    axios.post("http://localhost:8080/devis",{
+    axios.post("http://localhost:8080/devis" ,{
+      supplierId: this.state.supplierId,
       content: this.state.content,
       startdate: this.state.startdate
 

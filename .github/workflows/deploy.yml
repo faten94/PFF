@@ -1,0 +1,26 @@
+name: Backend automatic testing
+
+on: [push]
+jobs:
+  build-and-run:
+    name: Build and Run
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: devops
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          Node-version: ${{ matrix.node-version }}
+      - name: install axios
+        run: npm i axios
+      - name: install modules back
+        run: npm i --prefix ./back
+      - name: Nominal Run
+        run: npm run back
+      - run: npm run testUser
+      - run: npm run testSupplier
