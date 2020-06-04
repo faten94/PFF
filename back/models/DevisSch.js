@@ -6,20 +6,22 @@ const service = require('./ServiceSch')
 
 
 const DevisSchema = new Schema({
- 
+
     content: { type: String },
-    
+
     date: { type: Date, default: Date.now },
-    
+
     photo: {type: String },
-    
+
     statut: {type: String},
-    
+
     daterdv: { type: String},
-    
+
     payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
 
     supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
+
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' }],
 
     service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ServiceSch' }],
 })
