@@ -16,8 +16,9 @@ app.use(express.json());
    //console.log(req.params)
    //console.log(req.query)
 Devis.create({content: req.body.content, daterdv: req.body.startdate}, function(err,docs){
-   if(!err) res.send(docs)
    console.log(docs)
+   if(!err) res.send(docs)
+
 
 
    })
