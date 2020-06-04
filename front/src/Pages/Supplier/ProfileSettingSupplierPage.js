@@ -38,14 +38,14 @@ class ProfileSettingSupplierPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
         var headers = {'authorization': Cookies.get('supplierToken')}
-        // var supplier = {
-        //     email: this.state.oldemail,
-        //     password: this.state.oldpassword
-        // };
-        
+        var supplier = {
+            email: this.state.oldemail,
+            password: this.state.oldpassword
+        };
         axios.post('http://localhost:8080/supplierLogin', {
         email: this.state.email,
         password: this.state.oldpassword
+       
     })
     .then( (res, err) =>{
         if(res.status===200){
@@ -85,7 +85,7 @@ class ProfileSettingSupplierPage extends Component {
 
 componentDidMount() {
     const headers = {'authorization': Cookies.get('supplierToken')}
-    axios.get('http://localhost:8080/settings/suppliers', {headers: headers})
+    axios.get('http://localhost:8080/settings/profile', {headers: headers})
     .then(res => {
         this.setState({
             firstname: res.data.firstname,
@@ -148,7 +148,7 @@ render() {
         return <Error404/>
     }
     return (
-        <div>
+        <div className= "container">
         <h1 className="title">Editer</h1>
         
         <img class="photo" alt="user"/>

@@ -28,7 +28,7 @@ exports.deleteProfile = (req, res) => {
     })
 }
 
-exports.getProfile = (req, res) => {
+exports.getOwnProfile = (req, res) => {
     id = getId.getId(req, res)
     Supplier.findById(id, function (err, supplier) {
         if(err) throw err;
@@ -36,12 +36,12 @@ exports.getProfile = (req, res) => {
     })
 }
 
-// exports.getProfile = (req, res) => {
-//     console.log(req.params)
-//     const id =  req.params.supplierId
-//     console.log(id)
-//     Supplier.findById(id, function (err, supplier) {
-//         if(err) throw err;
-//         res.json(supplier)
-//     })
-// }
+exports.getProfile = (req, res) => {
+    // console.log(req.params)
+    const id =  req.params.supplierId
+    console.log(id)
+    Supplier.findById(id, function (err, supplier) {
+        if(err) throw err;
+        res.json(supplier)
+    })
+}

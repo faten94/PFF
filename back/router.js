@@ -34,11 +34,13 @@ router.post('/settings', auth, settingsUsers.updateProfile);
 router.delete('/settings', auth, settingsUsers.deleteProfile);
 
 //Settings Suppliers
-router.get('/settings/suppliers', authSupplier, settingsSuppliers.getProfile);
+router.get('/settings/suppliers/:supplierId', settingsSuppliers.getProfile);
+router.get('/settings/profile', settingsSuppliers.getOwnProfile);
 router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile);
 router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
 
 //comments supplier
+router.post("/suppliers/createComment/:supplierId", comments.createComment)
 router.get('/suppliers/comments/:supplierId', comments.getCommentsbySupplier);
 
 

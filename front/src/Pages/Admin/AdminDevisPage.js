@@ -57,7 +57,7 @@ class AdminDevisPage extends Component {
     render() {
         let devis = this.state.devis;
         return (
-            <div>
+            <div className="container">
                  <Link to="/admin">
                     <button>
                         Retour

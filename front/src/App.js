@@ -57,7 +57,7 @@ function App() {
 
           {/* Suppliers */}
           <Route exact path="/accountsupplier/:id" component={ProfileSupplierPage} />
-          <ProtectedRouteSupplier  exact path="/accountsupplier/edit" component={ProfileSettingSupplierPage} />
+          <ProtectedRouteSupplier  exact path="/supplier/edit" component={ProfileSettingSupplierPage} />
           
           {/* Admin */}
           <Route exact path="/admin" component={AdminPage} />

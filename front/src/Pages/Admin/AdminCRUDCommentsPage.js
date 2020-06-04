@@ -76,6 +76,7 @@ class AdminCRUDCommentsPage extends Component {
         
         render() {
             return (
+                <div className = "container">
                 <div>
                      <Link to="/admin/comments">
                         <button>
@@ -130,6 +131,7 @@ class AdminCRUDCommentsPage extends Component {
                 <div>Changez une ou plusieurs informations de votre profil.
                 <br></br>
                 
+                </div>
                 </div>
                 </div>
                 );

@@ -6,7 +6,7 @@ class AdminPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1 className="title">Admin</h1>
 
                 <Link to="/admin/users">

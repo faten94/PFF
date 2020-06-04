@@ -48,12 +48,12 @@ class AdminCRUDDevisPage extends Component {
             supplier: this.state.supplier,
             service: this.state.service,
         }
-        if (this.state.content == '') data.content = this.state.content
-        if (this.state.statut == '') data.statut = this.state.statut
-        if (this.state.daterdv == '') data.daterdv = this.state.daterdv
-        if (this.state.payment == '') data.payment = this.state.payment
-        if (this.state.supplier == '') data.supplier = this.state.supplier
-        if (this.state.service == '') data.service = this.state.service
+        if (this.state.content === '') data.content = this.state.content
+        if (this.state.statut === '') data.statut = this.state.statut
+        if (this.state.daterdv === '') data.daterdv = this.state.daterdv
+        if (this.state.payment === '') data.payment = this.state.payment
+        if (this.state.supplier === '') data.supplier = this.state.supplier
+        if (this.state.service === '') data.service = this.state.service
         axios.post('http://localhost:8080/admin/users/settings/:quoteId', data, {headers: headers})
         .then(res => {
             window.location.reload(false)
@@ -87,7 +87,7 @@ class AdminCRUDDevisPage extends Component {
     
     render() {
         return (
-            <div>
+            <div className="container">
             <Link to="/admin/quotes">
             <button>
             Retour
