@@ -16,7 +16,12 @@ app.use(express.json());
   console.log(req.body)
    //console.log(req.params)
    //console.log(req.query)
-Devis.create({content: req.body.content, daterdv: req.body.startdate, supplier: req.body.supplierId}, function(err,docs){
+   req.body.user =  getId.getId(req, res)
+Devis.create({content: req.body.content,
+  daterdv: req.body.startdate,
+  supplier: req.body.supplierId,
+user: req.body.user,
+ }, function(err,docs){
    console.log(docs)
    if(!err) res.send(docs)
 
