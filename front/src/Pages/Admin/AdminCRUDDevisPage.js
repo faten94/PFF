@@ -87,7 +87,7 @@ class AdminCRUDDevisPage extends Component {
     
     render() {
         return (
-            <div>
+            <div className="container">
             <Link to="/admin/quotes">
             <button>
             Retour

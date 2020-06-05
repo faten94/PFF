@@ -16,8 +16,8 @@ const expertise = "Peinture"
 const service = "Peintre"
 const newfirstname = 'New Automatic testing'
 const newlastname = 'New Automatic testing'
-const newemail = 'New Automatic@testing.com'
-const newpassword = 'New testing'
+const newemail = 'NewAutomatic@testing.com'
+const newpassword = 'Newtesting'
 const newaddress = 'New 1 avenue Test'
 const newphone = 'New 01 23 45 67 89'
 const newparticulier = "Oui"
@@ -46,66 +46,68 @@ city : city,
 expertise : expertise,
 service : service
 })
-.then(function (response) {
-    console.log('supplier register tested')
+.then(function (res, err) {
+    console.log('Supplier created')
     // Test of the login route
-    axios.post('http://localhost:8080/supplierLogin', {
-    email: email,
-    password: password
-})
-.then(function (response) {
-    console.log('supplier login tested')
-    // keeping token to test next routes
-    token = response.data['token']
-    //testing the get settings route
-    const headers = {'authorization': token}
-    axios.get('http://localhost:8080/settings/suppliers', {headers: headers})
-    .then(res => {
-        console.log('settings get tested')
-        // Testing the post settings route
-        let data = {
-            firstname: newfirstname,
-            lastname: newlastname,
-            email: newemail,
-            address: newaddress,
-            phone: newphone,
-            password: newpassword,
-            address: newaddress,
-            phone: newphone,
-            particulier : newparticulier,
-            supplier : newsupplier,
-            siret : newsiret,
-            zip : newzip,
-            city : newcity,
-            expertise : newexpertise,
-            service : newservice
-        }
-        axios.post('http://localhost:8080/settings/suppliers', data, {headers: headers})
-        .then(res => {
-            console.log('settings post tested')
-            // Testing the delete settings route
-            
-            axios.post('http://localhost:8080/supplierLogin', {
-            email: newemail,
-            password: newpassword
-        })
-        .then( (res, err) =>{
-            if(res.status===200){
-                axios.delete('http://localhost:8080/settings/suppliers', {headers: headers})
-                .then(res => {
-                    console.log('settings delete tested')
-                })
+    axios.post('http://localhost:8080/supplierLogin', { email: email, password: password })
+    .then(function (res) {
+        console.log('supplier logged in')
+        // keeping token to test next routes
+        token = res.data['token']
+        //testing the get settings route
+        const headers = {'authorization': token}
+        axios.get('http://localhost:8080/settings/profile', { headers: headers })
+        .then((res, err) => {
+            console.log('Supplier info obtained')
+            // Testing the post settings route
+            let data = {
+                firstname: newfirstname,
+                lastname: newlastname,
+                email: newemail,
+                address: newaddress,
+                phone: newphone,
+                password: newpassword,
+                address: newaddress,
+                phone: newphone,
+                particulier : newparticulier,
+                supplier : newsupplier,
+                siret : newsiret,
+                zip : newzip,
+                city : newcity,
+                expertise : newexpertise,
+                service : newservice
             }
+            axios.post('http://localhost:8080/settings/suppliers', data, {headers: headers})
+            .then((res, err) => {
+                // Testing the delete settings route
+                console.log('Supplier updated')
+                axios.post('http://localhost:8080/supplierLogin', { email: newemail, password: newpassword })
+                .then( (res, err) =>{
+                    console.log('Supplier logged in')
+                    axios.delete('http://localhost:8080/settings/suppliers', { headers: headers })
+                    .then((res, err) => {
+                        console.log('Supplier deleted')
+                    })
+                    .catch( function (err) {
+                        console.log('Supplier profile deletion failed '+err);
+                    })
+                })
+                .catch(function (err) {
+                    console.log('Supplier updated profile login failed '+err);
+                })
+            })
+            .catch(function (err) {
+                console.log('Supplier profile update failed '+err);
+            })
+        })
+        .catch(function (err) {
+            console.log('Supplier profile get failed '+err);
         })
     })
+    .catch(function (err) {
+        console.log('Supplier login failed '+err);
+    })
 })
-.catch(error => console.log(error));
-
+.catch(function (err) {
+    console.log('Supplier register failed '+err);
 })
-.catch(function (error) {
-    
-});
-})
-.catch(function (error) {
-    console.log('ça marche pas'+error);
-});

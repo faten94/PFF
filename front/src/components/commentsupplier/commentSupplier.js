@@ -33,6 +33,7 @@ class CommentSupplier extends Component {
         }, { headers: headers })
             .then((response) => {
                 console.log("Success")
+                window.location.reload(false)
             })
             .catch((err) => {
                 console.log(err)

@@ -37,6 +37,7 @@ router.delete('/settings', auth, settingsUsers.deleteProfile);
 
 //Settings Suppliers
 router.get('/settings/suppliers/:supplierId', settingsSuppliers.getProfile);
+router.get('/settings/profile', settingsSuppliers.getOwnProfile);
 router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile);
 router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
 

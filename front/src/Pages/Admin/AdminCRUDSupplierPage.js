@@ -123,7 +123,7 @@ class AdminCRUDSupplierPage extends Component {
     
     render() {
         return (
-            <div>
+            <div className="container">
                  <Link to="/admin/suppliers">
                     <button>
                         Retour
