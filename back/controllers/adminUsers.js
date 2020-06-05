@@ -26,9 +26,10 @@ exports.verifyAdmin = function (req, res, id) {
     console.log("admin verify id",id);
     return User.findById(id, function (err, user) {
         if(err) throw err;
-        if(user.role == 'admin'){
-            console.log('verify admin ok')
-            return 'admin'
+        if(user.role !== 'admin'){
+            res.status(401).json({
+                error: new Error('Invalid request!')
+              })
         }
     })
 }
