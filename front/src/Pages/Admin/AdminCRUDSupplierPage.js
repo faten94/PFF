@@ -58,7 +58,8 @@ class AdminCRUDSupplierPage extends Component {
             expertise: this.state.expertise,
             date: this.state.date,
             location: this.state.location,
-            service: this.state.service
+            service: this.state.service,
+            admin: 'false',
         }
         if (this.state.lastname === '') data.lastname = this.state.oldlastname
         if (this.state.firstname === '') data.firstname = this.state.oldfirstname
@@ -75,7 +76,7 @@ class AdminCRUDSupplierPage extends Component {
         if (this.state.date === '') data.date = this.state.olddate
         if (this.state.location === '') data.location = this.state.oldlocation
         if (this.state.service === '') data.service = this.state.oldservice
-
+        
         axios.post('http://localhost:8080/admin/supplier/settings/:supplierId', data, {headers: headers})
         .then(res => {
             window.location.reload(false)
@@ -116,171 +117,179 @@ class AdminCRUDSupplierPage extends Component {
                 oldlocation: res.data.oldlocation,
                 service: res.data.service,
                 oldservice: res.data.oldservice,
+                admin: 'true'
             })
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            window.location.href = "http://localhost:3000/404";
+        });
     }
     
     render() {
-        return (
-            <div className="container">
-                 <Link to="/admin/suppliers">
+        if(this.state.admin === 'false'){
+            return(
+                <div></div>
+                )
+            }
+            else{
+                return (
+                    <div className="container">
+                    <Link to="/admin/suppliers">
                     <button>
-                        Retour
+                    Retour
                     </button>
-                </Link>
-            <h1 className="title">Compte</h1>
-          
-            <img class="photo" alt="user"/>
+                    </Link>
+                    <h1 className="title">Compte</h1>
+                    
+                    <img class="photo" alt="user"/>
+                    
+                    <br></br>
+                    
+                    <label for="photo">Telechargez une photo de profil : </label>
+                    <input type="file"
+                    id="photo" name="photo"
+                    accept="image/png, image/jpeg"></input>
+                    
+                    <br></br>
+                    <br></br>
+                    <form onSubmit={this.handleSubmit}>
+                    <table className="">
+                    <tr>
+                    <td>Nom</td>
+                    <td>{this.state.lastname}</td>
+                    <td>
+                    <input
+                    type="text"
+                    name="lastname"
+                    onChange={this.handleChange}
+                    id="lastname"
+                    placeholder="Nom"
+                    />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>Prenom</td>
+                    <td>{this.state.firstname}</td>
+                    <td><input
+                    type="text"
+                    name="firstname"
+                    onChange={this.handleChange}
+                    id="firstname"
+                    placeholder="Prenom"
+                    /></td>
+                    </tr>
+                    <tr>
+                    <td>Adresse email</td>
+                    <td>{this.state.email}</td>
+                    <td><input
+                    type="email"
+                    name="email"
+                    onChange={this.handleChange}
+                    id="email"
+                    placeholder="Email"
+                    /></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                    <td>Type de fournisseur</td>
+                    <td>{this.state.typesupplier}</td>
+                    <td>
+                    <input type="radio" onChange={this.handleChange} id="particulier" name="typesupplier" value="particulier"/>
+                    <label for="particulier">Particulier</label>
+                    <br></br>
+                    <input type="radio" onChange={this.handleChange} id="professionel" name="typesupplier" value="professionel" />
+                    <label for="professionel">Professionel</label>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>Numero de siret</td>
+                    <td>{this.state.siret}</td>
+                    <td><input
+                    type="tel"
+                    name="siret"
+                    onChange={this.handleChange}
+                    id="siret"
+                    placeholder="Numero de siret"
+                    /></td>
+                    </tr>
+                    <tr>
+                    <td>Code postal</td>
+                    <td>{this.state.zip}</td>
+                    <td><input
+                    type="tel"
+                    name="zip"
+                    onChange={this.handleChange}
+                    id="zip"
+                    pattern="[0-9]{5}"
+                    placeholder="Code postal"
+                    /></td>
+                    </tr>
+                    <tr>
+                    <td>Adresse</td>
+                    <td>{this.state.address}</td>
+                    <td><input
+                    type="text"
+                    name="address"
+                    onChange={this.handleChange}
+                    id="address"
+                    placeholder="Adresse"
+                    /></td>
+                    </tr>
+                    <tr>
+                    <td>Ville</td>
+                    <td>{this.state.city}</td>
+                    <td><input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="city"
+                    id="phone"
+                    placeholder="Ville"
+                    /></td>
+                    
+                    </tr>
+                    <tr>
+                    <td>Numero de telephone</td>
+                    <td>{this.state.phone}</td>
+                    <td><input
+                    type="text"
+                    onChange={this.handleChange}
+                    name="phone"
+                    id="phone"
+                    placeholder="Numero de telephone"
+                    /></td>
+                    </tr>
+                    <tr>
+                    <td>Service</td>
+                    <td>{this.state.service}</td>
+                    <td>
+                    <label>
+                    <input list="service" name="service" onChange={this.handleChange}/>
+                    </label>
+                    <datalist id="service">
+                    <option value="Plomberie" />
+                    <option value="Menage" />
+                    <option value="Cuisine" />
+                    <option value="Jardinerie" />
+                    <option value="Baby-sitting" />
+                    <option value="Clown" />
+                    </datalist>
+                    </td>
+                    </tr>
+                    <button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>
+                    <br></br>
+                    Valider les modifications
+                    </button>
+                    <br></br>
+                    </table>
+                    </form>
+                    <br></br>
+                    
+                    </div>
+                    );
+                }
+            };
+        }
         
-        <br></br>
-        
-        <label for="photo">Telechargez une photo de profil : </label>
-        <input type="file"
-        id="photo" name="photo"
-        accept="image/png, image/jpeg"></input>
-        
-        <br></br>
-        <br></br>
-        <form onSubmit={this.handleSubmit}>
-        <table className="">
-        <tr>
-        <td>Nom</td>
-        <td>{this.state.lastname}</td>
-        <td>
-        <input
-        type="text"
-        name="lastname"
-        onChange={this.handleChange}
-        id="lastname"
-        placeholder="Nom"
-        />
-        </td>
-        </tr>
-        <tr>
-        <td>Prenom</td>
-        <td>{this.state.firstname}</td>
-        <td><input
-        type="text"
-        name="firstname"
-        onChange={this.handleChange}
-        id="firstname"
-        placeholder="Prenom"
-        /></td>
-        </tr>
-        <tr>
-        <td>Adresse email</td>
-        <td>{this.state.email}</td>
-        <td><input
-        type="email"
-        name="email"
-        onChange={this.handleChange}
-        id="email"
-        placeholder="Email"
-        /></td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
-        <td>Type de fournisseur</td>
-        <td>{this.state.typesupplier}</td>
-        <td>
-        <input type="radio" onChange={this.handleChange} id="particulier" name="typesupplier" value="particulier"/>
-        <label for="particulier">Particulier</label>
-        <br></br>
-        <input type="radio" onChange={this.handleChange} id="professionel" name="typesupplier" value="professionel" />
-        <label for="professionel">Professionel</label>
-        </td>
-        </tr>
-        <tr>
-        <td>Numero de siret</td>
-        <td>{this.state.siret}</td>
-        <td><input
-        type="tel"
-        name="siret"
-        onChange={this.handleChange}
-        id="siret"
-        placeholder="Numero de siret"
-        /></td>
-        </tr>
-        <tr>
-        <td>Code postal</td>
-        <td>{this.state.zip}</td>
-        <td><input
-        type="tel"
-        name="zip"
-        onChange={this.handleChange}
-        id="zip"
-        pattern="[0-9]{5}"
-        placeholder="Code postal"
-        /></td>
-        </tr>
-        <tr>
-        <td>Adresse</td>
-        <td>{this.state.address}</td>
-        <td><input
-        type="text"
-        name="address"
-        onChange={this.handleChange}
-        id="address"
-        placeholder="Adresse"
-        /></td>
-        </tr>
-        <tr>
-        <td>Ville</td>
-        <td>{this.state.city}</td>
-        <td><input
-        type="text"
-        onChange={this.handleChange}
-        name="city"
-        id="phone"
-        placeholder="Ville"
-        /></td>
-        
-        </tr>
-        <tr>
-        <td>Numero de telephone</td>
-        <td>{this.state.phone}</td>
-        <td><input
-        type="text"
-        onChange={this.handleChange}
-        name="phone"
-        id="phone"
-        placeholder="Numero de telephone"
-        /></td>
-        </tr>
-        <tr>
-        <td>Service</td>
-        <td>{this.state.service}</td>
-        <td>
-        <label>
-        <input list="service" name="service" onChange={this.handleChange}/>
-        </label>
-        <datalist id="service">
-        <option value="Plomberie" />
-        <option value="Menage" />
-        <option value="Cuisine" />
-        <option value="Jardinerie" />
-        <option value="Baby-sitting" />
-        <option value="Clown" />
-        </datalist>
-        </td>
-        </tr>
-        <button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>
-        <br></br>
-        Valider les modifications
-        </button>
-        <br></br>
-        </table>
-        </form>
-        <br></br>
-
-            </div>
-            );
-        };
-
-
-
-    }
-    
-    export default AdminCRUDSupplierPage;
+        export default AdminCRUDSupplierPage;

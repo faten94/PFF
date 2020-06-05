@@ -25,7 +25,8 @@ class AdminCRUDUserPage extends Component {
             olddate: "",
             oldpassword: "",
             password: "",
-            userId: userId
+            userId: userId,
+            admin: 'false',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -80,88 +81,98 @@ class AdminCRUDUserPage extends Component {
                 phone: res.data.phone,
                 oldphone: res.data.phone,
                 date: res.data.date,
-                olddate: res.data.date
+                olddate: res.data.date,
+                admin: 'true'
             })
         })
-        .catch(error => console.log(error));
+        .catch((error) => {console.log(error)
+            window.location.href = "http://localhost:3000/404"
+        });
     }
     
     render() {
-        return (
-            <div className="container">
-                 <Link to="/admin/users">
+        if(this.state.admin === 'false'){
+            return(
+                <div></div>
+                )
+            }
+            else{
+                return (
+                    <div className="container">
+                    <Link to="/admin/users">
                     <button>
-                        Retour
+                    Retour
                     </button>
-                </Link>
-            <h1 className="title">Compte</h1>
-            
-            <img className="photo"
-            src="#"
-            alt="ID n*" />
-            
-            <br></br>
-            
-            <label htmlFor="photo">Telechargez une photo de profil:</label>
-            
-            <input type="file"
-            id="photo" name="photo"
-            accept="image/png, image/jpeg"></input>
-            
-            <br></br>
-            <br></br>
-            
-            <form onSubmit={this.handleSubmit}>
-            <table className="hoverTable">
-            <theard></theard>
-            <tbody>
-            <tr>
-            <td>Nom</td>
-            <td>{this.state.oldfirstname}</td>
-            <input name="firstname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
-            </tr>
-            <tr>
-            <td>Prenom</td>
-            <td>{this.state.oldlastname}</td>
-            <input name="lastname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
-            </tr>
-            <tr>
-            <td>Adresse</td>
-            <td>{this.state.oldaddress}</td>
-            <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new address"/></div>
-            </tr>
-            <tr>
-            <td>Numero de telephone</td>
-            <td>{this.state.oldphone}</td>
-            <div><input name="email" onChange={this.handleChange} type="text" placeholder="new phone numner"/></div>
-            </tr>
-            <tr>
-            <td>Adresse email</td>
-            <td>{this.state.oldemail}</td>
-            <div><input name="email" onChange={this.handleChange} type="text" placeholder="new email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Invalid email')" oninput="this.setCustomValidity('')"/></div>
-            </tr>
-            <tr>
-            <td>Mot de passe</td>
-            <td>**********</td>
-            <div><input name="password" onChange={this.handleChange} type="password" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;"  placeholder="New password"></input></div>
-            </tr>
-            <tr>
-            <td>Date d'enregistrement</td>
-            <td>{this.state.olddate}</td>
-            <td><input type="submit" value="Submit" /></td>
-            {/* <div><input type="password" name="password_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : '');"  pattern="^\S{8,20}$" placeholder="Verify Password"></input></div> */}
-            </tr>
-            </tbody>
-            </table>
-            </form>
-            <br></br>
-            <div>Changez une ou plusieurs informations de votre profil.
-            <br></br>
-            
-            </div>
-            </div>
-            );
-        };
-    }
-    
-    export default AdminCRUDUserPage;
+                    </Link>
+                    <h1 className="title">Compte</h1>
+                    
+                    <img className="photo"
+                    src="#"
+                    alt="ID n*" />
+                    
+                    <br></br>
+                    
+                    <label htmlFor="photo">Telechargez une photo de profil:</label>
+                    
+                    <input type="file"
+                    id="photo" name="photo"
+                    accept="image/png, image/jpeg"></input>
+                    
+                    <br></br>
+                    <br></br>
+                    
+                    <form onSubmit={this.handleSubmit}>
+                    <table className="hoverTable">
+                    <theard></theard>
+                    <tbody>
+                    <tr>
+                    <td>Nom</td>
+                    <td>{this.state.oldfirstname}</td>
+                    <input name="firstname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
+                    </tr>
+                    <tr>
+                    <td>Prenom</td>
+                    <td>{this.state.oldlastname}</td>
+                    <input name="lastname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
+                    </tr>
+                    <tr>
+                    <td>Adresse</td>
+                    <td>{this.state.oldaddress}</td>
+                    <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new address"/></div>
+                    </tr>
+                    <tr>
+                    <td>Numero de telephone</td>
+                    <td>{this.state.oldphone}</td>
+                    <div><input name="email" onChange={this.handleChange} type="text" placeholder="new phone numner"/></div>
+                    </tr>
+                    <tr>
+                    <td>Adresse email</td>
+                    <td>{this.state.oldemail}</td>
+                    <div><input name="email" onChange={this.handleChange} type="text" placeholder="new email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" oninvalid="this.setCustomValidity('Invalid email')" oninput="this.setCustomValidity('')"/></div>
+                    </tr>
+                    <tr>
+                    <td>Mot de passe</td>
+                    <td>**********</td>
+                    <div><input name="password" onChange={this.handleChange} type="password" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;"  placeholder="New password"></input></div>
+                    </tr>
+                    <tr>
+                    <td>Date d'enregistrement</td>
+                    <td>{this.state.olddate}</td>
+                    <td><input type="submit" value="Submit" /></td>
+                    {/* <div><input type="password" name="password_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : '');"  pattern="^\S{8,20}$" placeholder="Verify Password"></input></div> */}
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+                    <br></br>
+                    <div>Changez une ou plusieurs informations de votre profil.
+                    <br></br>
+                    
+                    </div>
+                    </div>
+                    );
+                }
+            };
+        }
+        
+        export default AdminCRUDUserPage;

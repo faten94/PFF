@@ -25,7 +25,8 @@ class AdminCRUDDevisPage extends Component {
             oldsupplier: "",
             service: "", 
             oldservice: "",
-            quoteId: quoteId
+            quoteId: quoteId,
+            admin: 'false',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -77,91 +78,102 @@ class AdminCRUDDevisPage extends Component {
                 supplier: res.data.supplier,
                 oldsupplier: res.data.supplier,
                 service: res.data.service,
-                oldservice: res.data.service
+                oldservice: res.data.service,
+                admin: 'true'
             })
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error);
+            window.location.href = "http://localhost:3000/404";
+        });
     }
     
     
     
     render() {
-        return (
-            <div className="container">
-            <Link to="/admin/quotes">
-            <button>
-            Retour
-            </button>
-            </Link>
-
-            <h1 className="title">Compte</h1>
-            
-            <img className="photo"
-            src="#"
-            alt="ID n*" />
-            
-            <br></br>
-            
-            <label htmlFor="photo">Telechargez une photo de profil:</label>
-            
-            <input type="file"
-            id="photo" name="photo"
-            accept="image/png, image/jpeg"></input>
-            
-            <br></br>
-            <br></br>
-            
-            <form onSubmit={this.handleSubmit}>
-            <table className="hoverTable">
-            <theard></theard>
-            <tbody>
-            <tr>
-            <td>Nom</td>
-            <td>{this.state.oldcontent}</td>
-            <input name="content" onChange={this.handleChange} type="text" placeholder="New username"></input>
-            </tr>
-            <tr>
-            <td>Prenom</td>
-            <td>{this.state.oldstatut}</td>
-            <input name="statut" onChange={this.handleChange} type="text" placeholder="New username"></input>
-            </tr>
-            <tr>
-            <td>Adresse</td>
-            <td>{this.state.oldpayment}</td>
-            <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new payment"/></div>
-            </tr>
-            <tr>
-            <td>Numero de telesupplier</td>
-            <td>{this.state.oldsupplier}</td>
-            <div><input name="daterdv" onChange={this.handleChange} type="text" placeholder="new supplier numner"/></div>
-            </tr>
-            <tr>
-            <td>Adresse daterdv</td>
-            <td>{this.state.olddaterdv}</td>
-            <div><input name="daterdv" onChange={this.handleChange} type="text" placeholder="new daterdv" oninvalid="this.setCustomValidity('Invalid daterdv')" oninput="this.setCustomValidity('')"/></div>
-            </tr>
-            <tr>
-            <td>Mot de passe</td>
-            <td>**********</td>
-            <div><input name="service" onChange={this.handleChange} type="service" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid service' : ''); if(this.checkValidity()) form.service_confirmation.pattern = this.value;"  placeholder="New service"></input></div>
-            </tr>
-            <tr>
-            <td>Date d'enregistrement</td>
-            <td>{this.state.olddate}</td>
-            <td><input type="submit" value="Submit" /></td>
-            {/* <div><input type="service" name="service_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid service' : '');"  pattern="^\S{8,20}$" placeholder="Verify service"></input></div> */}
-            </tr>
-            </tbody>
-            </table>
-            </form>
-            <br></br>
-            <div>Changez une ou plusieurs informations de votre profil.
-            <br></br>
-            
-            </div>
-            </div>
-            );
-        };
-    }
-    
-    export default AdminCRUDDevisPage;
+        if(this.state.admin === 'false'){
+            return(
+                <div></div>
+                )
+            }
+            else{
+                return (
+                    <div className="container">
+                    <Link to="/admin/quotes">
+                    <button>
+                    Retour
+                    </button>
+                    </Link>
+                    
+                    <h1 className="title">Compte</h1>
+                    
+                    <img className="photo"
+                    src="#"
+                    alt="ID n*" />
+                    
+                    <br></br>
+                    
+                    <label htmlFor="photo">Telechargez une photo de profil:</label>
+                    
+                    <input type="file"
+                    id="photo" name="photo"
+                    accept="image/png, image/jpeg"></input>
+                    
+                    <br></br>
+                    <br></br>
+                    
+                    <form onSubmit={this.handleSubmit}>
+                    <table className="hoverTable">
+                    <theard></theard>
+                    <tbody>
+                    <tr>
+                    <td>Nom</td>
+                    <td>{this.state.oldcontent}</td>
+                    <input name="content" onChange={this.handleChange} type="text" placeholder="New username"></input>
+                    </tr>
+                    <tr>
+                    <td>Prenom</td>
+                    <td>{this.state.oldstatut}</td>
+                    <input name="statut" onChange={this.handleChange} type="text" placeholder="New username"></input>
+                    </tr>
+                    <tr>
+                    <td>Adresse</td>
+                    <td>{this.state.oldpayment}</td>
+                    <div><input name="adress" onChange={this.handleChange} type="text" placeholder="new payment"/></div>
+                    </tr>
+                    <tr>
+                    <td>Numero de telesupplier</td>
+                    <td>{this.state.oldsupplier}</td>
+                    <div><input name="daterdv" onChange={this.handleChange} type="text" placeholder="new supplier numner"/></div>
+                    </tr>
+                    <tr>
+                    <td>Adresse daterdv</td>
+                    <td>{this.state.olddaterdv}</td>
+                    <div><input name="daterdv" onChange={this.handleChange} type="text" placeholder="new daterdv" oninvalid="this.setCustomValidity('Invalid daterdv')" oninput="this.setCustomValidity('')"/></div>
+                    </tr>
+                    <tr>
+                    <td>Mot de passe</td>
+                    <td>**********</td>
+                    <div><input name="service" onChange={this.handleChange} type="service" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid service' : ''); if(this.checkValidity()) form.service_confirmation.pattern = this.value;"  placeholder="New service"></input></div>
+                    </tr>
+                    <tr>
+                    <td>Date d'enregistrement</td>
+                    <td>{this.state.olddate}</td>
+                    <td><input type="submit" value="Submit" /></td>
+                    {/* <div><input type="service" name="service_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid service' : '');"  pattern="^\S{8,20}$" placeholder="Verify service"></input></div> */}
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+                    <br></br>
+                    <div>Changez une ou plusieurs informations de votre profil.
+                    <br></br>
+                    
+                    </div>
+                    </div>
+                    );
+                }
+            };
+        }
+        
+        export default AdminCRUDDevisPage;
