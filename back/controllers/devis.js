@@ -10,7 +10,6 @@ devis.use(cors())
 dotenv.config();
 app.use(express.json());
 
- console.log('blallalal')
  exports.devis = async(req, res) => {
 
   console.log(req.body)
