@@ -11,10 +11,7 @@ module.exports = async (req, res, next) => {
     const userId = decodedToken._id;
     console.log("token admin middlewear USER ID", userId);
     if (!await adminUsers.verifyAdmin(req, res, userId)) {
-      // res.json('Warning, you are not an admin')
-      res.status(401).json({
-        error: new Error('Invalid request!')
-      })
+      console.log('Not an admin')
     } else {
       console.log('Admin role verified')
       next();
