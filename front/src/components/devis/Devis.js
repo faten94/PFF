@@ -23,7 +23,7 @@ class Devis extends Component{
   }
 
   DisplaySupplier = (data) =>{
-    return data.map((supplier, index)=>(
+    return data.map((devis, index)=>(
       <div key={index} className='display'>
       {data._id}
       </div>
@@ -37,7 +37,7 @@ class Devis extends Component{
 
             <button  onClick={this.getSupplierService}> Afficher mes devis</button>
               <div>
-                {this.DisplaySupplier(this.state.data)}
+                {this.DisplaySupplier(this.state.devis)}
               </div>
         </div>
     )
