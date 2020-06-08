@@ -46,7 +46,6 @@ class CommentSupplier extends Component {
             .get("http://localhost:8080/suppliers/comments/" + this.state.supplierId, { params })
             .then((response) => {
                 console.log("getAllusers response", response);
-                console.log("getAllusers response.data", response.data);
                 this.setState({ comments: response.data })
             })
             .catch((err) => {

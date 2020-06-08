@@ -76,7 +76,7 @@ router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.up
 router.post('/service', service.service)
 router.post('/devis', devis.devis)
 
-router.get('/map', map.mapCoordonate)
+router.post('/map', map.mapCoordonate)
 
 //router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)

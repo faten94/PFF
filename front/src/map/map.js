@@ -19,14 +19,13 @@ class Map extends Component{
             city:'',
             posts:[],
             coordonate:[],
-            map: null    
+            map: null, 
         }
     }
     
     componentDidMount= () => {
         this.getSupplierAdress()
         this.getCoordonate()
-        const params = {supplierId : this.state.supplierId}
 
         const H = window.H;
         const platform = new H.service.Platform(
@@ -45,7 +44,7 @@ class Map extends Component{
             pixelRatio: window.devicePixelRatio || 1
         }
         );
-        const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        //const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
         // permet de creer une interactivité avec le user
         var ui = H.ui.UI.createDefault(map, defaultLayers, 'fr-FR');
@@ -57,38 +56,39 @@ class Map extends Component{
 
     }
         
-        getSupplierAdress = () => 
-        {
-            //const params = {supplierId : this.state.supplierId}
-            //+this.state.supplierId, {params}
-            return axios.get("http://localhost:8080/map/")
+        getSupplierAdress = async() => 
+        {   
+            const params = { supplierId: this.state.supplierId }
+                await axios.post("http://localhost:8080/map/", {params} )
             
             .then((response) => {
                 const data = response.data
                 this.setState({ posts: data})
                 
-                console.log(this.state.posts)
-                console.log(data.city)
-                console.log(this.state.supplierId)
+                const adress = this.state.posts.address
+                console.log(adress)
+                const city = this.state.posts.city
+                console.log(city)
             }) 
             .catch(function (error){
                 console.log(error)
             })   
         }
 
-              getCoordonate =() =>{
+              getCoordonate = async() =>{
+                const city = this.state.posts.city
+                console.log(city)
                 
-                console.log(this.state.posts.city)
-                let city = this.state.posts.city
-                axios.get("https://geocode.search.hereapi.com/v1/geocode?q=16 avenue montaigne+paris&apiKey=DObEqaiEw_Oqtou1Km77hp-SPAfeSVM2yr2ewaUUz7c")
-                .then((response) => 
-                {
+                  await axios.get("https://geocode.search.hereapi.com/v1/geocode?q=16 avenue montaigne+paris&apiKey=DObEqaiEw_Oqtou1Km77hp-SPAfeSVM2yr2ewaUUz7c")
+                  .then((response) => 
+                  {
+                    
                     const data = response.data
                     this.setState({coordonate:data})
 
                     console.log(this.state.coordonate)
+                    console.log(this.state.posts.address)
                     console.log(this.state.posts.city)
-                    console.log(this.state.posts.street)
                 })
                 .catch(function (error)
                 {

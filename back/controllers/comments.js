@@ -38,8 +38,6 @@ exports.getAllComments = (req, res) => {
 // }
 
 
-
-
 exports.getCommentsbySupplier = (req, res) => {
     Comment.find({supplier: req.params.supplierId})
        .exec((err, commentaire) => {
@@ -48,7 +46,7 @@ exports.getCommentsbySupplier = (req, res) => {
                 error: err
             })
         }
-        console.log(commentaire)
+        //console.log(commentaire)
         res.json(commentaire);              
     });
 };

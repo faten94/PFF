@@ -12,13 +12,24 @@ app.use(express.json());
 
 
 
-exports.mapCoordonate = async(req, res)=>{
+exports.mapCoordonate = async(req, res) =>
+{
+    //console.log(req.cookies.supplierToken)
+    console.log("c'est moi", req.body)
+    console.log(req.body.params.supplierId)
+    const supplierId = req.body.params.supplierId
+    console.log(supplierId)
 
-    console.log("id recuperer",req.body._id)
-
-    Supplier.findById({_id:"5eda31d4c4f8af2590ec85fc"}, function(err,docs){
-        if(!err) res.send(docs)
-      
-       })
-
+    Supplier.findById({_id:supplierId}, function(err,docs)
+    {
+       if(err) {
+            return res.send("erreur de recupeation ")
+            console.log(err)
+        }
+        res.send(docs)
+        
+        
+         
+        console.log("bbbbbb",docs)
+    })
 }
