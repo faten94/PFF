@@ -25,7 +25,7 @@ class Devis extends Component{
   DisplaySupplier = (data) =>{
     return data.map((supplier, index)=>(
       <div key={index} className='display'>
-      {devis._id}
+      {data._id}
       </div>
     ))
   }
