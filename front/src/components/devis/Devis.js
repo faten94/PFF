@@ -6,26 +6,32 @@ class Devis extends Component{
     super(props);
     this.state = {
      data: [],
+     click:false
    }
-   this.DisplaySupplier = this.DisplaySupplier.bind(this)
+   this.getDevis =this.getDevis.bind(this)
+   this.DisplayDevis = this.DisplayDevis.bind(this)
   }
 
 
-  getSupplierService = () =>  {
+  getDevis = () =>  {
     axios.get('http://localhost:8080/getdevis/')
     .then((resultFromServer)=>{
       const x = resultFromServer.data
       this.setState({
-        data: x
-
+        data: x,
+        click:true
       });
     })
   }
 
-  DisplaySupplier = (data) =>{
-    return data.map((supplier, index)=>(
+  DisplayDevis = (data) =>{
+    if (!data.length) return null
+    return data.map((devis, index)=>(
       <div key={index} className='display'>
-      {devis._id}
+      <div>
+        {devis._id}
+        {devis.content}
+      </div>
       </div>
     ))
   }
@@ -35,9 +41,10 @@ class Devis extends Component{
       return (
         <div className="getdevis">
 
-            <button  onClick={this.getSupplierService}> Afficher mes devis</button>
+            <button  onClick={this.getDevis}> Afficher mes devis</button>
               <div>
-                {this.DisplaySupplier(this.state.data)}
+              
+                {this.DisplayDevis(this.state.data)}
               </div>
         </div>
     )
