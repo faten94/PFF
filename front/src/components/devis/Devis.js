@@ -5,8 +5,7 @@ class Devis extends Component{
   constructor(props){
     super(props);
     this.state = {
-     data: [],
-     click:false
+     data: []
    }
    this.getDevis =this.getDevis.bind(this)
    this.DisplayDevis = this.DisplayDevis.bind(this)
@@ -18,8 +17,7 @@ class Devis extends Component{
     .then((resultFromServer)=>{
       const x = resultFromServer.data
       this.setState({
-        data: x,
-        click:true
+        data: x
       });
     })
   }
