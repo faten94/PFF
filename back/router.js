@@ -15,6 +15,7 @@ const authSupplier = require('./middlewares/authSupplier');
 const admin = require('./middlewares/admin');
 const comments = require('./controllers/comments')
 const devis = require('./controllers/devis');
+const getDevis = require('./controllers/getDevis');
 
 
 
@@ -74,6 +75,7 @@ router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.up
 
 router.post('/service', service.service)
 router.post('/devis', devis.devis)
+router.get('/getdevis', getDevis.getdevis)
 
 //router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)

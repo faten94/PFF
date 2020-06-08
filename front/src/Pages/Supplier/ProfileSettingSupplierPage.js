@@ -3,6 +3,7 @@ import axios from "axios";
 import Error404 from '../Error404Page'
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
+import Devis from '../../devis/Devis';
 
 
 class ProfileSettingSupplierPage extends Component {
@@ -28,13 +29,13 @@ class ProfileSettingSupplierPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleChange = async (e) => {
         await this.setState({
             [e.target.name]: e.target.value
         });
     }
-    
+
     handleSubmit(event) {
         event.preventDefault();
         var headers = {'authorization': Cookies.get('supplierToken')}
@@ -45,7 +46,7 @@ class ProfileSettingSupplierPage extends Component {
         axios.post('http://localhost:8080/supplierLogin', {
         email: this.state.email,
         password: this.state.oldpassword
-       
+
     })
     .then( (res, err) =>{
         if(res.status===200){
@@ -65,7 +66,7 @@ class ProfileSettingSupplierPage extends Component {
                 date: this.state.date,
                 location: this.state.location,
                 service: this.state.service
-                
+
             }
             if (this.state.password === '') data.password = this.state.oldpassword
             if (this.state.lastname === '') data.lastname = this.state.oldlastname
@@ -126,7 +127,7 @@ deleteAccount = () => {
     //     email: this.state.oldemail,
     //     password: this.state.oldpassword
     // };
-    
+
     axios.post('http://localhost:8080/supplierLogin', {
     email: this.state.email,
     password: this.state.oldpassword
@@ -150,16 +151,16 @@ render() {
     return (
         <div className= "container">
         <h1 className="title">Editer</h1>
-        
+
         <img class="photo" alt="user"/>
-        
+
         <br></br>
-        
+
         <label for="photo">Telechargez une photo de profil : </label>
         <input type="file"
         id="photo" name="photo"
         accept="image/png, image/jpeg"></input>
-        
+
         <br></br>
         <br></br>
         <form onSubmit={this.handleSubmit}>
@@ -265,7 +266,7 @@ render() {
         id="phone"
         placeholder="Ville"
         /></td>
-        
+
         </tr>
         <tr>
         <td>Numero de telephone</td>
@@ -296,7 +297,7 @@ render() {
         </td>
         </tr>
         <td>Confirmation</td>
-        <td><input type="password" onChange={this.handleChange} name="oldpassword" placeholder="Old password" required></input></td>  
+        <td><input type="password" onChange={this.handleChange} name="oldpassword" placeholder="Old password" required></input></td>
         <button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>
         <br></br>
         Valider les modifications
@@ -308,11 +309,12 @@ render() {
         </table>
         </form>
         <br></br>
-     
+
         <br></br>
         <Link to = {"/accountSupplier"} className="btn btn-raised btn-success mr-5">
         Retourner sur la page Profil
         </Link>-
+        <Devis/>
         </div>
         );
     };
