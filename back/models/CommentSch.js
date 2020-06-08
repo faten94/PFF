@@ -12,10 +12,15 @@ const CommentSchema = new Schema({
     
     note: { type: Number },      
 
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' },
+    user: { type: String },
 
-    supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'UserSch' },
 
+    supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' },
+
+    answers: [{ text: String,
+                date: { type: Date, default: Date.now }
+                }] 
     
 })
 const Comment = mongoose.model('Comment', CommentSchema)
