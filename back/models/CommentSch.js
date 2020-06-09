@@ -6,6 +6,8 @@ const supplier = require('./SupplierSch')
 
 const CommentSchema = new Schema({
  
+    commentId: { type: String },
+
     content: { type: String },
     
     date: { type: Date, default: Date.now },
@@ -18,9 +20,6 @@ const CommentSchema = new Schema({
 
     supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' },
 
-    answers: [{ text: String,
-                date: { type: Date, default: Date.now }
-                }] 
     
 })
 const Comment = mongoose.model('Comment', CommentSchema)
