@@ -14,7 +14,6 @@ app.use(express.json());
 
 exports.mapCoordonate = async(req, res) =>
 {
-    //console.log(req.cookies.supplierToken)
     console.log("c'est moi", req.body)
     console.log(req.body.params.supplierId)
     const supplierId = req.body.params.supplierId
@@ -27,9 +26,6 @@ exports.mapCoordonate = async(req, res) =>
             console.log(err)
         }
         res.send(docs)
-        
-        
-         
-        console.log("bbbbbb",docs)
+        console.log("supplier recuperer",docs)
     })
 }

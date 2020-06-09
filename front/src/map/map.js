@@ -119,7 +119,8 @@ class Map extends Component{
         render(){
     return(
         <div> <h1>
-      {this.state.posts.city}  {this.state.posts.address}
+
+        au {this.state.posts.address} à {this.state.posts.city} ({this.state.posts.zip})
       <div ref={this.mapRef} style={{ height: "250px"}} />
         </h1> </div>
             
