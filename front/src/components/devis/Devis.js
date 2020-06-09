@@ -1,4 +1,4 @@
-import React from 'react'
+cd // BUG: import React from 'react'
 
 import Calendar from "../calender"
 
@@ -12,7 +12,7 @@ function Devis() {
       </calender>
   )
 
-    
+
 }
 
 
