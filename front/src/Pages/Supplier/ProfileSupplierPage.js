@@ -64,6 +64,7 @@ class ProfileSupplierPage extends Component {
 
         return (
             <div className="container">
+                {/* <DisplayMapClass/> */}
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
                     <div>
                     <div><Map/> </div>
@@ -81,6 +82,7 @@ class ProfileSupplierPage extends Component {
                         <p>Type de fournisseur : {this.state.typesupplier}</p>
                         <p>Siret : {this.state.siret} </p>
                         <p>Service: {this.state.service}</p>
+                        <p>Moyenne :</p>
                     </div>
                     <div> <Calendar/> </div>
                 </div>
