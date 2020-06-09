@@ -3,7 +3,7 @@ import axios from "axios";
 import Error404 from '../Error404Page'
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
-import Devis from '../../components/devis/Devis';
+
 
 
 class ProfileSettingSupplierPage extends Component {
@@ -314,7 +314,7 @@ render() {
         <Link to = {"/accountSupplier"} className="btn btn-raised btn-success mr-5">
         Retourner sur la page Profil
         </Link>-
-        <Devis/>
+        
         </div>
         );
     };

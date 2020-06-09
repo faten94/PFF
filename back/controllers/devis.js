@@ -23,10 +23,25 @@ app.use(express.json());
   }, function(err,docs){
    console.log(docs)
    if(!err) res.send(docs)
-
-
-
    })
-
-
  }
+
+ exports.getAllDevis = (req, res) => {
+     Devis.find(function (err, comment) {
+         if(err) throw err;
+         res.json(comment);
+     })
+ }
+
+ exports.getDevissbySupplier = (req, res) => {
+     Devis.find({supplier: req.params.supplierId})
+        .exec((err, commentaire) => {
+         if (err){
+             return res.status(400).json({
+                 error: err
+             })
+         }
+         console.log(commentaire)
+         res.json(commentaire);
+     });
+ };

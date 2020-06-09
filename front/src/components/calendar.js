@@ -19,6 +19,7 @@ class Calendar extends Component {
     this.state={
       startdate: new Date(),
       content: [],
+      comments: [],
       supplierId: supplierId,
       user: "",
       x: false
@@ -56,9 +57,42 @@ class Calendar extends Component {
             console.log("err")
 
         })
-
   }
+
+  getDevisBySupplier = () => {
+      const params = { supplierId: this.state.supplierId }
+      axios
+          .get("http://localhost:8080/getdevis/" + this.state.supplierId, { params })
+          .then((response) => {
+              console.log("getAllusers response", response);
+              console.log("getAllusers response.data", response.data);
+              this.setState({ comments: response.data })
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+  }
+  displayDevis = (comments) => {
+      const getAllComments = comments;
+      //  console.log("json", JSON.stringify(getAllUsers));
+      const commentsList = getAllComments.map((comment) => {
+          return (
+              <tr key={comment.id}>
+                  <td>{comment.content}</td>
+
+
+                  <td>{comment.user}</td>
+                  <td>{comment.supplier}</td>
+
+              </tr>
+          )
+      });
+      return (commentsList);
+  }
+
+
   render(){
+    let comments = this.state.comments;
     if(Cookies.get('token')){
     return (
         <div>
@@ -77,7 +111,13 @@ class Calendar extends Component {
           <input type="text" placeholder="rediger votre probleme" value={this.state.content} onChange={this.handelContentchange} />
           </div>
           <button onClick={this.Devis}>Demmande de devis</button>
+          <tbody>
+              {this.displayDevis(comments)}
+          </tbody>
         </div>
+
+
+
     );
 
   }
