@@ -12,16 +12,12 @@ app.use(express.json());
 
  exports.getdevis = async(req, res) => {
 
-  console.log(req.body)
-   //console.log(req.params)
-   //console.log(req.query)
-   console.log("jjhjh")
+  console.log("je suis la ", req.body.params)
+  let id = req.body.params
 
-
-
-
-   Devis.find (function(err,docs){
+   Devis.find ({supplier:id},function(err,docs){
   if(!err) res.send(docs)
+  console.log(docs)
 
  })
  }

@@ -10,21 +10,18 @@ class Devis extends Component{
 
 
    }
-   console.log("ligne13",this.props)
-   console.log(this.props)
+   
    this.getDevis =this.getDevis.bind(this)
    this.DisplayDevis = this.DisplayDevis.bind(this)
   }
 
 
   getDevis = () =>  {
-    console.log("jjjhjjh",this.props)
     const supplier = localStorage.getItem('supplierId')
     console.log("LIGNE23",supplier)
 
-    axios.post('http://localhost:8080/getdevis/', {
-
-    })
+const params = supplier
+    axios.post('http://localhost:8080/getdevis/', { params})
     .then((resultFromServer)=>{
       const x = resultFromServer.data
       this.setState({

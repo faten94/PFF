@@ -23,10 +23,5 @@ app.use(express.json());
   }, function(err,docs){
    console.log(docs)
    if(!err) res.send(docs)
-
-
-
    })
-
-
  }
