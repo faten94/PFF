@@ -23,9 +23,11 @@ class Map extends Component{
         }
     }
     
-    componentDidMount= () => {
+    componentDidMount= async () => {
         this.getSupplierAdress()
-        this.getCoordonate()
+        await this.getCoordonate()
+        console.log(this.state.coordonate.items)
+        console.log(this.state.posts.address)
 
         const H = window.H;
         const platform = new H.service.Platform(
@@ -34,25 +36,48 @@ class Map extends Component{
         });
 
         const defaultLayers = platform.createDefaultLayers();
+    
         const map = new H.Map(
         
         this.mapRef.current,
         defaultLayers.vector.normal.map,
         {
             center: { lat: 48.81, lng: 2.36 },
-            zoom: 9,
+            zoom: 16,
             pixelRatio: window.devicePixelRatio || 1
         }
         );
-        //const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-        // permet de creer une interactivité avec le user
+        window.addEventListener('resize', () => map.getViewPort().resize());
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
         var ui = H.ui.UI.createDefault(map, defaultLayers, 'fr-FR');
-        var bubble = new H.ui.InfoBubble({ lng: 2.36, lat: 48.81 }, 
-        {content: '<b>Code & go by Epitech</b>'});
-        // Add info bubble to the UI:
-        ui.addBubble(bubble);
-        this.setState({ map });
+
+
+
+        var service = platform.getSearchService();
+
+        console.log(this.state.posts)
+        service.geocode(
+            {
+                q: this.state.posts.address + "," + this.state.posts.city
+            }, 
+        (result) => 
+        {
+             // Add a marker for each location found
+            result.items.forEach((item) => 
+            {
+            map.addObject(new H.map.Marker(item.position));
+            map.setCenter(item.position)
+            });
+        }, alert);
+        
+      
+
+       
+        // var bubble = new H.ui.InfoBubble({ lng: 2.36, lat: 48.81 }, 
+        // {content: '<b>Code & go by Epitech</b>'});
+        // // Add info bubble to the UI:
+        // ui.addBubble(bubble);
+        // this.setState({ map });
 
     }
         
@@ -76,25 +101,20 @@ class Map extends Component{
         }
 
               getCoordonate = async() =>{
-                const city = this.state.posts.city
-                console.log(city)
                 
-                  await axios.get("https://geocode.search.hereapi.com/v1/geocode?q=16 avenue montaigne+paris&apiKey=DObEqaiEw_Oqtou1Km77hp-SPAfeSVM2yr2ewaUUz7c")
-                  .then((response) => 
-                  {
+                await this.getSupplierAdress()
+                
+                 const response = await axios.get("https://geocode.search.hereapi.com/v1/geocode?q=" 
+                                                    + this.state.posts.address + "," + this.state.posts.city +
+                                                        "&apiKey=DObEqaiEw_Oqtou1Km77hp-SPAfeSVM2yr2ewaUUz7c")        
                     
                     const data = response.data
                     this.setState({coordonate:data})
 
                     console.log(this.state.coordonate)
-                    console.log(this.state.posts.address)
-                    console.log(this.state.posts.city)
-                })
-                .catch(function (error)
-                {
-                    console.log(error)
-                })
-        }
+
+                
+            }
         
         render(){
     return(
@@ -103,8 +123,7 @@ class Map extends Component{
       <div ref={this.mapRef} style={{ height: "250px"}} />
         </h1> </div>
             
-    )
-}
+    )}
 
 }
 
