@@ -4,6 +4,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
+//import { localStorage } from 'react';
 
 class Calendar extends Component {
 
@@ -21,8 +23,10 @@ class Calendar extends Component {
       content: [],
       supplierId: supplierId,
       user: "",
-      x: false
+      x: false,
+
     }
+      localStorage.setItem('supplierId', this.state.supplierId)
     this.handelStartdatechange = this.handelStartdatechange.bind(this);
     this.handelContentchange = this.handelContentchange.bind(this);
   }
@@ -41,6 +45,8 @@ class Calendar extends Component {
     })
   }
   Devis = (e) =>{
+    console.log("ligne47", this.state.supplierId)
+
     const headers = { 'authorization': Cookies.get('token') }
     axios.post("http://localhost:8080/devis" ,{
       supplierId: this.state.supplierId,
@@ -59,9 +65,18 @@ class Calendar extends Component {
 
   }
   render(){
+    /*return (
+<Redirect to={{
+  pathname: '/supplier/edit/',
+  params: {supplierId: "Toto"}
+}}/>
+)*/
+
     if(Cookies.get('token')){
+
     return (
         <div>
+
 
         <DatePicker selected={this.state.startdate}
 

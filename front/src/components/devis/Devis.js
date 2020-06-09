@@ -1,19 +1,30 @@
 import React, {Component} from 'react';
 import axios from "axios";
 
+
 class Devis extends Component{
   constructor(props){
     super(props);
     this.state = {
-     data: []
+     data: [],
+
+
    }
+   console.log("ligne13",this.props)
+   console.log(this.props)
    this.getDevis =this.getDevis.bind(this)
    this.DisplayDevis = this.DisplayDevis.bind(this)
   }
 
 
   getDevis = () =>  {
-    axios.get('http://localhost:8080/getdevis/')
+    console.log("jjjhjjh",this.props)
+    const supplier = localStorage.getItem('supplierId')
+    console.log("LIGNE23",supplier)
+
+    axios.post('http://localhost:8080/getdevis/', {
+
+    })
     .then((resultFromServer)=>{
       const x = resultFromServer.data
       this.setState({
@@ -21,6 +32,7 @@ class Devis extends Component{
       });
     })
   }
+
 
   DisplayDevis = (data) =>{
     if (!data.length) return null
@@ -41,7 +53,7 @@ class Devis extends Component{
 
             <button  onClick={this.getDevis}> Afficher mes devis</button>
               <div>
-              
+
                 {this.DisplayDevis(this.state.data)}
               </div>
         </div>

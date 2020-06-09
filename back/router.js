@@ -75,7 +75,7 @@ router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.up
 
 router.post('/service', service.service)
 router.post('/devis', devis.devis)
-router.get('/getdevis', getDevis.getdevis)
+router.post('/getdevis', getDevis.getdevis)
 
 //router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)
