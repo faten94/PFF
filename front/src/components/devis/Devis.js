@@ -11,6 +11,7 @@ class Devis extends Component{
 
    }
    
+
    this.getDevis =this.getDevis.bind(this)
    this.DisplayDevis = this.DisplayDevis.bind(this)
   }
@@ -23,20 +24,27 @@ class Devis extends Component{
 const params = supplier
     axios.post('http://localhost:8080/getdevis/', { params})
     .then((resultFromServer)=>{
+
       const x = resultFromServer.data
       this.setState({
         data: x
       });
+      console.log(this.state.data)
+      localStorage.setItem('data', JSON.stringify(this.state.data))
+  
     })
   }
-
-
+  
+  
   DisplayDevis = (data) =>{
+    
     if (!data.length) return null
     return data.map((devis, index)=>(
-      <div key={index} className='display'>
+      <div key={index} className=''>
       <div>
-      <p><a href= {"http://localhost:3000/accountsupplier/"}>{devis._id} à  {devis.content} </a></p>    
+      <p><a href= {"http://localhost:3000/supplier/repDevis/" + devis._id }> Devis établi le : { devis.date } </a></p>
+      
+        
       </div>
       </div>
     ))
@@ -46,8 +54,7 @@ const params = supplier
   render(){
       return (
         <div className="getdevis">
-
-            <button  onClick={this.getDevis}> Afficher mes devis</button>
+            <button  onClick={this.getDevis}> Afficher mes devis </button>
               <div>
 
                 {this.DisplayDevis(this.state.data)}

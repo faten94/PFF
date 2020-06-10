@@ -9,6 +9,8 @@ const DevisSchema = new Schema({
 
     content: { type: String },
 
+    answer: {type: String},
+
     date: { type: Date, default: Date.now },
 
     photo: {type: String },
