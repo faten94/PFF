@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import { Button, Checkbox, Form, Menu } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
@@ -12,6 +12,7 @@ class LoginUserPage extends Component {
     this.state = {
       email: "",
       password: "",
+      activeItem: 'userlogin'
     //  redirect: false
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -63,14 +64,18 @@ render(){
 
   return (
     <Form>
-            <Menu>
-        <Menu.Item name='connection_user' active={activeItem === 'connection_user'} onClick={this.handleItemClick}>
-        <Link to ="/loginUser">Connexion Utilisateur</Link>
-        </Menu.Item>
-
-        <Menu.Item name='connection_supplier' active={activeItem === 'connection_supplier'} onClick={this.handleItemClick}>
-        <Link to ="/loginSupplier">Connexion Fournisseur</Link>
-        </Menu.Item>
+      <Segment>
+      <Menu  attached='top' tabular>
+        <Link to ="/loginUser">
+          <Menu.Item name='userlogin' active={activeItem === 'userlogin'} onClick={this.handleItemClick}>
+            Connexion Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/loginSupplier">
+          <Menu.Item name='supplierlogin' active={activeItem === 'supplierlogin'} onClick={this.handleItemClick}>
+            Connexion Fournisseur
+          </Menu.Item>
+        </Link>
       </Menu>
     <Form.Field>
       <label>Email</label>
@@ -84,6 +89,7 @@ render(){
       <Checkbox label='I agree to the Terms and Conditions' />
     </Form.Field>
     <Button type='submit' onClick={this.loginUser}>Se connecter</Button>
+    </Segment>
   </Form>
 
     

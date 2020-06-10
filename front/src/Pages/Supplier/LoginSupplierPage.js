@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Checkbox, Form, Menu } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
@@ -11,7 +11,8 @@ class LoginUserPage extends Component {
     console.log(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      activeItem: 'supplierlogin'
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -58,16 +59,20 @@ if(Cookies.get('supplierToken')){
 }
   return (
     <Form>
-      <Menu>
-        <Menu.Item name='connection_user' active={activeItem === 'connection_user'} onClick={this.handleItemClick}>
-          <Link to ="/loginUser">Connexion Utilisateur</Link>
-        </Menu.Item>
-    
-        <Menu.Item name='connection_supplier' active={activeItem === 'connection_supplier'} onClick={this.handleItemClick}>
-          <Link to ="/loginSupplier">Connexion Fournisseur</Link>
-        </Menu.Item>
+      <Segment>
+      <Menu  attached='top' tabular>
+        <Link to ="/loginUser">
+          <Menu.Item name='userlogin' active={activeItem === 'userlogin'} onClick={this.handleItemClick}>
+            Connexion Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/loginSupplier">
+          <Menu.Item name='supplierlogin' active={activeItem === 'supplierlogin'} onClick={this.handleItemClick}>
+            Connexion Fournisseur
+          </Menu.Item>
+        </Link>
       </Menu>
-      
+
     <Form.Field>
       <label>Email</label>
       <input label='Email' placeholder='Email' value={this.state.email} onChange={this.handleEmailChange}/>
@@ -83,7 +88,8 @@ if(Cookies.get('supplierToken')){
     </Form.Field>
 
     <Button type='submit' onClick={this.loginSupplier}>Se connecter</Button>
-    </Form>
+    </Segment>
+  </Form>
 
     )}
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+import { Menu, Form, Button, Segment } from 'semantic-ui-react'
 //import './RegisterForm.css';
 class RegisterUserPage extends React.Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class RegisterUserPage extends React.Component {
       password: "",
       address: "",
       phone: "",
-      redirect: false
+      redirect: false,
+      activeItem: 'userRegister', 
+      
       
     }
     this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
@@ -60,7 +63,7 @@ class RegisterUserPage extends React.Component {
     })
   }
   
-  
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
   
   registerUser = (e) => {
@@ -89,44 +92,98 @@ class RegisterUserPage extends React.Component {
 
 
 render() {
-
+  const { activeItem } = this.state
   if (this.state.redirect) {
       return (<Redirect to = "/loginUser"/>)
   }
   return (
-<div className="container">
-    <div className="registerFormDiv">
-    <td><Link to ="/registerUser">Inscription Utilisateur</Link></td>
-    <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
-    <h1>Formulaire d'inscription Utilisateur</h1>
-    <div className="formItem">
-    <input type="text" placeholder="Prenom" value={this.state.firstname} onChange={this.handleFirstnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Nom" value={this.state.lastname} onChange={this.handleLastnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Adresse" value={this.state.address} onChange={this.handleAddressChange}/>
-    </div>
-    <div className="formItem">
-    <input type="texte" placeholder="Telephone" value={this.state.phone} onChange={this.handlePhoneChange} />
-    </div>
-    <div className="formItem">
-    <input type="password" placeholder="Mot de passe" value={this.state.password} onChange={this.handlePasswordChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Confirmer le mot de passe" />
-    </div>
-    
-    <div className="formItem">
-    <button type= "button" onClick={this.registerUser} >S'inscrire</button>
-    </div>
-    </div>
-</div>
+<Form>
+  <Segment>
+    <Menu  attached='top' tabular>
+        <Link to ="/registerUser">
+          <Menu.Item name='/userRegister' active={activeItem === 'userRegister'} onClick={this.handleItemClick}>
+            Inscription Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/registerSupplier">
+          <Menu.Item name='supplierRegister' active={activeItem === 'supplierRegister'} onClick={this.handleItemClick}>
+            Inscription Fournisseur
+          </Menu.Item>
+        </Link>
+      </Menu>
+      <h1>Formulaire d'inscription Utilisateur</h1>
+      
+    <Form.Input
+      // error={{ content: 'Entrer votre prénom.', pointing: 'below' }}
+      fluid
+      label='Prénom'
+      placeholder='Prénom'
+      id='form-input-first-name'
+      value={this.state.firstname} 
+      onChange={this.handleFirstnameChange}
+    />
+    <Form.Input
+      // error='Entrez votre nom.'
+      fluid
+      label='Lastname'
+      placeholder="Nom" 
+      value={this.state.lastname} 
+      onChange={this.handleLastnameChange}
+    />
+    <Form.Input
+      // error='Entrez un email.'
+      fluid
+      type = "email"
+      label='Email'
+      placeholder="Email" 
+      value={this.state.email} 
+      onChange={this.handleEmailChange}
+    />
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      type="text"
+      label='Adresse'
+      placeholder="Adresse" 
+      value={this.state.address} 
+      onChange={this.handleAddressChange}
+    />
+    <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      type="phone"
+      label='Téléphone'
+      placeholder="Téléphone" 
+      value={this.state.phone} 
+      onChange={this.handlePhoneChange}
+    />
+    <Form.Input
+      // error='Entrez un mot de passe.'
+      fluid
+      type="password"
+      label='Mot de passe.'
+      placeholder="Mot de passe." 
+      value={this.state.password} 
+      onChange={this.handlePasswordChange}
+    />
+    <Form.Input
+      // error='Veuillez confirmer votre mot de passe.'
+      fluid
+      type="password"
+      label='Confirmation de mot de passe'
+      placeholder="Confirmer le mot de passe" 
+    />
+    <Form.Checkbox
+      label='I agree to the Terms and Conditions'
+      // error={{
+      //   content: 'You must agree to the terms and conditions',
+      //   pointing: 'left',
+      // }}
+    />
+    <Button centered type= "button" onClick={this.registerUser} >S'inscrire</Button>
+  </Segment>
+  </Form>
+      
     );
   }
 }
