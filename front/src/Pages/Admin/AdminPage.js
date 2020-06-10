@@ -44,13 +44,13 @@ class AdminPage extends Component {
                 <div className="container">
                     <div>
                         <Menu widths={3}>
-                            <Menu.Item href='/admin/users' target='_blank'>
+                            <Menu.Item href='/admin/users' target=''>
                                 Gérer les utilisateurs
                              </Menu.Item>
-                            <Menu.Item href='/admin/suppliers' target='_blank'>
+                            <Menu.Item href='/admin/suppliers' target=''>
                                 Gérer les fournisseurs
                              </Menu.Item>
-                            <Menu.Item href='/admin/comments' target='_blank'>
+                            <Menu.Item href='/admin/comments' target=''>
                                 Gérer les commentaires
                              </Menu.Item>
                             {/* <Link to="/admin/quotes">

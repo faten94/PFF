@@ -64,7 +64,7 @@ render() {
     else {
         let users = this.state.users;
         return (
-            <div className="container">
+            <div className="container" style = {{padding: "50px"}}>
                 <Link to="/admin">
                     <Button style ={{marginLeft: "20px"}}circular icon='arrow left' />
                 </Link>
