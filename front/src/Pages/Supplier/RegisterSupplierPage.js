@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from "react-router-dom";
+import { Menu, Form, Button, Segment } from 'semantic-ui-react'
 //import './RegisterForm.css';
 
 class RegisterSupplierPage extends React.Component {
@@ -20,7 +21,8 @@ class RegisterSupplierPage extends React.Component {
       city: "",
       expertise: "",
       service: "",
-      redirect: false
+      redirect: false,
+      activeItem: 'supplierRegister'
       
       
     }
@@ -40,6 +42,8 @@ class RegisterSupplierPage extends React.Component {
     
     
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
   handleParticulierChange = (event) => {
     const target = event.target;
@@ -150,88 +154,155 @@ class RegisterSupplierPage extends React.Component {
 }
 
 render() {
-
+  const { activeItem } = this.state
   if (this.state.redirect) {
     return (<Redirect to = "/loginSupplier"/>)
 }
   return (
-    <div className="container">
-    <div className="registerFormDiv">
-    <td><Link to ="/registerUser">Inscription Utilisateur</Link></td>
-    <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
+  <Form>
+    <Segment>
+    <Menu  attached='top' tabular>
+        <Link to ="/registerUser">
+          <Menu.Item name='/userRegister' active={activeItem === 'userRegister'} onClick={this.handleItemClick}>
+            Inscription Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/registerSupplier">
+          <Menu.Item name='supplierRegister' active={activeItem === 'supplierRegister'} onClick={this.handleItemClick}>
+            Inscription Fournisseur
+          </Menu.Item>
+        </Link>
+    </Menu>
+
     <h1>Formulaire d'inscription Fournisseur</h1>
-    <div className="formItem">
-    <input type="text" placeholder="Prenom" value={this.state.firstname} onChange={this.handleFirstnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Nom" value={this.state.lastname} onChange={this.handleLastnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Adresse" value={this.state.address} onChange={this.handleAddressChange}/>
-    </div>
-    <div className="formItem">
-    <input type="number" placeholder="Siret" value={this.state.siret} onChange={this.handleSiretChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="number" placeholder="Code postal" value={this.state.zip} onChange={this.handleZipeChange}/>
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Ville" value={this.state.city} onChange={this.handleCityChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="texte" placeholder="Expertise" value={this.state.expertise} onChange={this.handleExpertiseChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="texte" placeholder="Telephone" value={this.state.phone} onChange={this.handlePhoneChange} />
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Votre Profession" value={this.state.service} onChange={this.handleServiceChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Mot de passe" value={this.state.password} onChange={this.handlePasswordChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Confirmer le mot de passe" />
-    </div>
-    
-    <div className="formItem">
-    <label>
-    Particulier :
-    <input
-    name="particulier"
-    type="checkbox"
-    checked={this.state.particulier}
-    onChange={this.handleParticulierChange} />
-    </label>
-    </div>
-    
-    <div className="formItem">
-    <label>
-    Professionnel :
-    <input
-    name="supplier"
-    type="checkbox"
-    checked={this.state.supplier}
-    onChange={this.handleSupplierChange} />
-    </label>
-    </div>
-    
-    
-    
-    
-    <div className="formItem">
-    <button type= "button" onClick={this.registerSupplier} >Register</button>
-    </div>
-    </div>
-    </div>
+      
+    <Form.Input
+      // error={{ content: 'Entrer votre prénom.', pointing: 'below' }}
+      fluid
+      label='Prénom'
+      placeholder='Prénom'
+      id='form-input-first-name'
+      type="text" 
+      value={this.state.firstname} 
+      onChange={this.handleFirstnameChange}
+    />
+    <Form.Input
+      // error='Entrez votre nom.'
+      fluid
+      label='Lastname'
+      type="text" 
+      placeholder="Nom" 
+      value={this.state.lastname} 
+      onChange={this.handleLastnameChange}
+    />
+    <Form.Input
+      // error='Entrez un email.'
+      fluid
+      label='Email'
+      type="email" 
+      placeholder="Email" 
+      value={this.state.email} 
+      onChange={this.handleEmailChange}
+    />
+
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Adresse'
+      type="text" 
+      placeholder="Adresse" 
+      value={this.state.address} 
+      onChange={this.handleAddressChange}
+    />
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Ville'
+      type="text" 
+      placeholder="Ville" 
+      value={this.state.city} 
+      onChange={this.handleCityChange}
+    />
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Code Postal'
+      type="number" 
+      placeholder="Code postal" 
+      value={this.state.zip} 
+      onChange={this.handleZipeChange}
+    />
+    <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Téléphone'
+      type="texte" 
+      placeholder="Telephone" 
+      value={this.state.phone} 
+      onChange={this.handlePhoneChange}
+    />
+    <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Siret'
+      type="number" 
+      placeholder="Siret" 
+      value={this.state.siret} 
+      onChange={this.handleSiretChange}
+    />
+      <Form.Group inline>
+          <label>Particulier/Professionnel</label>
+          <Form.Radio
+            label='Particulier'
+            value='particulier'
+            checked={this.state.particulier}  
+            onChange={this.handleParticulierChange} 
+          />
+          <Form.Radio
+            label='Professionnel'
+            value='professionnel'
+            name="supplier"
+            type="checkbox"
+            checked={this.state.supplier}
+            onChange={this.handleSupplierChange}
+          />
+
+        </Form.Group>
+      <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Service'
+      type="text" 
+      placeholder="Profession" 
+      value={this.state.service} 
+      onChange={this.handleServiceChange}
+      />
+      <Form.Input
+      // error='Entrez un mot de passe.'
+      fluid
+      label='Mot de passe.'
+      type="password" 
+      placeholder="Mot de passe" 
+      value={this.state.password} 
+      onChange={this.handlePasswordChange}
+    />
+    <Form.Input
+      // error='Veuillez confirmer votre mot de passe.'
+      fluid
+      type="password" 
+      placeholder="Confirmer le mot de passe"
+    />
+    <Form.Checkbox
+      label='I agree to the Terms and Conditions'
+      // error={{
+      //   content: 'You must agree to the terms and conditions',
+      //   pointing: 'left',
+      // }}
+    />
+    <Button type= "button" onClick={this.registerSupplier}>S'inscrire</Button>
+    </Segment>
+  </Form>
+
     );
   }
 }
