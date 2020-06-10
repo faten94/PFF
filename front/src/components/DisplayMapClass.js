@@ -32,7 +32,7 @@ export class DisplayMapClass extends React.Component {
     );
 
     
-    const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    //const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
     // permet de creer une interactivité avec le user
     var ui = H.ui.UI.createDefault(map, defaultLayers, 'fr-FR');

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Avatar from '../../images/avatar.png'
 import {DisplayMapClass} from '../../components/DisplayMapClass';
+import Map from '../../map/map'
 import Calendar from '../../components/calendar'
 import CommentSupplier from '../../components/commentsupplier/commentSupplier'
 
@@ -63,10 +64,13 @@ class ProfileSupplierPage extends Component {
 
         return (
             <div className="container">
+                {/* <DisplayMapClass/> */}
                 <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
                     <div>
-                        <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="400"/>
+                    <div><Map/> </div>
+                        <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="100"/>
                     </div>
+                    <div> </div>
                 <div>
                     <div>
                         <p>Adresse : {this.state.address}</p>
@@ -78,6 +82,7 @@ class ProfileSupplierPage extends Component {
                         <p>Type de fournisseur : {this.state.typesupplier}</p>
                         <p>Siret : {this.state.siret} </p>
                         <p>Service: {this.state.service}</p>
+                        <p>Moyenne :</p>
                     </div>
                     <div> <Calendar/> </div>
                 </div>

@@ -14,7 +14,6 @@ class Calendar extends Component {
     const urlArray = url.split('/');
     const urlLength = urlArray.length - 1
     const supplierId = urlArray[urlLength]
-    console.log(props);
 
     super(props)
 

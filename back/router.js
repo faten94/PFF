@@ -16,6 +16,7 @@ const admin = require('./middlewares/admin');
 const comments = require('./controllers/comments')
 const devis = require('./controllers/devis');
 const getDevis = require('./controllers/getDevis');
+const map = require('./controllers/map') 
 
 
 
@@ -43,8 +44,10 @@ router.post('/settings/suppliers', authSupplier, settingsSuppliers.updateProfile
 router.delete('/settings/suppliers', authSupplier, settingsSuppliers.deleteProfile);
 
 //comments supplier
-router.post("/suppliers/createComment/:supplierId", comments.createComment)
+router.post("/suppliers/createComment/:supplierId", comments.createComment);
 router.get('/suppliers/comments/:supplierId', comments.getCommentsbySupplier);
+router.get('/suppliers/answers', comments.getAllAnswersByCommentId);
+router.post('/suppliers/answerComment/:commentId', comments.answerComment);
 
 
 //ADMIN
@@ -76,6 +79,8 @@ router.post('/admin/comments/settings/:commentId', auth, admin, adminComments.up
 router.post('/service', service.service)
 router.post('/devis', devis.devis)
 router.post('/getdevis', getDevis.getdevis)
+
+router.post('/map', map.mapCoordonate)
 
 //router.get('/services', service.GetAllSupplierByService)
 //router.get('/service', service.GetAllSupplierByService)
