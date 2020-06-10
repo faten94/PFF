@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import axios from "axios";
+import { Menu } from 'semantic-ui-react';
+import { Header, Icon, Image } from 'semantic-ui-react';
 
 
 class AdminPage extends Component {
@@ -11,62 +13,66 @@ class AdminPage extends Component {
             admin: 'false',
         };
     }
-    
+
     getAllUsers = () => {
         const headers = { 'authorization': Cookies.get('token') }
         axios
-        .get("http://localhost:8080/admin/users", { headers: headers })
-        .then((response) => {
-            console.log('admin status verified')
-            this.setState({ admin: 'true' })
-        })
-        .catch((err) => {
-            console.log(err);
-            console.log('DENIED')
-            window.location.href = "http://localhost:3000/404";
-        })
+            .get("http://localhost:8080/admin/users", { headers: headers })
+            .then((response) => {
+                console.log('admin status verified')
+                this.setState({ admin: 'true' })
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log('DENIED')
+                window.location.href = "http://localhost:3000/404";
+            })
     }
-    
+
     async componentDidMount() {
         await this.getAllUsers()
     }
-    
+
     render() {
-        if(this.state.admin === 'false'){
-            return(
+        if (this.state.admin === 'false') {
+            return (
                 <div></div>
-                )
-            }
-            else{
-                
-                return (
-                    <div className="container">
-                    <h1 className="title">Admin</h1>
-                    
-                    <Link to="/admin/users">
-                    <button>
-                    Afficher les utilisateurs
-                    </button>
-                    </Link>
-                    <Link to="/admin/suppliers">
-                    <button>
-                    Afficher les fournisseurs
-                    </button>
-                    </Link>
-                    <Link to="/admin/comments">
-                    <button>
-                    Afficher les commentaires
-                    </button>
-                    </Link>
-                    {/* <Link to="/admin/quotes">
+            )
+        }
+        else {
+            return (
+                <div className="container">
+                    <div>
+                        <Menu widths={3}>
+                            <Menu.Item href='/admin/users' target='_blank'>
+                                Gérer les utilisateurs
+                             </Menu.Item>
+                            <Menu.Item href='/admin/suppliers' target='_blank'>
+                                Gérer les fournisseurs
+                             </Menu.Item>
+                            <Menu.Item href='/admin/comments' target='_blank'>
+                                Gérer les commentaires
+                             </Menu.Item>
+                            {/* <Link to="/admin/quotes">
                     <button>
                     Afficher les devis
                     </button>
-                    </Link> */}
+                </Link> */}
+                        </Menu>
                     </div>
-                    )
-                }
-            }
-        };
-        
-        export default AdminPage;
+                    <br></br>
+                    <div>
+                        <Header as='h2' icon textAlign='center'>
+                            <Icon name='users' circular />
+                            <Header.Content>Admin</Header.Content>
+                        </Header>
+
+                    </div>
+
+                </div>
+            )
+        }
+    }
+};
+
+export default AdminPage;
