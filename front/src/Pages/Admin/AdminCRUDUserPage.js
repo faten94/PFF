@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
-import { Header, Table, Button, Input, Image } from 'semantic-ui-react'
+import { Header, Table, Button, Input, Image } from 'semantic-ui-react';
 
 class AdminCRUDUserPage extends Component {
     constructor(props) {
