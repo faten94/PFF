@@ -4,12 +4,15 @@ import DisplayDevis from '../../components/devis/Devis'
 
 class RepDevis extends React.Component {
 
-    constructor(props){
+    constructor(props)
+    {
         super(props)
 
        // this.DisplayDevis = this.DisplayDevis.bind(this)
         this.getDevisbyId =this.getDevisbyId.bind(this)
         this.Answer = this.Answer.bind(this)
+        this.handleAnswerChange = this.handleAnswerChange.bind(this)
+        this.handlePriceChange = this.handlePriceChange.bind(this)
 
         const url = window.location.href;
         const urlArray = url.split('/');
@@ -17,18 +20,20 @@ class RepDevis extends React.Component {
         const devisId = urlArray[urlLength]
 
        
-        this.state = {
+        this.state = 
+        {
             recupdata:'',
             data:'',
             content:'',
             date:null,
             devisId:devisId,
-            answer:''
-
+            answer:'',
+            price:''
         }
     }
 
-    getDevisbyId = async () =>  {
+    getDevisbyId = async () =>  
+    {
 
         const params = {_id: this.state.devisId }
 
@@ -44,19 +49,28 @@ class RepDevis extends React.Component {
         return (this.state.data)
       }
 
-      handleAnswerChange = (e) => {
+      handleAnswerChange = (e) => 
+      {
         console.log(e.target.value);
            this.setState({
              answer: e.target.value
            })
-         }
+        }
+
+         handlePriceChange = (e) => {
+            console.log(e.target.value);
+               this.setState({
+                 price: e.target.value
+               })
+             }
 
 
       Answer = async(e) => {
         
         //console.log(this.state.devisId)
-        axios.post("http://localhost:8080/devisres", 
+        await axios.post("http://localhost:8080/devisres", 
         { 
+            price: this.state.price,
             answer: this.state.answer,
             _id: this.state.devisId 
             
@@ -66,10 +80,9 @@ class RepDevis extends React.Component {
         })
         .catch((err) => {
             console.log("err")
-
         })
-
       }
+
 
 
 
@@ -82,7 +95,8 @@ class RepDevis extends React.Component {
                 <br/>
                 <div> {this.state.data.daterdv}  </div>
 
-                <input value={this.state.service} onChange = {this.handleAnswerChange}  placeholder = " Taper la reponse " />
+                <input value={this.state.answer} onChange = {this.handleAnswerChange}  placeholder = " Taper la reponse " />
+                <input value={this.state.price} onChange = {this.handlePriceChange}  placeholder = " entrez le prix " />
                 <button  onClick={this.Answer}> Envoyer la reponse </button>
 
             </div>

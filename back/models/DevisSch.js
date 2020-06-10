@@ -19,6 +19,8 @@ const DevisSchema = new Schema({
 
     daterdv: { type: String},
 
+    price: { type:String },
+
     payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
 
     supplier: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SupplierSch' }],
