@@ -36,8 +36,7 @@ const params = supplier
     return data.map((devis, index)=>(
       <div key={index} className='display'>
       <div>
-        {devis._id}
-        {devis.content}
+      <p><a href= {"http://localhost:3000/accountsupplier/"}>{devis._id} à  {devis.content} </a></p>    
       </div>
       </div>
     ))
