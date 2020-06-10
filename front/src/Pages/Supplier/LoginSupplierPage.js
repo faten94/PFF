@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
+import { Button, Checkbox, Form, Menu } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
@@ -17,7 +18,8 @@ class LoginUserPage extends Component {
 
   }
   
-
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
   handleEmailChange = (e) => {
     this.setState({
       email: e.target.value
@@ -50,26 +52,39 @@ class LoginUserPage extends Component {
   }
 
 render(){
-
+  const { activeItem } = this.state
 if(Cookies.get('supplierToken')){
   return <Redirect to = "/"/>
 }
   return (
+    <Form>
+      <Menu>
+        <Menu.Item name='connection_user' active={activeItem === 'connection_user'} onClick={this.handleItemClick}>
+          <Link to ="/loginUser">Connexion Utilisateur</Link>
+        </Menu.Item>
+    
+        <Menu.Item name='connection_supplier' active={activeItem === 'connection_supplier'} onClick={this.handleItemClick}>
+          <Link to ="/loginSupplier">Connexion Fournisseur</Link>
+        </Menu.Item>
+      </Menu>
+      
+    <Form.Field>
+      <label>Email</label>
+      <input label='Email' placeholder='Email' value={this.state.email} onChange={this.handleEmailChange}/>
+    </Form.Field>
 
-    <div className="container">
+    <Form.Field>
+      <label>Mot de passe</label>
+      <input type="password"label='Mot de passe' placeholder='Mot de passe' value={this.state.password}  onChange={this.handlePasswordChange}/>
+    </Form.Field>
 
-    <td><Link to ="/loginUser">Connexion Utilisateur</Link></td>
-    <td><Link to ="/loginSupplier">Connexion Fournisseur</Link></td>
+    <Form.Field>
+      <Checkbox label='I agree to the Terms and Conditions' />
+    </Form.Field>
 
-    <h2>Connexion Fournisseur</h2>
-    <div className="formLoginDiv">
-    <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
-    <br></br>
-    <input type="password" placeholder="Mot de passe" value={this.state.password}  onChange={this.handlePasswordChange} />
-    <br></br>
-    <button onClick={this.loginSupplier}>Se connecter</button>
-    </div>
-    </div>
+    <Button type='submit' onClick={this.loginSupplier}>Se connecter</Button>
+    </Form>
+
     )}
   }
 

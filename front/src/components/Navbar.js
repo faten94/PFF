@@ -8,25 +8,45 @@ import { Menu } from 'semantic-ui-react'
 function Navbar() {
   if(Cookies.get('token')){
     return (
-      <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
-      <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-      <Link to="/account/edit" className="butt">Compte</Link>
-      <Link to= "/logout" className="butt" >Logout</Link>
-      </div>
+      <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
+        <Menu.Item name='home' size="1em"> 
+          <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
+        </Menu.Item>
+                  
+          <Menu.Menu position='right'>
+            <Menu.Item name='Inscription'>
+              <Link to="/account/edit" className="butt">Compte</Link>
+            </Menu.Item>
+                
+            <Menu.Item name='Connexion'>
+              <Link to ="/logout" className="butt">Logout</Link>
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
 
       )
     }
     else if(Cookies.get('supplierToken')){
       return (
-        <div className="navbar" style={{backgroundColor: "#2D4F6C"}} >
-        <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-        <Link to="/supplier/edit" className="butt">Compte</Link>
-        <Link to ="/logout" className="butt">Logout</Link>
-        </div>
+        <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
+          <Menu.Item name='home' size="1em"> 
+            <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
+          </Menu.Item>
+              
+          <Menu.Menu position='right'>
+            <Menu.Item name='Inscription'>
+              <Link to="/supplier/edit" className="butt">Compte</Link>
+            </Menu.Item>
+            
+            <Menu.Item name='Connexion'>
+              <Link to ="/logout" className="butt">Logout</Link>
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
       )
     }
     return (
-      <Menu inverted fluid>
+      <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
         <Menu.Item name='home' size="1em"> 
           <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
         </Menu.Item>
@@ -40,11 +60,6 @@ function Navbar() {
         </Menu.Item>
         </Menu.Menu>
       </Menu>
-      // <div className="navbar" style={{backgroundColor: "#2D4F6C"}}>
-      //   <Link to= "/"><img className ="logo" src={Logo} alt="logo"/></Link>
-      //   <Link to="/registeruser" className="butt">Inscription</Link>
-      //   <Link to="/loginUser" className="butt">Connexion</Link>
-      // </div>
       );
     }
 
