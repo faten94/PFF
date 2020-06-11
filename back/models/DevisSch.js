@@ -7,7 +7,11 @@ const service = require('./ServiceSch')
 
 const DevisSchema = new Schema({
 
+    title: { type : String },
+
     content: { type: String },
+
+    answer: {type: String},
 
     date: { type: Date, default: Date.now },
 
@@ -16,6 +20,8 @@ const DevisSchema = new Schema({
     statut: {type: String},
 
     daterdv: { type: String},
+
+    price: { type:String },
 
     payment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PaymentSch' }],
 

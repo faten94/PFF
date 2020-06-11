@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
+import { Link } from "react-router-dom";
+import { Header, Table, Button, Input, Image } from 'semantic-ui-react';
 
 class ProfileUserPage extends Component {
     constructor(props) {
@@ -19,10 +21,11 @@ class ProfileUserPage extends Component {
             date: "",
             olddate: "",
             oldpassword: "",
-            password: ""
+            password: "",
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePageChange =this.handlePageChange.bind(this)
     }
 
     handleChange = async (e) => {
@@ -31,169 +34,177 @@ class ProfileUserPage extends Component {
         });
     }
 
+    handlePageChange() {
+ 
+        window.location = "http://localhost:3000/account/profile/";
+        }
+
     handleSubmit(event) {
         event.preventDefault();
-        var headers = {'authorization': Cookies.get('token')}
-        var user = {
-            email: this.state.oldemail,
-            password: this.state.oldpassword
-        };
+        var headers = { 'authorization': Cookies.get('token') }
 
         axios.post('http://localhost:8080/login', {
-        email: this.state.email,
-        password: this.state.oldpassword
-    })
-    .then( (res, err) =>{
-        if(res.status===200){
-            let data = {
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                email: this.state.email,
-                address: this.state.address,
-                phone: this.state.phone,
-                date: this.state.date,
-                password: this.state.password
-            }
-            if (this.state.password === '') data.password = this.state.oldpassword
-            if (this.state.lastname === '') data.lastname = this.state.oldlastname
-            if (this.state.firstname === '') data.firstname = this.state.oldfirstname
-            if (this.state.email === '') data.email = this.state.oldemail
-            if (this.state.address === '') data.address = this.state.oldaddress
-            if (this.state.phone === '') data.phone = this.state.oldphone
-            if (this.state.date === '') data.date = this.state.olddate
-            axios.post('http://localhost:8080/settings', data, {headers: headers})
-            .then(res => {
-                window.location.reload(false)
+            email: this.state.oldemail,
+            password: this.state.oldpassword
+        })
+            .then((res, err) => {
+                if (res.status === 200) {
+                    let data = {
+                        firstname: this.state.firstname,
+                        lastname: this.state.lastname,
+                        email: this.state.email,
+                        address: this.state.address,
+                        phone: this.state.phone,
+                        date: this.state.date,
+                        password: this.state.password
+                    }
+                    if (this.state.password === '') data.password = this.state.oldpassword
+                    if (this.state.lastname === '') data.lastname = this.state.oldlastname
+                    if (this.state.firstname === '') data.firstname = this.state.oldfirstname
+                    if (this.state.email === '') data.email = this.state.oldemail
+                    if (this.state.address === '') data.address = this.state.oldaddress
+                    if (this.state.phone === '') data.phone = this.state.oldphone
+                    if (this.state.date === '') data.date = this.state.olddate
+                    axios.post('http://localhost:8080/settings', data, { headers: headers })
+                        .then(res => {
+                            window.location.reload(false)
+                        })
+                }
             })
-        }
-    })
-    .catch(error => alert('Password confirmation failed, please input your current password.'));
-}
-
-deleteAccount = () => {
-    var headers = {'authorization': Cookies.get('token')}
-    // var user = {
-    //     email: this.state.oldemail,
-    //     password: this.state.oldpassword
-    // };
-
-    axios.post('http://localhost:8080/login', {
-    email: this.state.email,
-    password: this.state.oldpassword
-})
-.then( (res, err) =>{
-    if(res.status===200){
-        axios.delete('http://localhost:8080/settings', {headers: headers})
-        .then(res => {
-            Cookies.remove('token');
-            window.location.reload(false)
-        })
+            .catch(error => alert('Password confirmation failed, please input your current password.'));
     }
-})
-}
 
-componentDidMount() {
-    const headers = {'authorization': Cookies.get('token')}
-    axios.get('http://localhost:8080/settings', {headers: headers})
-    .then(res => {
-        this.setState({
-            firstname: res.data.firstname,
-            oldfirstname: res.data.firstname,
-            lastname: res.data.lastname,
-            oldlastname: res.data.lastname,
-            email: res.data.email,
-            oldemail: res.data.email,
-            address: res.data.address,
-            oldaddress: res.data.address,
-            phone: res.data.phone,
-            oldphone: res.data.phone,
-            date: res.data.date,
-            olddate: res.data.date
+    deleteAccount = () => {
+        var headers = { 'authorization': Cookies.get('token') }
+        // var user = {
+        //     email: this.state.oldemail,
+        //     password: this.state.oldpassword
+        // };
+
+        axios.post('http://localhost:8080/login', {
+            email: this.state.email,
+            password: this.state.oldpassword
         })
-    })
-    .catch(error => console.log(error));
-}
+            .then((res, err) => {
+                if (res.status === 200) {
+                    axios.delete('http://localhost:8080/settings', { headers: headers })
+                        .then(res => {
+                            Cookies.remove('token');
+                            window.location.reload(false)
+                        })
+                }
+            })
+    }
 
-render() {
- 
-    return (
-        <div className="container">
-        <h1 className="title">Compte</h1>
+    componentDidMount() {
+        const headers = { 'authorization': Cookies.get('token') }
+        axios.get('http://localhost:8080/settings', { headers: headers })
+            .then(res => {
+                this.setState({
+                    firstname: res.data.firstname,
+                    oldfirstname: res.data.firstname,
+                    lastname: res.data.lastname,
+                    oldlastname: res.data.lastname,
+                    email: res.data.email,
+                    oldemail: res.data.email,
+                    address: res.data.address,
+                    oldaddress: res.data.address,
+                    phone: res.data.phone,
+                    oldphone: res.data.phone,
+                    date: res.data.date,
+                    olddate: res.data.date,
+                })
+            })
+            .catch(error => console.log(error));
+    }
 
-        <img className="photo"
-        src="#"
-        alt="ID n*" />
+    render() {
 
-        <br></br>
+        return (
+            <div className="container" style = {{padding: "50px"}}>
+            <Link to="/">
+                <Button style={{ marginLeft: "20px" }} circular icon='arrow left' />
+            </Link>
 
-        <label htmlFor="photo">Telechargez une photo de profil:</label>
+            <Header as='h2' icon textAlign='center'>
+                <Header.Content>Compte - Utilisateur {this.state.oldlastname} {this.state.oldfirstname} </Header.Content>
+            </Header>
 
-        <input type="file"
-        id="photo" name="photo"
-        accept="image/png, image/jpeg"></input>
+            <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' size='small' circular centered />
 
-        <br></br>
-        <br></br>
+            <br></br>
 
-        <form onSubmit={this.handleSubmit}>
-            <table className="hoverTable">
+            <Button
+                content="Téléchargez une photo de profil"
+                labelPosition="left"
+                icon="file"
+                onClick={() => this.fileInputRef.current.click()}
+            />
+            <br></br>
 
-                <thead></thead>
+            <br></br>
+            <br></br>
+            <form onSubmit={this.handleSubmit}>
+                <Table definition>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell />
+                            <Table.HeaderCell>Actuel</Table.HeaderCell>
+                            <Table.HeaderCell>Nouveau</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                <tbody>
-        <tr>
-        <td>Nom</td>
-        <td>{this.state.oldfirstname}</td>
-        <input name="firstname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
-        </tr>
-        <tr>
-        <td>Prenom</td>
-        <td>{this.state.oldlastname}</td>
-        <input name="lastname" onChange={this.handleChange} type="text" pattern="^\S{3,20}$" placeholder="New username"></input>
-        </tr>
-        <tr>
-        <td>Adresse</td>
-        <td>{this.state.oldaddress}</td>
-        <div><input name="address" onChange={this.handleChange} type="text" placeholder="new address"/></div>
-        </tr>
-        <tr>
-        <td>Numero de telephone</td>
-        <td>{this.state.oldphone}</td>
-        <div><input name="phone" onChange={this.handleChange} type="text" placeholder="new phone numner"/></div>
-        </tr>
-        <tr>
-        <td>Adresse email</td>
-        <td>{this.state.oldemail}</td>
-        <div><input name="email" onChange={this.handleChange} type="text" placeholder="new email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onInvalid="this.setCustomValidity('Invalid email')" onInput="this.setCustomValidity('')"/></div>
-        </tr>
-        <tr>
-        <td>Mot de passe</td>
-        <td>**********</td>
-        <div><input name="password" onChange={this.handleChange} type="password" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : ''); if(this.checkValidity()) form.password_confirmation.pattern = this.value;"  placeholder="New password"></input></div>
-        </tr>
-        <tr>
-        <td>Date d'enregistrement</td>
-        <td>{this.state.olddate}</td>
-        <td><input type="submit" value="Mettre à jour" /></td>
-        {/* <div><input type="password" name="password_confirmation" oninput="this.setCustomValidity(this.validity.patternMismatch ? 'Invalid password' : '');"  pattern="^\S{8,20}$" placeholder="Verify Password"></input></div> */}
-        </tr>
-        <tr>
-        <td>Confirmation</td>
-        <div><input type="password" onChange={this.handleChange} name="oldpassword" placeholder="Old password" required></input></div>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>Prénom</Table.Cell>
+                            <Table.Cell>{this.state.oldfirstname}</Table.Cell>
+                            <Table.Cell><Input name="firstname" onChange={this.handleChange} type="text" transparent placeholder='Prénom...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Nom</Table.Cell>
+                            <Table.Cell>{this.state.oldlastname}</Table.Cell>
+                            <Table.Cell><Input name="lastname" onChange={this.handleChange} type="text" transparent placeholder='Nom de famille...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Adresse</Table.Cell>
+                            <Table.Cell>{this.state.oldaddress}</Table.Cell>
+                            <Table.Cell> <Input name="address" onChange={this.handleChange} type="text" transparent placeholder='Adresse...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Numero de téléphone</Table.Cell>
+                            <Table.Cell>{this.state.oldphone}</Table.Cell>
+                            <Table.Cell><Input name="phone" onChange={this.handleChange} type="text" transparent placeholder='Numero de téléphone...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Email</Table.Cell>
+                            <Table.Cell>{this.state.oldemail}</Table.Cell>
+                            <Table.Cell><Input name="email" onChange={this.handleChange} type="email" transparent placeholder='Email...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Mot de passe</Table.Cell>
+                            <Table.Cell>*******</Table.Cell>
+                            <Table.Cell><Input name="password" onChange={this.handleChange} type="password" transparent placeholder='Mot de passe...' /></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Date d'enregistrement</Table.Cell>
+                            <Table.Cell>{this.state.olddate}</Table.Cell>
+                            <Table.Cell></Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
+                <Button type="submit" value="Modifier">Modifier</Button>
 
-        <td><button value="Delete" onClick={this.deleteAccount} href="/Logout">Supprimer le compte</button></td>
-
-        </tr>
-
-        </tbody>
-        </table>
-        </form>
+            </form>
+          
         <br></br>
         <div>Changez une ou plusieurs informations de votre profil.
-        <br></br>
+        <br></br><br></br>
 
+
+        <button onClick={this.handlePageChange} >  Mes devis </button>
+        </div>  
         </div>
-        </div>
+
         );
     };
 }

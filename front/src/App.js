@@ -11,10 +11,12 @@ import RegisterSupplierPage from './Pages/Supplier/RegisterSupplierPage';
 import LoginSupplierPage from './Pages/Supplier/LoginSupplierPage';
 import ProfileSettingSupplierPage from './Pages/Supplier/ProfileSettingSupplierPage';
 import ProfileSupplierPage from "./Pages/Supplier/ProfileSupplierPage";
+import RepDevis from './Pages/Supplier/RepDevis'
 
 import RegisterUserPage from './Pages/User/RegisterUserPage';
 import LoginUserPage from './Pages/User/LoginUserPage'
 import ProfileSettingUserPage from "./Pages/User/ProfileSettingUserPage";
+import ProfileUserPage from "./Pages/User/ProfileUserPage"
 
 
 import AdminPage from "./Pages/Admin/AdminPage";
@@ -54,10 +56,13 @@ function App() {
           {/* Users */}
 
           <ProtectedRouteUser exact path="/account/edit" component={ProfileSettingUserPage} />
+          <ProtectedRouteUser exact path="/account/profile" component={ProfileUserPage} />
+
 
           {/* Suppliers */}
           <Route exact path="/accountsupplier/:id" component={ProfileSupplierPage} />
           <ProtectedRouteSupplier  exact path="/supplier/edit" component={ProfileSettingSupplierPage} />
+          <ProtectedRouteSupplier  exact path="/supplier/repDevis/:id" component={RepDevis} />
           
           {/* Admin */}
           <Route exact path="/admin" component={AdminPage} />

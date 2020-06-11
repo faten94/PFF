@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
+import { Button, Checkbox, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
@@ -10,14 +11,16 @@ class LoginUserPage extends Component {
     console.log(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      activeItem: 'supplierlogin'
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
 
   }
   
-
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
   handleEmailChange = (e) => {
     this.setState({
       email: e.target.value
@@ -50,25 +53,40 @@ class LoginUserPage extends Component {
   }
 
 render(){
-
+  const { activeItem } = this.state
 if(Cookies.get('supplierToken')){
   return <Redirect to = "/"/>
 }
   return (
+    <div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
+    <Form>
+      <Segment>
+      <Menu  attached='top' tabular>
+        <Link to ="/loginUser">
+          <Menu.Item name='userlogin' active={activeItem === 'userlogin'} onClick={this.handleItemClick}>
+            Connexion Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/loginSupplier">
+          <Menu.Item name='supplierlogin' active={activeItem === 'supplierlogin'} onClick={this.handleItemClick}>
+            Connexion Fournisseur
+          </Menu.Item>
+        </Link>
+      </Menu>
 
-    <div className="container">
+    <Form.Field>
+      <label>Email</label>
+      <input label='Email' placeholder='Email' value={this.state.email} onChange={this.handleEmailChange}/>
+    </Form.Field>
 
-    <td><Link to ="/loginUser">Connexion Utilisateur</Link></td>
-    <td><Link to ="/loginSupplier">Connexion Fournisseur</Link></td>
+    <Form.Field>
+      <label>Mot de passe</label>
+      <input type="password"label='Mot de passe' placeholder='Mot de passe' value={this.state.password}  onChange={this.handlePasswordChange}/>
+    </Form.Field>
 
-    <h2>Connexion Fournisseur</h2>
-    <div className="formLoginDiv">
-    <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
-    <br></br>
-    <input type="password" placeholder="Mot de passe" value={this.state.password}  onChange={this.handlePasswordChange} />
-    <br></br>
-    <button onClick={this.loginSupplier}>Se connecter</button>
-    </div>
+    <Button type='submit' onClick={this.loginSupplier}>Se connecter</Button>
+    </Segment>
+  </Form>
     </div>
     )}
   }

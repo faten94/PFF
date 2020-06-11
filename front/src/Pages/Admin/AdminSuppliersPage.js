@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
+import { Icon, Header, Table, Button } from 'semantic-ui-react'
 
 
 class AdminSuppliersPage extends Component {
@@ -12,112 +13,105 @@ class AdminSuppliersPage extends Component {
             admin: 'false',
         };
     }
-    
+
     getAllSuppliers = () => {
         const headers = { 'authorization': Cookies.get('token') }
         axios
-        .get("http://localhost:8080/admin/suppliers", { headers: headers })
-        .then((response) => {
-            console.log("getAllusers response", response);
-            console.log("getAllusers response.data", response.data);
-            this.setState({ suppliers: response.data, admin: 'true' })
-        })
-        .catch((err) => {
-            console.log(err);
-            window.location.href = "http://localhost:3000/404";
-        })
+            .get("http://localhost:8080/admin/suppliers", { headers: headers })
+            .then((response) => {
+                console.log("getAllusers response", response);
+                console.log("getAllusers response.data", response.data);
+                this.setState({ suppliers: response.data, admin: 'true' })
+            })
+            .catch((err) => {
+                console.log(err);
+                window.location.href = "http://localhost:3000/404";
+            })
     }
-    
+
     displaySuppliers = (suppliers) => {
         const getAllSuppliers = suppliers;
         //  console.log("json", JSON.stringify(getAllUsers));
         const suppliersList = getAllSuppliers.map((supplier) => {
             return (
-                <tr key={supplier.id}>
-                <td>{supplier.lastname}</td>
-                <td>{supplier.firstname}</td>
-                <td>{supplier.typesupplier}</td>
-                <td>{supplier.siret}</td>
-                <td>{supplier.address}</td>
-                <td>{supplier.zip}</td>
-                <td>{supplier.city}</td>
-                <td>{supplier.photol}</td>
-                <td>{supplier.phone}</td>
-                <td>{supplier.email}</td>
-                <td>{supplier.expertise}</td>
-                <td>{supplier.location}</td>
-                <td>{supplier.service}</td>
-                <td>{supplier.date}</td>
-                
-                
-                <td>
-                <Link to={"/admin/supplier/"+supplier._id}>
-                <button name={supplier._id} value={supplier._id}>{supplier._id}</button>
-                </Link>
-                </td>
-                </tr>
-                )
-            });
-            return (suppliersList);
+                <Table.Row>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.lastname}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.firstname}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.typesupplier}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.siret}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.address}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.zip}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.city}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.photo}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.phone}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.email}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.expertise}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.location}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.service}</Link></Table.Cell>
+                    <Table.Cell><Link to={"/admin/supplier/" + supplier._id}>{supplier.date}</Link></Table.Cell>
+                </Table.Row >
+
+            )
+        });
+        return (suppliersList);
+    }
+
+    async componentDidMount() {
+        await this.getAllSuppliers();
+    }
+
+    render() {
+        if (this.state.admin === 'false') {
+            return (
+                <div></div>
+            )
         }
-        
-        async componentDidMount() {
-            await this.getAllSuppliers();
-        }
-        
-        render() {
-            if(this.state.admin === 'false'){
-                return(
-                    <div></div>
-                    )
-                }
-                else{
-                    let suppliers = this.state.suppliers;
-                    return (
-                        <div className="container">
-                        <Link to="/admin">
+        else {
+            let suppliers = this.state.suppliers;
+            return (
+                <div className="container" style = {{padding: "50px"}}>
+
+                    <Link to="/admin">
+                        <Button style={{ marginLeft: "20px" }} circular icon='arrow left' />
+                    </Link>
+                    {/* <Link to="/admin/user/create">
                         <button>
-                        Retour
-                        </button>
-                        </Link>
-                        {/* <Link to="/admin/supplier/create">
-                        <button>
-                        Create Supplier
+                        Create User
                         </button>
                         </Link> */}
-                        <h1 className="title">Admin</h1>
-                        
-                        <h2 className="title">CRUD Fournisseurs</h2>
-                        
-                        <table id='users'>
-                        
-                        <thead>
-                        <tr>
-                        <td>Nom</td>
-                        <td>Prenom</td>
-                        <td>Type de fournisseur</td>
-                        <td>Siret</td>
-                        <td>Adresse</td>
-                        <td>Code postal</td>
-                        <td>Ville</td>
-                        <td>Photo</td>
-                        <td>Telephone</td>
-                        <td>Email</td>
-                        <td>Expertise</td>
-                        <td>Emplacement / Location</td>
-                        <td>Prestation</td>
-                        <td>Date d'inscription</td>
-                        <td>id</td>    
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {this.displaySuppliers(suppliers)}
-                        </tbody>
-                        </table>
-                        </div>
-                        );
-                    }
-                };
-            }
-            
-            export default AdminSuppliersPage;
+                    <Header as='h2' icon textAlign='center'>
+                        <Icon name='users' circular />
+                        <Header.Content>Admin - Fournisseurs</Header.Content>
+                    </Header>
+                    <br></br>
+                    <Table celled selectable>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Nom</Table.HeaderCell>
+                                <Table.HeaderCell>Prénom</Table.HeaderCell>
+                                <Table.HeaderCell>Type de fournisseur</Table.HeaderCell>
+                                <Table.HeaderCell>Numéro de Siret</Table.HeaderCell>
+                                <Table.HeaderCell>Adresse</Table.HeaderCell>
+                                <Table.HeaderCell>Code postal</Table.HeaderCell>
+                                <Table.HeaderCell>Ville</Table.HeaderCell>
+                                <Table.HeaderCell>Photo</Table.HeaderCell>
+                                <Table.HeaderCell>Numéro de Téléphone</Table.HeaderCell>
+                                <Table.HeaderCell>Email</Table.HeaderCell>
+                                <Table.HeaderCell>Expertise</Table.HeaderCell>
+                                <Table.HeaderCell>Emplacement / Location</Table.HeaderCell>
+                                <Table.HeaderCell>Prestation</Table.HeaderCell>
+                                <Table.HeaderCell>Date d'inscription</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+
+                        <Table.Body>
+                            {this.displaySuppliers(suppliers)}
+                        </Table.Body>
+                    </Table>
+                </div>
+            );
+        }
+    };
+}
+
+export default AdminSuppliersPage;

@@ -39,7 +39,7 @@ exports.getOwnProfile = (req, res) => {
 exports.getProfile = (req, res) => {
     // console.log(req.params)
     const id =  req.params.supplierId
-    console.log(id)
+    console.log("id du setting",id)
     Supplier.findById(id, function (err, supplier) {
         if(err) throw err;
         res.json(supplier)

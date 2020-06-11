@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from "react-router-dom";
+import { Menu, Form, Button, Segment } from 'semantic-ui-react'
 //import './RegisterForm.css';
 
 class RegisterSupplierPage extends React.Component {
@@ -15,12 +16,15 @@ class RegisterSupplierPage extends React.Component {
       phone: "",
       particulier: "",
       supplier: "",
+      typesupplier: "",
       siret: "",
       zip: "",
       city: "",
       expertise: "",
       service: "",
-      redirect: false
+      redirect: false,
+      error: false,
+      activeItem: 'supplierRegister'
       
       
     }
@@ -30,36 +34,46 @@ class RegisterSupplierPage extends React.Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
-    this.handleparticulierChange = this.handleParticulierChange.bind(this);
-    this.handlesupplierChange = this.handleSupplierChange.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
+    // this.handleParticulierChange = this.handleParticulierChange.bind(this);
+    // this.handlesupplierChange = this.handleSupplierChange.bind(this);
     this.handleSiretChange = this.handleSiretChange.bind(this);
     this.handleZipeChange = this.handleZipeChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
     this.handleExpertiseChange = this.handleExpertiseChange.bind(this);
     this.handleServiceChange = this.handleServiceChange.bind(this);
     
-    
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
-  handleParticulierChange = (event) => {
-    const target = event.target;
-    const value = target.name === 'particulier' ? target.checked : target.value;
-    
+  handleTypeChange = (event) => {
+
     this.setState({
-      particulier: event.target.value
+      typesupplier: event.target.value
     })
     
   }
-  handleSupplierChange = (event) => {
-    const target = event.target;
-     const value = target.name === 'supplier' ? target.checked : target.value;
+   // handleParticulierChange = (event) => {
+  //   const target = event.target;
+  //    const value = target.name === 'particulier' ? target.checked : target.value;
     
-     const name = target.name;
-    this.setState({
-      supplier: event.target.value
-    })
+  //    const name = target.name;
+  //   this.setState({
+  //     particulier: event.target.value
+  //   })
     
-  }
+  // }
+  // handleSupplierChange = (event) => {
+  //   const target = event.target;
+  //    const value = target.name === 'professionnel' ? target.checked : target.value;
+    
+  //    const name = target.name;
+  //   this.setState({
+  //     supplier: event.target.value
+  //   })
+    
+  // }
   handleFirstnameChange = (e) => {
     this.setState({
       firstname: e.target.value
@@ -132,6 +146,7 @@ class RegisterSupplierPage extends React.Component {
     address: this.state.address,
     phone: this.state.phone,
     particulier: this.state.particulier,
+    typesupplier: this.state.typesupplier,
     supplier: this.state.supplier,
     siret: this.state.siret,
     zip: this.state.zip,
@@ -143,95 +158,168 @@ class RegisterSupplierPage extends React.Component {
   .then(function (response) {
     // Quand resulat OK => Redirige vers la bonne page
   })
-  .then(() => this.setState({ redirect: true })) 
+  .then(() => this.setState({ redirect: true, error: false })) 
   .catch(function (error) {
     alert(error.response.data.error);
   });
 }
 
-render() {
+handleSubmit(event) {
+  if (!event.target.checkValidity()) {
+    // form is invalid! so we do nothing
+    return;
+  }
+  // form is valid! We can parse and submit data
+}
 
+render() {
+  const { activeItem } = this.state
+  
   if (this.state.redirect) {
     return (<Redirect to = "/loginSupplier"/>)
 }
   return (
-    <div className="container">
-    <div className="registerFormDiv">
-    <td><Link to ="/registerUser">Inscription Utilisateur</Link></td>
-    <td><Link to ="/registerSupplier">Inscription Fournisseur</Link></td>
+<div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
+  <Form key= 'medium'>
+    <Segment>
+    <Menu  attached='top' tabular>
+        <Link to ="/registerUser">
+          <Menu.Item name='/userRegister' active={activeItem === 'userRegister'} onClick={this.handleItemClick}>
+            Inscription Utilisateur
+          </Menu.Item>
+        </Link>
+        <Link to ="/registerSupplier">
+          <Menu.Item name='supplierRegister' active={activeItem === 'supplierRegister'} onClick={this.handleItemClick}>
+            Inscription Fournisseur
+          </Menu.Item>
+        </Link>
+    </Menu>
+
     <h1>Formulaire d'inscription Fournisseur</h1>
-    <div className="formItem">
-    <input type="text" placeholder="Prenom" value={this.state.firstname} onChange={this.handleFirstnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Nom" value={this.state.lastname} onChange={this.handleLastnameChange} />
-    </div>
-    <div className="formItem">
-    <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange}/>
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Adresse" value={this.state.address} onChange={this.handleAddressChange}/>
-    </div>
-    <div className="formItem">
-    <input type="number" placeholder="Siret" value={this.state.siret} onChange={this.handleSiretChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="number" placeholder="Code postal" value={this.state.zip} onChange={this.handleZipeChange}/>
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Ville" value={this.state.city} onChange={this.handleCityChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="texte" placeholder="Expertise" value={this.state.expertise} onChange={this.handleExpertiseChange}/>
-    </div>
-    
-    <div className="formItem">
-    <input type="texte" placeholder="Telephone" value={this.state.phone} onChange={this.handlePhoneChange} />
-    </div>
-    <div className="formItem">
-    <input type="text" placeholder="Votre Profession" value={this.state.service} onChange={this.handleServiceChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Mot de passe" value={this.state.password} onChange={this.handlePasswordChange} />
-    </div>
-    
-    <div className="formItem">
-    <input type="password" placeholder="Confirmer le mot de passe" />
-    </div>
-    
-    <div className="formItem">
-    <label>
-    Particulier :
-    <input
-    name="particulier"
-    type="checkbox"
-    checked={this.state.particulier}
-    onChange={this.handleParticulierChange} />
-    </label>
-    </div>
-    
-    <div className="formItem">
-    <label>
-    Professionnel :
-    <input
-    name="supplier"
-    type="checkbox"
-    checked={this.state.supplier}
-    onChange={this.handleSupplierChange} />
-    </label>
-    </div>
-    
-    
-    
-    
-    <div className="formItem">
-    <button type= "button" onClick={this.registerSupplier} >Register</button>
-    </div>
-    </div>
-    </div>
+      
+    <Form.Input 
+      //error={{ content: 'Entrer votre prénom.', pointing: 'below' }}
+      fluid
+      label='Prénom'
+      placeholder='Prénom'
+      id='form-input-first-name'
+      type="text" 
+      value={this.state.firstname} 
+      onChange={this.handleFirstnameChange} 
+    />
+    <Form.Input
+      //error='Entrez votre nom.'
+      fluid
+      label='Lastname'
+      type="text" 
+      placeholder="Nom" 
+      value={this.state.lastname} 
+      onChange={this.handleLastnameChange}
+    />
+    <Form.Input
+      // error='Entrez un email.'
+      fluid
+      label='Email'
+      type="email"
+      pattern ='/.+\@.+\..+/'
+      placeholder="Email" 
+      value={this.state.email} 
+      onChange={this.handleEmailChange}
+    />
+
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Adresse'
+      type="text" 
+      placeholder="Adresse" 
+      value={this.state.address} 
+      onChange={this.handleAddressChange}
+    />
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Ville'
+      type="text" 
+      placeholder="Ville" 
+      value={this.state.city} 
+      onChange={this.handleCityChange}
+    />
+    <Form.Input
+      // error='Entrez une adresse.'
+      fluid
+      label='Code Postal'
+      type="number" 
+      placeholder="Code postal" 
+      value={this.state.zip} 
+      onChange={this.handleZipeChange}
+    />
+    <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Téléphone'
+      type="texte" 
+      placeholder="Telephone" 
+      value={this.state.phone} 
+      onChange={this.handlePhoneChange}
+    />
+    <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Siret'
+      type="number" 
+      placeholder="Siret" 
+      value={this.state.siret} 
+      onChange={this.handleSiretChange}
+    />
+      <Form.Group inline>
+          <label>Type de Fournisseur</label>
+          <Form.Radio
+            label='Particulier'
+            value='particulier'
+            name='particulier'
+            checked={this.state.typesupplier}  
+            onChange={this.handleTypeChange} 
+          />
+          <Form.Radio
+            label='Professionnel'
+            value='professionnel'
+            name='professionnel'
+            type="checkbox"
+            checked={this.state.typesupplier}
+            onChange={this.handleTypeChange}
+          />
+
+        </Form.Group>
+      <Form.Input
+      // error='Entrez un téléphone.'
+      fluid
+      label='Service'
+      type="text" 
+      placeholder="Profession" 
+      value={this.state.service} 
+      onChange={this.handleServiceChange}
+      />
+      <Form.Input
+      // error='Entrez un mot de passe.'
+      fluid
+      label='Mot de passe.'
+      type="password" 
+      placeholder="Mot de passe" 
+      value={this.state.password} 
+      onChange={this.handlePasswordChange}
+    />
+    <Form.Input
+      // error='Veuillez confirmer votre mot de passe.'
+      fluid
+      type="password" 
+      placeholder="Confirmer le mot de passe"
+    />
+
+    <Button type= "button" onClick={this.registerSupplier}>S'inscrire</Button>
+    </Segment>
+  </Form>
+  </div>  
     );
   }
 }
