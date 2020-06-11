@@ -34,6 +34,11 @@ class ProfileUserPage extends Component {
         });
     }
 
+    handlePageChange() {
+ 
+        window.location = "http://localhost:3000/account/profile/";
+        }
+
     handleSubmit(event) {
         event.preventDefault();
         var headers = { 'authorization': Cookies.get('token') }

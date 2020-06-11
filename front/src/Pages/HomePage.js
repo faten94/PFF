@@ -28,7 +28,7 @@ function HomePage() {
 		<br / >
 	
 		<div className="container" style={{paddingTop:"5%"}}>
-		<Card.Group style={{marginLeft:"10px"}} itemsPerRow={3}>
+		<Card.Group stackable style={{marginLeft:"10px"}} itemsPerRow={3}>
 		<Card color='red'   >
 		<Image src={BabySitting}  />
 		<Card.Content>

@@ -58,6 +58,7 @@ class ProfileUserPage extends Component {
           <p> Contenu de la Reponse : { devis.answer }</p>
           <p> Votre Facture est de : {devis.price} €   </p>
           <PayPalButton
+        options={{clientId: "AYr0M7mpx_IGEBPiDzqhR395tlT5lkTUTJ55yHILg-5dfjnMbqDWEf5_faWUutBNdp3aNTfsRLpkT8h2", currency: "EUR"}}
         amount={devis.price}
         
         onSuccess={(details, data) => {

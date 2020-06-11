@@ -292,7 +292,11 @@ class ProfileSettingSupplierPage extends Component {
                 <Button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>Confirmer</Button>
                 </form>
                 <Button style={{position: "absolute", bottom:"70%", right:"5%" }} color='red' value="Delete" onClick={this.deleteAccount} href="/Logout">Supprimer le profil</Button>
+            <div> 
+                <Devis/>
             </div>
+            </div>
+
         );
     };
 }
