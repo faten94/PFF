@@ -4,6 +4,8 @@ import Error404 from '../Error404Page'
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import { Header, Table, Button, Input, Image } from 'semantic-ui-react';
+import Devis from '../../components/devis/Devis';
+
 
 class ProfileSettingSupplierPage extends Component {
     constructor(props) {

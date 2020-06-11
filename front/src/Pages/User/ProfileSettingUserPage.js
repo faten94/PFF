@@ -25,6 +25,7 @@ class ProfileUserPage extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePageChange =this.handlePageChange.bind(this)
     }
 
     handleChange = async (e) => {
@@ -189,7 +190,16 @@ class ProfileUserPage extends Component {
                 <Button type="submit" value="Modifier">Modifier</Button>
 
             </form>
-            </div>
+          
+        <br></br>
+        <div>Changez une ou plusieurs informations de votre profil.
+        <br></br><br></br>
+
+
+        <button onClick={this.handlePageChange} >  Mes devis </button>
+        </div>  
+        </div>
+
         );
     };
 }
