@@ -44,16 +44,16 @@ class SearchBar extends Component{
             <Card.Content>
               <Card.Header>{supplier.firstname} {supplier.lastname}</Card.Header>
                 <Card.Meta>{supplier.service}</Card.Meta>
-        <Card.Description>
-        {supplier.city}
-        </Card.Description>
-      </Card.Content>
-    </Card></a>
+
+              <Card.Description>
+                {supplier.city}
+              </Card.Description>
+            </Card.Content>
+          </Card>
+        </a>
         </div>
         ))
       }
-
-
       render(){
         return (
         <div className="search" fluid style= {{paddingLeft:"25%", paddingRight:"25%"}}>
@@ -64,7 +64,7 @@ class SearchBar extends Component{
             </Input>
        
         <div style={{position: "absolute", top: "4%", right: "-15%"}}>
-        <Button primary  onClick={this.getSupplierService}> Chercher</Button>
+        <Button primary  onClick={this.getSupplierService}>Chercher</Button>
         
         </div>  
         </div>

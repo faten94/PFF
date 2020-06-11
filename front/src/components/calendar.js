@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { Button, Card, Image, Icon, Header, List, Table, Label } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 
 class Calendar extends Component {
