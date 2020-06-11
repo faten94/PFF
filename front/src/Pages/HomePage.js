@@ -12,24 +12,22 @@ import Cuisine from '../images/cuisine.jpg'
 
 function HomePage() {
 	return (
-		<div className="homeFormDiv" >
+		
+		<div className= "container"> 
 
-<Header  textAlign='center'   style={{color: "grey"}}  icon >
+		<Header  textAlign='center'   style={{color: "grey", paddingTop: "3%"}}  icon >
+	
+     		<h2> All you Need is ... Help </h2>
 
-     <h2> All you Need is ... Help  </h2>
-    
-     <Icon name='music' />
+ 		</Header>
 
-  </Header>
-
-		<div > 
-
-		<SearchBar />
-
-		</div>
+		<div className="homeFormDiv" style= {{padding: "5%"}} >
+				<div className="container" >
+		 <SearchBar />
+		</div> 
 		<br / >
 	
-
+		<div className="container" style={{paddingTop:"5%"}}>
 		<Card.Group style={{marginLeft:"10px"}} itemsPerRow={3}>
 		<Card color='red'   >
 		<Image src={BabySitting}  />
@@ -69,12 +67,13 @@ function HomePage() {
 		</Card>
 		</Card.Group>
 		<br/> <br/>
+		</div>
   <Header as='h3'  textAlign='center'  block>
 
     Un site innovant de Needelp 
   </Header>
-
 		</div>
+	</div>
 
 
 

@@ -46,17 +46,20 @@ class SearchBar extends Component{
 
       render(){
         return (
-        <div className="search">
-        
-        <Input icon value={this.state.service} onChange = {this.handleServiceChange} placeholder='A votre service !'>
-        <input />
-        <Icon name='search' />
-        </Input>
-        
+        <div className="search" fluid style= {{paddingLeft:"25%", paddingRight:"25%"}}>
+        <div style={{position: "relative"}}>
+          <Input fluid icon value={this.state.service} onChange = {this.handleServiceChange} placeholder='A votre service !' >
+            <input />
+              <Icon name='search' />
+            </Input>
+       
+        <div style={{position: "absolute", top: "4%", right: "-15%"}}>
         <Button primary  onClick={this.getSupplierService}> Chercher</Button>
-        <div>
-        {this.DisplaySupplier(this.state.data)}
         
+        </div>  
+        </div>
+        <div className="container" style={{paddingTop: "5%"}}>
+          {this.DisplaySupplier(this.state.data)} 
         </div>
         </div>
         )
