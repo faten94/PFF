@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import { PayPalButton } from "react-paypal-button-v2";
 
 class ProfileUserPage extends Component {
     constructor(props){
@@ -52,15 +53,25 @@ class ProfileUserPage extends Component {
         {
             return(
 
-            <div>
-                 <h3> paiement en attente </h3>
-                    la réponse est : { devis.answer }
-                    Votre Facture est de : {devis.price} €
-                    <p></p> 
-            
-             </div>   
-             
-             
+          <div>
+          <p>  la réponse est : { devis.answer }</p>
+          <p> Votre Facture est de : {devis.price} €   </p>
+          <PayPalButton
+        amount={devis.price}
+        // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+        onSuccess={(details, data) => {
+          alert("Transaction completed by " + details.payer.name.given_name);
+ 
+          // OPTIONAL: Call your server to save the transaction
+          return fetch("/paypal-transaction-complete", {
+            method: "post",
+            body: JSON.stringify({
+              orderID: data.orderID
+            })
+          });
+        }}
+      />
+          </div>
             )
         }
         else
