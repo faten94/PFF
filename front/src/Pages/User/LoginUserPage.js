@@ -51,7 +51,7 @@ class LoginUserPage extends Component {
   })
  // .then(() => this.setState({ redirect: true }))
   .catch(function (error) {
-    
+  alert("Veuillez verifier votre email ou votre mot de passe."); 
   });
   
 }

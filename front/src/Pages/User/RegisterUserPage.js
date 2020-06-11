@@ -84,7 +84,7 @@ class RegisterUserPage extends React.Component {
   })
   .then(() => this.setState({ redirect: true })) 
   .catch(function (error) {
-    alert(error.response.data.error);
+    alert("Veuillez renseigner les champs manquants.");
   });
   
   

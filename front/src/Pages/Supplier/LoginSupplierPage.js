@@ -47,7 +47,7 @@ class LoginUserPage extends Component {
     window.location.reload(false)
   })
   .catch(function (error) {
-    // alert(error.response.data.error);
+    alert("Veuillez verifier votre email ou votre mot de passe.");
     console.log('ca marche pas')
   });
   }
