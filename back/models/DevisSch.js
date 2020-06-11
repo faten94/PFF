@@ -7,6 +7,8 @@ const service = require('./ServiceSch')
 
 const DevisSchema = new Schema({
 
+    title: { type : String },
+
     content: { type: String },
 
     answer: {type: String},

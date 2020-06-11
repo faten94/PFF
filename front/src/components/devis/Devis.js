@@ -42,7 +42,7 @@ const params = supplier
     return data.map((devis, index)=>(
       <div key={index} className=''>
       <div>
-      <p><a href= {"http://localhost:3000/supplier/repDevis/" + devis._id }> Devis établi le : { devis.date } </a></p>
+      <p><a href= {"http://localhost:3000/supplier/repDevis/" + devis._id }>  <h3> Devis" {devis.title}" </h3> </a> établi le : { devis.date }  </p>
       
         
       </div>

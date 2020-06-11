@@ -12,18 +12,17 @@ app.use(express.json());
 
  exports.devis = async(req, res) => 
  {
-
-  console.log(req.body)
-   
+  console.log(req.body) 
    req.body.user =  getId.getId(req, res)
-   
+
     Devis.create({content: req.body.content,
-    daterdv: req.body.startdate,
-    supplier: req.body.supplierId,
-    user: req.body.user,
-    answer:'',
-    price:''
-    }, function(err,docs)
+      title:req.body.title,
+      daterdv: req.body.startdate,
+      supplier: req.body.supplierId,
+      user: req.body.user,
+      answer:'',
+      price:''
+      }, function(err,docs)
     {
        console.log(docs)
       if(!err) res.send(docs)

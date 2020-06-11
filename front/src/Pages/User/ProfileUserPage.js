@@ -41,31 +41,34 @@ class ProfileUserPage extends Component {
         console.log(data)
         return data.map((devis, index)=>{
             return(
-
                <div key={index} > {this.test(devis)} </div> 
                 )
-        }
-        )
+        })
       }
 
       test = (devis) =>{
 
-        if(devis.price){
+        if(devis.price)
+        {
             return(
 
-          <div>
-          <p>  la réponse est : { devis.answer }</p>
-          <p> Votre Facture est de : {devis.price} €   </p>
-          </div>
+            <div>
+                 <h3> paiement en attente </h3>
+                    la réponse est : { devis.answer }
+                    Votre Facture est de : {devis.price} €
+                    <p></p> 
+            
+             </div>   
+             
+             
             )
         }
         else
         return(
-            <div> Votre devis est en attente de validation </div>
-        )
-
-        
-
+            <div>
+            <h3>  Devis en attente de validation </h3>
+             Votre devis " {devis.title} " est en cours de validation </div>
+        )   
       }
     
     
