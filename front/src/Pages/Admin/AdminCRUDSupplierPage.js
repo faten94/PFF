@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
-import { Header, Table, Button, Input, Image, Form, Radio } from 'semantic-ui-react';
+import { Header, Table, Button, Input, Image } from 'semantic-ui-react';
 
 class AdminCRUDSupplierPage extends Component {
     constructor(props) {
         super(props);
         const url = window.location.href;
         const urlArray = url.split('/');
-        const urlLength = urlArray.length - 1
-        const supplierId = urlArray[urlLength]
+        const urlLength = urlArray.length - 1;
+        const supplierId = urlArray[urlLength];
         this.state = {
             lastname: "",
             firstname: "",
@@ -140,7 +140,6 @@ class AdminCRUDSupplierPage extends Component {
                 window.location.href = "http://localhost:3000/404";
             });
     }
-
 
     render() {
         if (this.state.admin === 'false') {
