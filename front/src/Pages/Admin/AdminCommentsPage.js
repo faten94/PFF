@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import { Icon, Header, Table, Button } from 'semantic-ui-react'
 
-
 class AdminCommentsPage extends Component {
     constructor(props) {
         super(props);
@@ -59,7 +58,7 @@ class AdminCommentsPage extends Component {
         else {
             let comments = this.state.comments;
             return (
-                <div className="container">
+                <div className="container" style = {{padding: "50px"}}>
                     <Link to="/admin">
                         <Button style={{ marginLeft: "20px" }} circular icon='arrow left' />
                     </Link>
@@ -89,7 +88,6 @@ class AdminCommentsPage extends Component {
                         </Table.Body>
                     </Table>
                 </div>
-
             );
         }
     };
