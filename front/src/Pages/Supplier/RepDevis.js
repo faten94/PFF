@@ -19,8 +19,8 @@ class RepDevis extends React.Component {
         const urlLength = urlArray.length - 1
         const devisId = urlArray[urlLength]
 
-       
-        this.state = 
+
+        this.state =
         {
             recupdata:'',
             data:'',
@@ -32,7 +32,7 @@ class RepDevis extends React.Component {
         }
     }
 
-    getDevisbyId = async () =>  
+    getDevisbyId = async () =>
     {
 
         const params = {_id: this.state.devisId }
@@ -49,7 +49,7 @@ class RepDevis extends React.Component {
         return (this.state.data)
       }
 
-      handleAnswerChange = (e) => 
+      handleAnswerChange = (e) =>
       {
         console.log(e.target.value);
            this.setState({
@@ -66,14 +66,14 @@ class RepDevis extends React.Component {
 
 
       Answer = async(e) => {
-        
+
         //console.log(this.state.devisId)
-        await axios.post("http://localhost:8080/devisres", 
-        { 
+        await axios.post("http://localhost:8080/devisres",
+        {
             price: this.state.price,
             answer: this.state.answer,
-            _id: this.state.devisId 
-            
+            _id: this.state.devisId
+
         })
         .then((response) => {
             console.log("reponse envoyé")
@@ -90,7 +90,7 @@ class RepDevis extends React.Component {
         return(
             <div>
                 <button  onClick={this.getDevisbyId}> Afficher le detail du devis</button>
-                <br/> 
+                <br/>
                 <div> {this.state.data.content}  </div>
                 <br/>
                 <div> {this.state.data.daterdv}  </div>
@@ -101,7 +101,7 @@ class RepDevis extends React.Component {
 
             </div>
         )
-        
+
     }
 }
 

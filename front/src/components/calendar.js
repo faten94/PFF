@@ -73,7 +73,7 @@ class Calendar extends Component {
         })
   }
   render(){
-   
+
 
     if(Cookies.get('token')){
 
@@ -105,13 +105,13 @@ class Calendar extends Component {
     return (
     <div>
 <br/>
-    Vous souhaitez prendre un Rdv ou passer votre commande ? 
+    Vous souhaitez prendre un Rdv ou passer votre commande ?
  <Button.Group>
  <Link to ="/registeruser">
     <Button > inscription</Button>
     </Link>
     <Button.Or text='ou' />
-    <Link to ="/loginUser">
+    <Link to = {"/loginUser?redirectURL=http://localhost:3000/accountsupplier/" + this.state.supplierId}>
     <Button primary >connexion</Button>
     </Link>
   </Button.Group>
