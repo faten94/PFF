@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import { Button, Card, Image, Icon, Header, List, Table, Label } from 'semantic-ui-react'
 
 class Calendar extends Component {
 
@@ -83,12 +84,18 @@ class Calendar extends Component {
   else {
     return (
     <div>
-    <Link to ="/registeruser">pour prendre un RDV ou passer votre demande vous devez devez vous inscrire  </Link>
 <br/>
+    Vous souhaitez prendre un Rdv ou passer votre commande ? 
+ <Button.Group>
+ <Link to ="/registeruser">
+    <Button > inscription</Button>
+    </Link>
+    <Button.Or text='ou' />
+    <Link to ="/loginUser">
+    <Button primary >connexion</Button>
+    </Link>
+  </Button.Group>
 
-    sinon
-    <br/>
-    <Link to ="/loginUser">si vous avez deja un compte, veuillez vous connecter </Link>
     </div>
   );
 }

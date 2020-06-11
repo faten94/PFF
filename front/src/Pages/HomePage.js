@@ -14,7 +14,7 @@ function HomePage() {
 	return (
 		<div className="homeFormDiv" >
 
-<Header  textAlign='center'  style={{color: "grey"}}  icon >
+<Header  textAlign='center'   style={{color: "grey"}}  icon >
 
      <h2> All you Need is ... Help  </h2>
     
@@ -22,16 +22,16 @@ function HomePage() {
 
   </Header>
 
-		<div> 
+		<div > 
 
-		<SearchBar/>
+		<SearchBar />
 
 		</div>
 		<br / >
 	
 
-		<Card.Group style= {{width:'100%'}} itemsPerRow={3}>
-		<Card color='red'  >
+		<Card.Group style={{marginLeft:"10px"}} itemsPerRow={3}>
+		<Card color='red'   >
 		<Image src={BabySitting}  />
 		<Card.Content>
 		<Card.Header textAlign='center'  >Garde d'enfants</Card.Header>  
