@@ -285,6 +285,11 @@ class ProfileSettingSupplierPage extends Component {
                                         <option value="Ménage" />
                                     </datalist> </Table.Cell>
                             </Table.Row>
+                            <Table.Row>
+                            <Table.Cell>Image de profil</Table.Cell>
+                            <Table.Cell><img width="200" height="200" src={this.state.oldphoto}/></Table.Cell>
+                            <Table.Cell><Input type="text" onChange={this.handleChange} name="photo" placeholder="Entrez l'url d'une image"></Input></Table.Cell>
+                        </Table.Row>
                         </Table.Body>
                     </Table>
 

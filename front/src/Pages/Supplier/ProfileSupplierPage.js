@@ -74,7 +74,8 @@ class ProfileSupplierPage extends Component {
         <div>
         <List>
         <List.Item>
-        <Image className ="card-img-top" src={Avatar} alt={this.state.photo} width="100"/>
+        {/* <Image className ="card-img-top" src={Avatar} alt={this.state.photo} width="100"/> */}
+        <img width="200" height="200" src={this.state.photo}/>
         <List.Content>
         <h1>Profil </h1>
         <List.Header as='a'><h1> {this.state.lastname} {this.state.firstname}</h1></List.Header>
