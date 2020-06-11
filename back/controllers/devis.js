@@ -10,23 +10,40 @@ devis.use(cors())
 dotenv.config();
 app.use(express.json());
 
- exports.devis = async(req, res) => {
-
-  console.log(req.body)
-   //console.log(req.params)
-   //console.log(req.query)
+ exports.devis = async(req, res) => 
+ {
+  console.log(req.body) 
    req.body.user =  getId.getId(req, res)
-  Devis.create({content: req.body.content,
-  daterdv: req.body.startdate,
-  supplier: req.body.supplierId,
-  user: req.body.user,
-  }, function(err,docs){
-   console.log(docs)
-   if(!err) res.send(docs)
 
+    Devis.create({content: req.body.content,
+      title:req.body.title,
+      daterdv: req.body.startdate,
+      supplier: req.body.supplierId,
+      user: req.body.user,
+      answer:'',
+      price:''
+      }, function(err,docs)
+    {
+       console.log(docs)
+      if(!err) res.send(docs)
+    })
+ }
 
+ exports.devisRes =async(req, res) => 
+ {
+   console.log(req.body._id)
+   const id =  req.body._id;
 
-   })
+   Devis.findByIdAndUpdate({ _id:id }, {price:req.body.price , answer:req.body.answer},function(err,result) 
+    {
+      if (err) 
+      {
+        res.send(err);
+      } 
+      else {
+        res.json(result);
+        console.log(result)
+      }
 
-
+    })
  }
