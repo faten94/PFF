@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import { Icon, Header, Table, Button } from 'semantic-ui-react'
 
-
 class AdminCommentsPage extends Component {
     constructor(props) {
         super(props);
@@ -89,7 +88,6 @@ class AdminCommentsPage extends Component {
                         </Table.Body>
                     </Table>
                 </div>
-
             );
         }
     };
