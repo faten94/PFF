@@ -4,7 +4,6 @@ import Error404 from '../Error404Page'
 import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import { Header, Table, Button, Input, Image } from 'semantic-ui-react';
-import Devis from '../../components/devis/Devis';
 
 
 class ProfileSettingSupplierPage extends Component {
@@ -238,8 +237,8 @@ class ProfileSettingSupplierPage extends Component {
                                     </div>
 
                                     <div>
-                                        <input type="radio" id="fournisseur" name="typesupplier" value="fournisseur" onChange={this.handleChange} />
-                                        <label for="fournisseur">Fournisseur</label>
+                                        <input type="radio" id="fournisseur" name="typesupplier" value="professionnel" onChange={this.handleChange} />
+                                        <label for="fournisseur">Professionnel</label>
                                     </div>
 
                                 </Table.Cell>
@@ -272,9 +271,11 @@ class ProfileSettingSupplierPage extends Component {
                             <Table.Row>
                                 <Table.Cell>Service</Table.Cell>
                                 <Table.Cell>{this.state.oldservice}</Table.Cell>
-                                <Table.Cell> <label>
-                                    <input list="service" name="service" onChange={this.handleChange} />
-                                </label>
+                                <Table.Cell> 
+                                    <label>
+                                        <input list="service" name="service" onChange={this.handleChange} />
+                                    </label>
+                                    
                                     <datalist id="service">
                                         <option value="Garde d'enfants" />
                                         <option value="Cuisine" />
@@ -284,6 +285,11 @@ class ProfileSettingSupplierPage extends Component {
                                         <option value="Ménage" />
                                     </datalist> </Table.Cell>
                             </Table.Row>
+                            <Table.Row>
+                            <Table.Cell>Image de profil</Table.Cell>
+                            <Table.Cell><img width="200" height="200" src={this.state.oldphoto}/></Table.Cell>
+                            <Table.Cell><Input type="text" onChange={this.handleChange} name="photo" placeholder="Entrez l'url d'une image"></Input></Table.Cell>
+                        </Table.Row>
                         </Table.Body>
                     </Table>
 
@@ -292,9 +298,6 @@ class ProfileSettingSupplierPage extends Component {
                 <Button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>Confirmer</Button>
                 </form>
                 <Button style={{position: "absolute", bottom:"70%", right:"5%" }} color='red' value="Delete" onClick={this.deleteAccount} href="/Logout">Supprimer le profil</Button>
-            <div> 
-                <Devis/>
-            </div>
             </div>
 
         );

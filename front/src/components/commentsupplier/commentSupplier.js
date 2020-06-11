@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
-import { Button, Card, Image, Icon, Header, List, Table, Label} from 'semantic-ui-react'
+import { Button,  Icon,  List, Table} from 'semantic-ui-react'
 
 
 class CommentSupplier extends Component {
@@ -96,7 +96,7 @@ class CommentSupplier extends Component {
 
     displayAnswers = (commentId) => {
         const getAllAnswers = this.state.answers;
-        console.log('Récupère les réponses :', getAllAnswers);
+        //console.log('Récupère les réponses :', getAllAnswers);
         const answerList =  getAllAnswers.map((answer) => {
             if(commentId === answer.commentId){
                 return (

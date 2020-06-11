@@ -1,7 +1,7 @@
 import React from 'react';
 //import './style/Home.css';
 import SearchBar from '../components/search/SearchBar';
-import { Button, Card, Image, Icon, Header } from 'semantic-ui-react'
+import { Card, Image, Header } from 'semantic-ui-react'
 import BabySitting from '../images/babysitting.jpg'
 import CoursParticuliers from '../images/coursparticuliers.jpg'
 import Jardinage from '../images/jardinage.jpg'
@@ -25,7 +25,7 @@ function HomePage() {
 				<div className="container" >
 		 <SearchBar />
 		</div> 
-		<br / >
+		<br/>
 	
 		<div className="container" style={{paddingTop:"5%"}}>
 		<Card.Group stackable style={{marginLeft:"10px"}} itemsPerRow={3}>

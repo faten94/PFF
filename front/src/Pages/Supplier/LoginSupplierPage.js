@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Checkbox, Form, Menu, Segment } from 'semantic-ui-react'
+import { Button, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
@@ -47,7 +47,7 @@ class LoginUserPage extends Component {
     window.location.reload(false)
   })
   .catch(function (error) {
-    // alert(error.response.data.error);
+    alert("Veuillez verifier votre email ou votre mot de passe.");
     console.log('ca marche pas')
   });
   }

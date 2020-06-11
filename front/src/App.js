@@ -12,6 +12,7 @@ import LoginSupplierPage from './Pages/Supplier/LoginSupplierPage';
 import ProfileSettingSupplierPage from './Pages/Supplier/ProfileSettingSupplierPage';
 import ProfileSupplierPage from "./Pages/Supplier/ProfileSupplierPage";
 import RepDevis from './Pages/Supplier/RepDevis'
+import DevisSupplierPage from './Pages/Supplier/DevisSupplierPage'
 
 import RegisterUserPage from './Pages/User/RegisterUserPage';
 import LoginUserPage from './Pages/User/LoginUserPage'
@@ -28,8 +29,8 @@ import AdminCRUDUserPage from "./Pages/Admin/AdminCRUDUserPage";
 import AdminCRUDSupplierPage from "./Pages/Admin/AdminCRUDSupplierPage";
 import AdminCRUDCommentsPage from "./Pages/Admin/AdminCRUDCommentsPage";
 import AdminCRUDDevisPage from "./Pages/Admin/AdminCRUDDevisPage";
-import AdminUsersCreate from "./Pages/Admin/AdminUsersCreate";
-import AdminQuoteCreate from "./Pages/Admin/AdminQuoteCreate";
+// import AdminUsersCreate from "./Pages/Admin/AdminUsersCreate";
+// import AdminQuoteCreate from "./Pages/Admin/AdminQuoteCreate";
 
 
 
@@ -63,6 +64,7 @@ function App() {
           <Route exact path="/accountsupplier/:id" component={ProfileSupplierPage} />
           <ProtectedRouteSupplier  exact path="/supplier/edit" component={ProfileSettingSupplierPage} />
           <ProtectedRouteSupplier  exact path="/supplier/repDevis/:id" component={RepDevis} />
+          <Route path="/supplier/devis" component={DevisSupplierPage} />
           
           {/* Admin */}
           <Route exact path="/admin" component={AdminPage} />
