@@ -16,12 +16,14 @@ class RegisterSupplierPage extends React.Component {
       phone: "",
       particulier: "",
       supplier: "",
+      typesupplier: "",
       siret: "",
       zip: "",
       city: "",
       expertise: "",
       service: "",
       redirect: false,
+      error: false,
       activeItem: 'supplierRegister'
       
       
@@ -32,38 +34,46 @@ class RegisterSupplierPage extends React.Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
-    this.handleparticulierChange = this.handleParticulierChange.bind(this);
-    this.handlesupplierChange = this.handleSupplierChange.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
+    // this.handleParticulierChange = this.handleParticulierChange.bind(this);
+    // this.handlesupplierChange = this.handleSupplierChange.bind(this);
     this.handleSiretChange = this.handleSiretChange.bind(this);
     this.handleZipeChange = this.handleZipeChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
     this.handleExpertiseChange = this.handleExpertiseChange.bind(this);
     this.handleServiceChange = this.handleServiceChange.bind(this);
     
-    
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
-  handleParticulierChange = (event) => {
-    const target = event.target;
-    const value = target.name === 'particulier' ? target.checked : target.value;
-    
+  handleTypeChange = (event) => {
+
     this.setState({
-      particulier: event.target.value
+      typesupplier: event.target.value
     })
     
   }
-  handleSupplierChange = (event) => {
-    const target = event.target;
-     const value = target.name === 'supplier' ? target.checked : target.value;
+   // handleParticulierChange = (event) => {
+  //   const target = event.target;
+  //    const value = target.name === 'particulier' ? target.checked : target.value;
     
-     const name = target.name;
-    this.setState({
-      supplier: event.target.value
-    })
+  //    const name = target.name;
+  //   this.setState({
+  //     particulier: event.target.value
+  //   })
     
-  }
+  // }
+  // handleSupplierChange = (event) => {
+  //   const target = event.target;
+  //    const value = target.name === 'professionnel' ? target.checked : target.value;
+    
+  //    const name = target.name;
+  //   this.setState({
+  //     supplier: event.target.value
+  //   })
+    
+  // }
   handleFirstnameChange = (e) => {
     this.setState({
       firstname: e.target.value
@@ -136,6 +146,7 @@ class RegisterSupplierPage extends React.Component {
     address: this.state.address,
     phone: this.state.phone,
     particulier: this.state.particulier,
+    typesupplier: this.state.typesupplier,
     supplier: this.state.supplier,
     siret: this.state.siret,
     zip: this.state.zip,
@@ -147,19 +158,29 @@ class RegisterSupplierPage extends React.Component {
   .then(function (response) {
     // Quand resulat OK => Redirige vers la bonne page
   })
-  .then(() => this.setState({ redirect: true })) 
+  .then(() => this.setState({ redirect: true, error: false })) 
   .catch(function (error) {
     alert(error.response.data.error);
   });
 }
 
+handleSubmit(event) {
+  if (!event.target.checkValidity()) {
+    // form is invalid! so we do nothing
+    return;
+  }
+  // form is valid! We can parse and submit data
+}
+
 render() {
   const { activeItem } = this.state
+  
   if (this.state.redirect) {
     return (<Redirect to = "/loginSupplier"/>)
 }
   return (
-  <Form>
+<div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
+  <Form key= 'medium'>
     <Segment>
     <Menu  attached='top' tabular>
         <Link to ="/registerUser">
@@ -176,18 +197,18 @@ render() {
 
     <h1>Formulaire d'inscription Fournisseur</h1>
       
-    <Form.Input
-      // error={{ content: 'Entrer votre prénom.', pointing: 'below' }}
+    <Form.Input 
+      //error={{ content: 'Entrer votre prénom.', pointing: 'below' }}
       fluid
       label='Prénom'
       placeholder='Prénom'
       id='form-input-first-name'
       type="text" 
       value={this.state.firstname} 
-      onChange={this.handleFirstnameChange}
+      onChange={this.handleFirstnameChange} 
     />
     <Form.Input
-      // error='Entrez votre nom.'
+      //error='Entrez votre nom.'
       fluid
       label='Lastname'
       type="text" 
@@ -199,7 +220,8 @@ render() {
       // error='Entrez un email.'
       fluid
       label='Email'
-      type="email" 
+      type="email"
+      pattern ='/.+\@.+\..+/'
       placeholder="Email" 
       value={this.state.email} 
       onChange={this.handleEmailChange}
@@ -251,20 +273,21 @@ render() {
       onChange={this.handleSiretChange}
     />
       <Form.Group inline>
-          <label>Particulier/Professionnel</label>
+          <label>Type de Fournisseur</label>
           <Form.Radio
             label='Particulier'
             value='particulier'
-            checked={this.state.particulier}  
-            onChange={this.handleParticulierChange} 
+            name='particulier'
+            checked={this.state.typesupplier}  
+            onChange={this.handleTypeChange} 
           />
           <Form.Radio
             label='Professionnel'
             value='professionnel'
-            name="supplier"
+            name='professionnel'
             type="checkbox"
-            checked={this.state.supplier}
-            onChange={this.handleSupplierChange}
+            checked={this.state.typesupplier}
+            onChange={this.handleTypeChange}
           />
 
         </Form.Group>
@@ -292,17 +315,11 @@ render() {
       type="password" 
       placeholder="Confirmer le mot de passe"
     />
-    <Form.Checkbox
-      label='I agree to the Terms and Conditions'
-      // error={{
-      //   content: 'You must agree to the terms and conditions',
-      //   pointing: 'left',
-      // }}
-    />
+
     <Button type= "button" onClick={this.registerSupplier}>S'inscrire</Button>
     </Segment>
   </Form>
-
+  </div>  
     );
   }
 }

@@ -19,7 +19,7 @@ function Navbar() {
             </Menu.Item>
                 
             <Menu.Item name='Logout'>            
-              <Link to ="/logout" className="butt"><Icon link name='log out' size="large"/>Logout</Link>
+              <Link to ="/logout" className="butt"><Icon link name='log out' size="large"/>Déconnexion</Link>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
@@ -29,7 +29,7 @@ function Navbar() {
     else if(Cookies.get('supplierToken')){
       return (
         <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
-          <Menu.Item name='home' size="1em"> 
+          <Menu.Item name='home'> 
             <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
           </Menu.Item>
               
@@ -39,7 +39,7 @@ function Navbar() {
             </Menu.Item>
             
             <Menu.Item name='Connexion'>
-              <Link to ="/logout" className="butt"><Icon link name='log out' size="large"/>Logout</Link>
+              <Link to ="/logout" className="butt"><Icon link name='log out' size="large"/>Déconnexion</Link>
             </Menu.Item>
           </Menu.Menu>
         </Menu>

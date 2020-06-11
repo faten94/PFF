@@ -63,20 +63,22 @@ render(){
 }
 
   return (
+  <div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
     <Form>
       <Segment>
-      <Menu  attached='top' tabular>
-        <Link to ="/loginUser">
-          <Menu.Item name='userlogin' active={activeItem === 'userlogin'} onClick={this.handleItemClick}>
+        <Menu  attached='top' tabular>
+          <Link to ="/loginUser">
+            <Menu.Item name='userlogin' active={activeItem === 'userlogin'} onClick={this.handleItemClick}>
             Connexion Utilisateur
-          </Menu.Item>
-        </Link>
+            </Menu.Item>
+          </Link>
         <Link to ="/loginSupplier">
           <Menu.Item name='supplierlogin' active={activeItem === 'supplierlogin'} onClick={this.handleItemClick}>
             Connexion Fournisseur
           </Menu.Item>
-        </Link>
-      </Menu>
+          
+          </Link>
+        </Menu>
     <Form.Field>
       <label>Email</label>
       <input label='Email' placeholder='Email' value={this.state.email} onChange={this.handleEmailChange}/>
@@ -85,29 +87,11 @@ render(){
       <label>Mot de passe</label>
       <input type="password"label='Mot de passe' placeholder='Mot de passe' value={this.state.password}  onChange={this.handlePasswordChange}/>
     </Form.Field>
-    <Form.Field>
-      <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
+
     <Button type='submit' onClick={this.loginUser}>Se connecter</Button>
     </Segment>
   </Form>
-
-    
-    // <div className="container">
-
-    // <td><Link to ="/loginUser">Connexion Utilisateur</Link></td>
-    // <td><Link to ="/loginSupplier">Connexion Fournisseur</Link></td>
-
-    // <h2>Connexion Utilisateur</h2>
-        
-    // <div className="formLoginDiv">
-    // <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailChange} />
-    // <br></br>
-    // <input type="password" placeholder="Mot de passe" value={this.state.password}  onChange={this.handlePasswordChange} />
-    // <br></br>
-    // <button onClick={this.loginUser}>Se connecter</button>
-    // </div>
-    // </div>
+</div>
     )}
   }
 

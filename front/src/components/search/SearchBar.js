@@ -48,7 +48,7 @@ class SearchBar extends Component{
         return (
         <div className="search">
         
-        <Input icon value={this.state.service} onChange = {this.handleServiceChange} placeholder='à votre service !'>
+        <Input icon value={this.state.service} onChange = {this.handleServiceChange} placeholder='A votre service !'>
         <input />
         <Icon name='search' />
         </Input>

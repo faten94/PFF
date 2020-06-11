@@ -97,6 +97,7 @@ render() {
       return (<Redirect to = "/loginUser"/>)
   }
   return (
+<div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>
 <Form>
   <Segment>
     <Menu  attached='top' tabular>
@@ -173,17 +174,11 @@ render() {
       label='Confirmation de mot de passe'
       placeholder="Confirmer le mot de passe" 
     />
-    <Form.Checkbox
-      label='I agree to the Terms and Conditions'
-      // error={{
-      //   content: 'You must agree to the terms and conditions',
-      //   pointing: 'left',
-      // }}
-    />
+
     <Button centered type= "button" onClick={this.registerUser} >S'inscrire</Button>
   </Segment>
   </Form>
-      
+  </div>    
     );
   }
 }

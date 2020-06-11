@@ -58,6 +58,7 @@ if(Cookies.get('supplierToken')){
   return <Redirect to = "/"/>
 }
   return (
+    <div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
     <Form>
       <Segment>
       <Menu  attached='top' tabular>
@@ -83,14 +84,10 @@ if(Cookies.get('supplierToken')){
       <input type="password"label='Mot de passe' placeholder='Mot de passe' value={this.state.password}  onChange={this.handlePasswordChange}/>
     </Form.Field>
 
-    <Form.Field>
-      <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
-
     <Button type='submit' onClick={this.loginSupplier}>Se connecter</Button>
     </Segment>
   </Form>
-
+    </div>
     )}
   }
 
