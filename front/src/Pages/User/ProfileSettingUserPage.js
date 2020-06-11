@@ -19,10 +19,12 @@ class ProfileUserPage extends Component {
             date: "",
             olddate: "",
             oldpassword: "",
-            password: ""
+            password: "",
+            
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePageChange =this.handlePageChange.bind(this)
     }
 
     handleChange = async (e) => {
@@ -52,7 +54,8 @@ class ProfileUserPage extends Component {
                 address: this.state.address,
                 phone: this.state.phone,
                 date: this.state.date,
-                password: this.state.password
+                password: this.state.password,
+            
             }
             if (this.state.password === '') data.password = this.state.oldpassword
             if (this.state.lastname === '') data.lastname = this.state.oldlastname
@@ -108,11 +111,17 @@ componentDidMount() {
             phone: res.data.phone,
             oldphone: res.data.phone,
             date: res.data.date,
-            olddate: res.data.date
+            olddate: res.data.date,
+            
         })
     })
     .catch(error => console.log(error));
 }
+
+handlePageChange() {
+   
+    window.location = "http://localhost:3000/account/profile/";
+  }
 
 render() {
  
@@ -190,9 +199,11 @@ render() {
         </form>
         <br></br>
         <div>Changez une ou plusieurs informations de votre profil.
-        <br></br>
+        <br></br><br></br>
 
         </div>
+
+        <button onClick={this.handlePageChange} >  Mes devis </button>
         </div>
         );
     };

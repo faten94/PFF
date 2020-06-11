@@ -16,6 +16,7 @@ app.use(express.json());
   console.log(req.body)
    
    req.body.user =  getId.getId(req, res)
+   
     Devis.create({content: req.body.content,
     daterdv: req.body.startdate,
     supplier: req.body.supplierId,

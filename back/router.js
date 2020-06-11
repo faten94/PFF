@@ -18,6 +18,7 @@ const devis = require('./controllers/devis');
 const devisRes = require('./controllers/devis')
 const getDevis = require('./controllers/getDevis');
 const map = require('./controllers/map') 
+const userPage = require('./controllers/userPage')
 
 
 
@@ -82,6 +83,7 @@ router.post('/devis', devis.devis)
 router.post('/devisres', devis.devisRes)
 router.post('/getdevis', getDevis.getdevis)
 router.post('/getdevisid', getDevis.getdevisbyid)
+router.post('/getDevisUser', userPage.getDevisbyUser )
 
 router.post('/map', map.mapCoordonate)
 
