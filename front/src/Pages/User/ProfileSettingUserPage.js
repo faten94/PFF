@@ -192,7 +192,9 @@ class ProfileUserPage extends Component {
                         </Table.Row>
                     </Table.Body>
                 </Table>
-                <Button type="submit" value="Modifier">Modifier</Button>
+                <Input type="password" onChange={this.handleChange} name="oldpassword" label={{ icon: 'asterisk' }} labelPosition='left corner' placeholder="Mot de passe" required></Input>
+                <Button type="submit" value="Mettre à jour" onClick={this.handleSubmit}>Confirmer</Button>
+    
 
             </form>
           
@@ -200,8 +202,6 @@ class ProfileUserPage extends Component {
         <div>Changez une ou plusieurs informations de votre profil.
         <br></br><br></br>
 
-
-        <button onClick={this.handlePageChange} >  Mes devis </button>
         </div>  
         </div>
 

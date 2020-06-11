@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Checkbox, Form, Menu, Segment } from 'semantic-ui-react'
+import { Button, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {

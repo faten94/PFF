@@ -14,6 +14,9 @@ function Navbar() {
         </Menu.Item>
                   
           <Menu.Menu position='right'>
+            <Menu.Item name='Mes Devis'>
+              <Link to="/account/profile/" className="butt"><Icon link name='clipboard outline' size="large"/>Mes Devis</Link>
+            </Menu.Item>
             <Menu.Item name='Edit'>            
               <Link to="/account/edit" className="butt"><Icon link name='settings' size="large"/>Editer</Link>
             </Menu.Item>
@@ -34,6 +37,11 @@ function Navbar() {
           </Menu.Item>
               
           <Menu.Menu position='right'>
+          
+            <Menu.Item name='Mes Devis'>
+              <Link to="/supplier/devis" className="butt"><Icon link name='clipboard outline' size="large"/>Mes Demandes</Link>
+            </Menu.Item>
+
             <Menu.Item name='Inscription'>
               <Link to="/supplier/edit" className="butt"><Icon link name='settings' size="large"/>Editer</Link>
             </Menu.Item>

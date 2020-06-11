@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Avatar from '../../images/avatar.png'
-import {DisplayMapClass} from '../../components/DisplayMapClass';
 import Map from '../../map/map'
 import Calendar from '../../components/calendar'
 import CommentSupplier from '../../components/commentsupplier/commentSupplier'
-import { Button, Card, Image, Icon, Header, List, Table, Label } from 'semantic-ui-react'
+import { Image, List, Table } from 'semantic-ui-react'
 
 class ProfileSupplierPage extends Component {
     constructor(props){

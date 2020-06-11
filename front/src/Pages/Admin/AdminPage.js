@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import axios from "axios";
 import { Menu } from 'semantic-ui-react';
-import { Header, Icon, Image } from 'semantic-ui-react';
+import { Header, Icon } from 'semantic-ui-react';
 
 
 class AdminPage extends Component {
