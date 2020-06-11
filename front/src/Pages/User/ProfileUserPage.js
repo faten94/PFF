@@ -59,8 +59,7 @@ class ProfileUserPage extends Component {
           <p> Votre Facture est de : {devis.price} €   </p>
           <PayPalButton
         amount={devis.price}
-        currency='EUR'
-        client-id='PVPCLN53UJUGJ'
+        // clientId= 'PVPCLN53UJUGJ'
         // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
         onSuccess={(details, data) => {
           alert("Transaction completed by " + details.payer.name.given_name);
