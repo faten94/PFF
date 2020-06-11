@@ -54,7 +54,8 @@ class ProfileUserPage extends Component {
             return(
 
           <div>
-          <p>  la réponse est : { devis.answer }</p>
+          <h3>  Paiement en attente de validation </h3>
+          <p> Contenu de la Reponse : { devis.answer }</p>
           <p> Votre Facture est de : {devis.price} €   </p>
           <PayPalButton
         amount={devis.price}
@@ -78,7 +79,7 @@ class ProfileUserPage extends Component {
         else
         return(
             <div>
-            <h3>  Devis en attente de validation </h3>
+            <h3>  Devis en attente  </h3>
              Votre devis " {devis.title} " est en cours de validation </div>
         )   
       }
