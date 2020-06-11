@@ -5,7 +5,7 @@ import {DisplayMapClass} from '../../components/DisplayMapClass';
 import Map from '../../map/map'
 import Calendar from '../../components/calendar'
 import CommentSupplier from '../../components/commentsupplier/commentSupplier'
-
+import { Button, Card, Image, Icon, Header, List, Table, Label } from 'semantic-ui-react'
 
 class ProfileSupplierPage extends Component {
     constructor(props){
@@ -64,33 +64,69 @@ class ProfileSupplierPage extends Component {
 
         return (
             <div className="container">
-                {/* <DisplayMapClass/> */}
-                <h1>Profil de {this.state.lastname} {this.state.firstname}</h1>
-                    <div>
-                    <div><Map/> </div>
-                        <img className ="card-img-top" src={Avatar} alt={this.state.photo} width="100"/>
-                    </div>
-                    <div> </div>
-                <div>
-                    <div>
-                        <p>Adresse : {this.state.address}</p>
-                        <p>Ville : {this.state.city}</p>
-                        <p>Code postal : {this.state.zip}</p>
-                        <p>Email : {this.state.email}</p>
-                        <p>Téléphone : {this.state.phone}</p>
-                        <p>Date d'inscription : {this.state.date}</p>
-                        <p>Type de fournisseur : {this.state.typesupplier}</p>
-                        <p>Siret : {this.state.siret} </p>
-                        <p>Service: {this.state.service}</p>
-                        <p>Moyenne :</p>
-                    </div>
-                    <div> <Calendar/> </div>
-                </div>
-           <CommentSupplier/>
-                </div>
-            )
+        {/* <DisplayMapClass/> */}
 
-        }
+        <div>
+        <div> <Map /></div>
+<br/>
+        </div>
+
+        <div>
+        <div>
+        <List>
+        <List.Item>
+        <Image className ="card-img-top" src={Avatar} alt={this.state.photo} width="100"/>
+        <List.Content>
+        <h1>Profil </h1>
+        <List.Header as='a'><h1> {this.state.lastname} {this.state.firstname}</h1></List.Header>
+        <List.Description>
+        {' '}
+        <a>
+        <b>{this.state.service}</b><p>Categorie : {this.state.typesupplier}</p> <p>Siret : {this.state.siret} </p>
+        </a>{' '}
+
+        </List.Description>
+        </List.Content>
+        </List.Item>
+        </List>
+
+        <Table celled>
+        <Table.Header>
+        <Table.Row textAlign='center'>
+        <Table.HeaderCell >Adresse</Table.HeaderCell>
+        <Table.HeaderCell>Code postal </Table.HeaderCell>
+        <Table.HeaderCell>Ville</Table.HeaderCell>
+        <Table.HeaderCell>Email</Table.HeaderCell>
+        <Table.HeaderCell>Téléphone</Table.HeaderCell>
+         <Table.HeaderCell>Date d'inscription</Table.HeaderCell>
+        </Table.Row>
+        </Table.Header>
+
+        <Table.Body  >
+        <Table.Row textAlign='center'>
+        <Table.Cell >
+        <p> {this.state.address}</p>
+        </Table.Cell>
+        <Table.Cell><p> {this.state.zip}</p></Table.Cell>
+        <Table.Cell> <p> {this.state.city}</p></Table.Cell>
+        <Table.Cell><p>{this.state.email}</p></Table.Cell>
+        <Table.Cell><p>{this.state.phone}</p></Table.Cell>
+        <Table.Cell> <p>{this.state.date}</p> </Table.Cell>
+        </Table.Row>
+
+        </Table.Body>
+        </Table>               
+
+                
+
+        </div>
+        <div> <Calendar/> </div>
+        </div>
+        <CommentSupplier/>
+        </div>
+        )
+
     }
+}
 
-    export default ProfileSupplierPage;
+export default ProfileSupplierPage;

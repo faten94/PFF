@@ -19,7 +19,7 @@ class Devis extends Component{
 
   getDevis = () =>  {
     const supplier = localStorage.getItem('supplierId')
-    console.log("LIGNE23",supplier)
+    //console.log("LIGNE23",supplier)
 
 const params = supplier
     axios.post('http://localhost:8080/getdevis/', { params})

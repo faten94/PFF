@@ -14,7 +14,7 @@ app.use(express.json());
 
  exports.getdevis = async(req, res) => 
  {
-  console.log("je suis la ", req.body.params)
+//   console.log("je suis la ", req.body.params)
   let id = req.body.params
 
    Devis.find ({supplier:req.body.params},function(err,docs){
@@ -26,7 +26,8 @@ app.use(express.json());
 
  exports.getdevisbyid = async (req, res) => {
     
-    console.log("je suis la nnnnnnn  ", req.body.params)
+    console.log("params Req", req)
+    
     let id = req.body.params
   
      Devis.findById ( id , function(err,docs){

@@ -20,6 +20,8 @@ const SupplierSchema = new Schema({
 
     particulier: {type :String },
 
+    typesupplier: {type: String},
+
     siret :{type :Number},
 
     address: {type: String , required: true },

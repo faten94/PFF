@@ -120,12 +120,12 @@ class Map extends Component{
     return(
         <div> <h1>
 
-        au {this.state.posts.address} à {this.state.posts.city} ({this.state.posts.zip})
+       
       <div ref={this.mapRef} style={{ height: "250px"}} />
         </h1> </div>
             
     )}
-
+//au {this.state.posts.address} à {this.state.posts.city} ({this.state.posts.zip})
 }
 
 export default Map
