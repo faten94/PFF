@@ -12,7 +12,6 @@ app.use(express.json());
 
  exports.devis = async(req, res) => 
  {
-  console.log(req.body) 
    req.body.user =  getId.getId(req, res)
 
     Devis.create({content: req.body.content,
@@ -21,10 +20,10 @@ app.use(express.json());
       supplier: req.body.supplierId,
       user: req.body.user,
       answer:'',
-      price:''
+      price:'',
+      statut:''
       }, function(err,docs)
     {
-       console.log(docs)
       if(!err) res.send(docs)
     })
  }
@@ -33,16 +32,22 @@ app.use(express.json());
  {
    console.log(req.body._id)
    const id =  req.body._id;
+   console.log('price '+req.body.statut)
+   if(!req.body.statut){
+     req.body.statut = ''
+   }
 
-   Devis.findByIdAndUpdate({ _id:id }, {price:req.body.price , answer:req.body.answer},function(err,result) 
+   Devis.findByIdAndUpdate({ _id:id }, {price:req.body.price , answer:req.body.answer, statut:req.body.statut},function(err,result) 
     {
       if (err) 
       {
+        console.log('Raté lol')
         res.send(err);
       } 
       else {
+        console.log("WESH "+result)
         res.json(result);
-        console.log(result)
+        // console.log(result)
       }
 
     })
