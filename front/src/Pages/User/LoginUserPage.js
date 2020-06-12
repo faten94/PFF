@@ -6,7 +6,7 @@ import { Button, Form, Menu, Segment } from 'semantic-ui-react'
 
 
 class LoginUserPage extends Component {
-  constructor(props){  
+  constructor(props){
     super(props)
     console.log(props);
     this.state = {
@@ -17,9 +17,9 @@ class LoginUserPage extends Component {
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    
+
   }
-  
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleEmailChange = (e) => {
@@ -27,15 +27,15 @@ class LoginUserPage extends Component {
       email: e.target.value
     })
   }
-  
+
   handlePasswordChange = (e) => {
     this.setState({
       password: e.target.value
     })
   }
-  
+
   loginUser = (e) => {
-    
+
     console.log(this.state);
     axios.post('http://localhost:8080/login', {
     email: this.state.email,
@@ -43,17 +43,29 @@ class LoginUserPage extends Component {
   })
   .then(function (response) {
     // Quand resulat OK => Redirige vers la bonne page
-    Cookies.set('token', response.data['token'])
-    window.location.reload(false)
-    
+    Cookies.set('token', response.data['token']);
+
+    // Get 'redirectURL' param from URL
+    let redirectURL = window.location.search.split('redirectURL=')[1];
+
+    // Check if local storage is not empty (different of undefined & different of null)
+    if(redirectURL) {
+      window.location.href = redirectURL;
+    } else {
+      // No supplier ID stored in local storage => Display home screen
+      window.location.href = '/'
+    }
+
+    // window.location.reload(false)
+
     // window.location.href = '/'
-    
+
   })
  // .then(() => this.setState({ redirect: true }))
   .catch(function (error) {
-  alert("Veuillez verifier votre email ou votre mot de passe."); 
+  alert("Veuillez verifier votre email ou votre mot de passe.");
   });
-  
+
 }
 
 render(){
@@ -63,7 +75,7 @@ render(){
 }
 
   return (
-  <div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>  
+  <div className="container" style = {{paddingLeft: "30%", paddingRight: "30%"}}>
     <Form>
       <Segment>
         <Menu  attached='top' tabular>
@@ -76,7 +88,7 @@ render(){
           <Menu.Item name='supplierlogin' active={activeItem === 'supplierlogin'} onClick={this.handleItemClick}>
             Connexion Fournisseur
           </Menu.Item>
-          
+
           </Link>
         </Menu>
     <Form.Field>
@@ -96,4 +108,4 @@ render(){
   }
 
 
-    export default LoginUserPage; 
+    export default LoginUserPage;

@@ -21,8 +21,8 @@ class RepDevis extends React.Component {
         const urlLength = urlArray.length - 1
         const devisId = urlArray[urlLength]
 
-       
-        this.state = 
+
+        this.state =
         {
             recupdata:'',
             data:'',
@@ -35,7 +35,7 @@ class RepDevis extends React.Component {
         }
     }
 
-    getDevisbyId = async () =>  
+    getDevisbyId = async () =>
     {
 
         const params = {_id: this.state.devisId }
@@ -52,7 +52,7 @@ class RepDevis extends React.Component {
         return (this.state.data)
       }
 
-      handleAnswerChange = (e) => 
+      handleAnswerChange = (e) =>
       {
         console.log(e.target.value);
            this.setState({
@@ -69,19 +69,19 @@ class RepDevis extends React.Component {
 
 
       Answer = async(e) => {
-        
+
         //console.log(this.state.devisId)
-        await axios.post("http://localhost:8080/devisres", 
-        { 
+        await axios.post("http://localhost:8080/devisres",
+        {
             price: this.state.price,
             answer: this.state.answer,
-            _id: this.state.devisId 
-            
+            _id: this.state.devisId
+
         })
         .then((response) => {
             console.log("reponse envoyé")
         })
-        .then(() => this.setState({ redirect: true })) 
+        .then(() => this.setState({ redirect: true }))
         .catch((err) => {
             alert("Les champs sont invalides.")
         })
@@ -109,18 +109,18 @@ class RepDevis extends React.Component {
           <Form.TextArea
           fluid
           label='Répondre'
-          type="texte" 
-          value={this.state.answer} 
-          onChange = {this.handleAnswerChange}  
+          type="texte"
+          value={this.state.answer}
+          onChange = {this.handleAnswerChange}
           placeholder = " Répondre... "
         />
         <Form.Input
           // error='Entrez un téléphone.'
           fluid
           label='Prix (en €)'
-          type="number" 
-          value={this.state.price} 
-          onChange = {this.handlePriceChange}  
+          type="number"
+          value={this.state.price}
+          onChange = {this.handlePriceChange}
           placeholder = " Entrez le prix de la prestation... "
         />
         <Button  onClick={this.Answer}> Valider </Button>
@@ -128,7 +128,7 @@ class RepDevis extends React.Component {
         </div>
   
         )
-        
+
     }
 }
 
