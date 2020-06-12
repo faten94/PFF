@@ -12,7 +12,7 @@ app.use(express.json());
 
  exports.devis = async(req, res) => 
  {
-  console.log(req.body) 
+ // console.log(req.body) 
    req.body.user =  getId.getId(req, res)
 
     Devis.create({content: req.body.content,
@@ -24,14 +24,14 @@ app.use(express.json());
       price:''
       }, function(err,docs)
     {
-       console.log(docs)
+      // console.log(docs)
       if(!err) res.send(docs)
     })
  }
 
  exports.devisRes =async(req, res) => 
  {
-   console.log(req.body._id)
+  // console.log(req.body._id)
    const id =  req.body._id;
 
    Devis.findByIdAndUpdate({ _id:id }, {price:req.body.price , answer:req.body.answer},function(err,result) 

@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = async (req, res, next) => {
-  console.log("auth "+req.headers.authorization);
+ // console.log("auth "+req.headers.authorization);
   try {
     const token = req.headers.authorization
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);

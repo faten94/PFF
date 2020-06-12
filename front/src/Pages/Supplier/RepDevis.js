@@ -126,18 +126,7 @@ class RepDevis extends React.Component {
         <Button  onClick={this.Answer}> Valider </Button>
         </Form>
         </div>
-            // <div>
-            //     <button  onClick={this.getDevisbyId}> Afficher le detail du devis</button>
-            //     <br/> 
-            //     <div> {this.state.data.content}  </div>
-            //     <br/>
-            //     <div> {this.state.data.daterdv}  </div>
-
-            //     <input value={this.state.answer} onChange = {this.handleAnswerChange}  placeholder = " Taper la reponse " />
-            //     <input value={this.state.price} onChange = {this.handlePriceChange}  placeholder = " entrez le prix " />
-            //     <button  onClick={this.Answer}> Envoyer la reponse </button>
-
-            // </div>
+  
         )
         
     }

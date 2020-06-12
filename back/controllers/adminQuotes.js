@@ -5,8 +5,8 @@ const Devis = require('../models/DevisSch')
 app.use(express.json());
 
 exports.updateQuote = async (req, res) => {
-    console.log('body '+req.body)
-    console.log(req.body.quoteId)
+  //  console.log('body '+req.body)
+  //  console.log(req.body.quoteId)
     const id =  req.body.quoteId
     Devis.findByIdAndUpdate(id, req.body, function(err, result){
         if(err) res.send(err)
@@ -22,9 +22,9 @@ exports.getAllQuotes = (req, res) => {
 }
 
 exports.getQuote = (req, res) => {
-    console.log(req.params)
+   // console.log(req.params)
     const id =  req.params.quoteId
-    console.log(id)
+   // console.log(id)
     Devis.findById(id, function (err, quote) {
         if(err) throw err;
         res.json(quote)

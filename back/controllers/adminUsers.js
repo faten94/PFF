@@ -10,8 +10,8 @@ dotenv.config();
 app.use(express.json());
 
 exports.updateProfile = async (req, res) => {
-    console.log('body '+req.body)
-    console.log(req.body.userId)
+  //  console.log('body '+req.body)
+  //  console.log(req.body.userId)
     const id =  req.body.userId
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted
@@ -23,7 +23,7 @@ exports.updateProfile = async (req, res) => {
 }
 
 exports.verifyAdmin = function (req, res, id) {
-    console.log("admin verify id",id);
+   // console.log("admin verify id",id);
     return User.findById(id, function (err, user) {
         if(err) throw err;
         if(user.role !== 'admin'){
@@ -42,9 +42,9 @@ exports.getAllProfile = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    console.log(req.params)
+   // console.log(req.params)
     const id =  req.params.userId
-    console.log(id)
+  //  console.log(id)
     User.findById(id, function (err, user) {
         if(err) throw err;
         res.json(user)

@@ -25,10 +25,10 @@ exports.register = async (req,res, next) => {
 };
 
 exports.login = (req, res) => {
-    console.log('login')
-    console.log(req.body)
+  //  console.log('login')
+   // console.log(req.body)
     const { email, password } = req.body
-    console.log(email)
+   // console.log(email)
     Supplier.findOne({email}, (err, user) => {
         
         if (err || !user){
@@ -37,7 +37,7 @@ exports.login = (req, res) => {
             })
         }
         bcrypt.compare(req.body.password, user.password, function(err, result) {
-            console.log(result)
+        //    console.log(result)
             if(result == false){
                 return res.status(400).json({
                     error: "Email doesn't exist."

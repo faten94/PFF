@@ -26,7 +26,7 @@ class Devis extends Component{
       this.setState({
         data: x
       });
-      console.log(this.state.data)
+      //console.log(this.state.data)
       localStorage.setItem('data', JSON.stringify(this.state.data))
   
     })

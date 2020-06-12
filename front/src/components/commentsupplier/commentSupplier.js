@@ -47,13 +47,13 @@ class CommentSupplier extends Component {
 
     answerComment = (commentId) => {
         const headers = { 'authorization': Cookies.get('token') }
-        console.log("eh ho Answer comment: ", commentId)
+       // console.log("eh ho Answer comment: ", commentId)
         axios.post("http://localhost:8080/suppliers/answerComment/"+commentId, {
             answer: this.state.answer,
 
         }, { headers: headers })
         .then((response) => {
-            console.log("Answer ", this.state.answer)
+            //console.log("Answer ", this.state.answer)
             console.log("Answer Success")
             window.location.reload(false)
         })
@@ -86,7 +86,7 @@ class CommentSupplier extends Component {
         axios
         .get("http://localhost:8080/suppliers/answers")
         .then((response) => {     
-            console.log('fonction getAllAnswers'+response) 
+           // console.log('fonction getAllAnswers'+response) 
             this.setState({ answers: response.data })
         })
         .catch((err) => {

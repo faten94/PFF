@@ -23,7 +23,7 @@ exports.getAllComments = (req, res) => {
 }
 
 exports.getComment = (req, res) => {
-    console.log(req.params);
+   // console.log(req.params);
     const id =  req.params.commentId;
     console.log(id);
     Comment.findById(id, function (err, comment) {
@@ -33,8 +33,8 @@ exports.getComment = (req, res) => {
 }
 
 exports.updateComment = async (req, res) => {
-    console.log('body '+req.body);
-    console.log(req.body.commentId);
+ //   console.log('body '+req.body);
+  //  console.log(req.body.commentId);
     const id =  req.body.commentId;
     await bcrypt.hash(req.body.password, saltRounds, (err, encrypted) => {
         req.body.password = encrypted;

@@ -63,7 +63,7 @@ exports.updateComment = async (req, res) => {
 }
 
 exports.answerComment = async (req,res, err) => {
-    console.log('Id du fucking commentaire de mes deux :', req.params.commentId);
+   // console.log('Id du commentaire :', req.params.commentId);
     req.body.commentId = req.params.commentId
     
     const id = getId.getId(req, res);
@@ -71,7 +71,7 @@ exports.answerComment = async (req,res, err) => {
     req.body.commentedBy
     .then((result) => {
     req.body.commentedBy = result.firstname + " " + result.lastname
-    console.log("commented by :", req.body.commentedBy)
+    //console.log("commented by :", req.body.commentedBy)
     const answer = new Answer(req.body);
     answer.save();
     res.status(200).json({ message: "Comment complete." });

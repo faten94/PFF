@@ -26,7 +26,7 @@ app.use(express.json());
 
  exports.getdevisbyid = async (req, res) => {
     
-    console.log("params Req", req)
+   // console.log("params Req", req)
     
     let id = req.body.params
   
