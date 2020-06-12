@@ -83,7 +83,7 @@ class RepDevis extends React.Component {
         })
         .then(() => this.setState({ redirect: true }))
         .catch((err) => {
-            alert("Les chmaps sont invalides.")
+            alert("Les champs sont invalides.")
         })
       }
 

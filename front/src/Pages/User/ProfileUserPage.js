@@ -54,6 +54,17 @@ class ProfileUserPage extends Component {
       }
       
       test = (devis) => {
+        if(devis.statut){
+          return(
+            <div>
+            
+            <h3>  Devis en attente  </h3>
+            Votre devis " {devis.title} " est en cours de validation
+            
+            </div>
+            
+            )
+        }
         
         if(devis.price)
         {
@@ -69,7 +80,26 @@ class ProfileUserPage extends Component {
             options={{clientId: "AYr0M7mpx_IGEBPiDzqhR395tlT5lkTUTJ55yHILg-5dfjnMbqDWEf5_faWUutBNdp3aNTfsRLpkT8h2", currency: "EUR"}}
             amount={devis.price}            
             onSuccess={(details, data) => {
-              alert("Transaction réussie !!");
+              
+              console.log(devis)
+              axios.post("http://localhost:8080/devisres", 
+              { 
+                statut: 'payé',
+                price: devis.price,
+                answer: devis.answer,
+                _id: devis._id 
+                
+              })
+              .then((response) => {
+                alert("Transaction réussie !!");
+                console.group(response)
+                console.log("reponse envoyé")
+              })
+              .then(() => this.setState({ redirect: true })) 
+              .catch((err) => {
+                alert("Les chmaps sont invalides.")
+              })
+              
               
               // OPTIONAL: Call your server to save the transaction
               

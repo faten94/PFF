@@ -17,14 +17,11 @@ exports.getDevisbyUser = async (req, res) =>
 {
     req.body.user =  getId.getId(req, res)
     const user = req.body.user
-    console.log(req.body.user)
 
     Devis.find({user: user}, function(err,devis)
     {
         if(err) throw err;
 
         res.json(devis);
-        console.log("succeed", devis) 
-
     })
 }
