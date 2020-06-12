@@ -18,6 +18,8 @@ class ProfileUserPage extends Component {
             oldaddress: "",
             phone: "",
             oldphone: "",
+            photo: "",
+            oldphoto: "",
             date: "",
             olddate: "",
             oldpassword: "",
@@ -39,9 +41,10 @@ class ProfileUserPage extends Component {
         window.location = "http://localhost:3000/account/profile/";
         }
 
-    handleSubmit(event) {
+    handleSubmit = async (event) => {
         event.preventDefault();
         var headers = { 'authorization': Cookies.get('token') }
+        
 
         axios.post('http://localhost:8080/login', {
             email: this.state.oldemail,
@@ -56,7 +59,8 @@ class ProfileUserPage extends Component {
                         address: this.state.address,
                         phone: this.state.phone,
                         date: this.state.date,
-                        password: this.state.password
+                        password: this.state.password,
+                        photo: this.state.photo
                     }
                     if (this.state.password === '') data.password = this.state.oldpassword
                     if (this.state.lastname === '') data.lastname = this.state.oldlastname
@@ -64,7 +68,9 @@ class ProfileUserPage extends Component {
                     if (this.state.email === '') data.email = this.state.oldemail
                     if (this.state.address === '') data.address = this.state.oldaddress
                     if (this.state.phone === '') data.phone = this.state.oldphone
+                    if (this.state.photo === '') data.photo = this.state.oldphoto
                     if (this.state.date === '') data.date = this.state.olddate
+
                     axios.post('http://localhost:8080/settings', data, { headers: headers })
                         .then(res => {
                             window.location.reload(false)
@@ -111,6 +117,7 @@ class ProfileUserPage extends Component {
                     oldaddress: res.data.address,
                     phone: res.data.phone,
                     oldphone: res.data.phone,
+                    oldphoto: res.data.photo,
                     date: res.data.date,
                     olddate: res.data.date,
                 })
@@ -133,13 +140,7 @@ class ProfileUserPage extends Component {
             <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' size='small' circular centered />
 
             <br></br>
-
-            <Button
-                content="Téléchargez une photo de profil"
-                labelPosition="left"
-                icon="file"
-                onClick={() => this.fileInputRef.current.click()}
-            />
+            
             <br></br>
 
             <br></br>
@@ -188,7 +189,12 @@ class ProfileUserPage extends Component {
                         <Table.Row>
                             <Table.Cell>Date d'enregistrement</Table.Cell>
                             <Table.Cell>{this.state.olddate}</Table.Cell>
-                            <Table.Cell></Table.Cell>
+                            <Table.Cell><Input type="password" onChange={this.handleChange} name="oldpassword" label={{ icon: 'asterisk' }} labelPosition='left corner' placeholder="Mot de passe" required></Input></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Image de profil</Table.Cell>
+                            <Table.Cell><img width="200" height="200" src={this.state.oldphoto}/></Table.Cell>
+                            <Table.Cell><Input type="text" onChange={this.handleChange} name="photo" placeholder="Entrez l'url d'une image"></Input></Table.Cell>
                         </Table.Row>
                     </Table.Body>
                 </Table>
