@@ -62,12 +62,12 @@ class ProfileSupplierPage extends Component {
     render() {
 
         return (
-            <div className="container">
+            <div className="container" style={{paddingLeft: "5%", paddingRight: "5%"}}>
         {/* <DisplayMapClass/> */}
 
         <div>
         <div> <Map /></div>
-<br/>
+        <br/>
         </div>
 
         <div>
