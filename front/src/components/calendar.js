@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 
 class Calendar extends Component {
@@ -66,6 +66,7 @@ class Calendar extends Component {
     }
     , { headers: headers })
         .then((response) => {
+            alert("Votre demande a bien été envoyé.")
             console.log("Success")
         })
         .catch((err) => {
@@ -79,8 +80,10 @@ class Calendar extends Component {
 
     return (
         <div>
-
-
+          <center>
+        <br/>
+        <br/>
+        <h4>Veuillez choisir une date :</h4>
         <DatePicker selected={this.state.startdate}
 
         onChange={this.handelStartdatechange}
@@ -90,34 +93,46 @@ class Calendar extends Component {
             timeCaption="time"
             dateFormat=" d, MMMM, yyyy h:mm "
         />
-          <div>
-          <input type="text" placeholder="Objet" value={this.state.title} onChange={this.handelTitlechange} />
+        </center>
+
+          <div style={{paddingLeft:"5%", paddingRight:"5%"}}>
+              <Form>
+              <Form.Field>
+              <label>Objet</label>
+              <input type="text" placeholder="Objet" value={this.state.title} onChange={this.handelTitlechange} />
+              </Form.Field>
+              <Form.Field>
+              <label>Demande</label>
+              <input type="text" placeholder="rediger votre probleme" value={this.state.content} onChange={this.handelContentchange} />
+              </Form.Field>
+              
+              <Button onClick={this.Devis}>Demander un devis</Button>
+              </Form>
+              <br/>
           </div>
-          <div>
-          <input type="text" placeholder="rediger votre probleme" value={this.state.content} onChange={this.handelContentchange} />
-          </div>
-          <button onClick={this.Devis}>Demmande de devis</button>
-        </div>
+      </div>
     );
 
   }
   else {
     return (
-    <div>
-<br/>
-    Vous souhaitez prendre un Rdv ou passer votre commande ?
- <Button.Group>
- <Link to ="/registeruser">
- 
-    <Button > inscription</Button>
-    </Link>
-    <Button.Or text='ou' />
-    <Link to = {"/loginUser?redirectURL=http://localhost:3000/accountsupplier/" + this.state.supplierId}>
-    <Button primary >connexion</Button>
-    </Link>
-  </Button.Group>
-
-    </div>
+      <div>
+      <center>
+      <br/>
+      <h4>Vous souhaitez prendre un Rdv, passer votre commande ou commenter le Needelper :</h4>
+      <br/>
+      <Button.Group>
+      <Link to ="/registeruser">
+      
+      <Button > inscription</Button>
+      </Link>
+      <Button.Or text='ou' />
+      <Link to = {"/loginUser?redirectURL=http://localhost:3000/accountsupplier/" + this.state.supplierId}>
+      <Button primary >connexion</Button>
+      </Link>
+      </Button.Group>
+      </center>
+      </div>
   );
 }
 }

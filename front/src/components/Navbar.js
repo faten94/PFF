@@ -9,11 +9,11 @@ function Navbar() {
   if(Cookies.get('token')){
     return (
       <Menu stackable inverted fluid style={{backgroundColor: "#2D4F6C"}}>
-        <Menu.Item name='home' size="1em"> 
+        <Menu.Item name='home'> 
           <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
         </Menu.Item>
                   
-          <Menu.Menu position='right'>
+          <Menu.Menu stackable position='right'>
             <Menu.Item name='Mes Devis'>
               <Link to="/account/profile/" className="butt"><Icon link name='clipboard outline' size="large"/>Mes Devis</Link>
             </Menu.Item>
@@ -31,12 +31,12 @@ function Navbar() {
     }
     else if(Cookies.get('supplierToken')){
       return (
-        <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
+        <Menu stackable inverted fluid style={{backgroundColor: "#2D4F6C"}}>
           <Menu.Item name='home'> 
             <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
           </Menu.Item>
               
-          <Menu.Menu position='right'>
+          <Menu.Menu stackable position='right'>
           
             <Menu.Item name='Mes Devis'>
               <Link to="/supplier/devis" className="butt"><Icon link name='clipboard outline' size="large"/>Mes Demandes</Link>
@@ -54,11 +54,11 @@ function Navbar() {
       )
     }
     return (
-      <Menu inverted fluid style={{backgroundColor: "#2D4F6C"}}>
-        <Menu.Item name='home' size="1em"> 
+      <Menu stackable inverted fluid style={{backgroundColor: "#2D4F6C"}}>
+        <Menu.Item name='home' > 
           <Link to= "/"><img className ="logo" src={Logo} alt="logo" width="20%"/></Link>
         </Menu.Item>
-        <Menu.Menu position='right'>
+        <Menu.Menu stackable position='right'>
         <Menu.Item name='Inscription'>
           <Link to="/registeruser" className="butt"><Icon link name='signup' size="large"/>Inscription</Link>
         </Menu.Item>

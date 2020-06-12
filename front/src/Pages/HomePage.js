@@ -70,7 +70,8 @@ function HomePage() {
 		</div>
   <Header as='h3'  textAlign='center'  block>
 
-    Un site innovant de Needelp 
+		Le service à domicile by Needelp
+     
   </Header>
 		</div>
 	</div>

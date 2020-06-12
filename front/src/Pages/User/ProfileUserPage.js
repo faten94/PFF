@@ -71,6 +71,7 @@ class ProfileUserPage extends Component {
           return(
             
             <div>
+              <br/>
             <Card fluid>
             <h3>  Paiement en attente de validation </h3>
             <p> Titre :  {devis.title} </p>
@@ -116,16 +117,20 @@ class ProfileUserPage extends Component {
             </div>
             )
           }
-          // else 
-          // return(
-          //   // <div>
+          else 
+          return(
+            <div>
+            <br/>
+            <Card fluid>
+            <h4>  Devis en attente  </h4>
             
-          //   // <h3>  Devis en attente  </h3>
-          //   // Votre devis " {devis.title} " est en cours de validation
+            Votre devis " {devis.title} " est en cours de validation
+            <br/>
+            </Card>
             
-          //   // </div>
+            </div>
             
-          //   )   
+            )   
           }
           
           

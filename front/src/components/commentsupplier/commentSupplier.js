@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'js-cookie';
-import { Button,  Icon,  List, Table} from 'semantic-ui-react'
+import { Button,  Icon,  List, Table} from 'semantic-ui-react';
+
 
 
 class CommentSupplier extends Component {
@@ -204,9 +205,18 @@ class CommentSupplier extends Component {
         
         render() {
             let comments = this.state.comments;
+            if(!Cookies.get('token')){
+                return (
+                <div>
+                <br/>
+                <h2> Note Moyenne : {(this.state.total/this.state.notes.length).toFixed(1)} <Icon name='star' color="yellow" /></h2>
+                <br/>
+                </div>
+                )
+            }
             return (
                 <div>
-                <p> Note Moyenne : {(this.state.total/this.state.notes.length).toFixed(1)} <Icon name='star' color="yellow" /></p>
+                <h2> Note Moyenne : {(this.state.total/this.state.notes.length).toFixed(1)} <Icon name='star' color="yellow" /></h2>
 
                 <br/>
                 <Table celled>
@@ -235,7 +245,7 @@ class CommentSupplier extends Component {
                 
                 </div>
                 );
-            };
+        };
         }
         export default CommentSupplier;
         

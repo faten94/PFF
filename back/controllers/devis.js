@@ -32,7 +32,7 @@ app.use(express.json());
  {
   // console.log(req.body._id)
    const id =  req.body._id;
-   console.log('price '+req.body.statut)
+   //console.log('price '+req.body.statut)
    if(!req.body.statut){
      req.body.statut = ''
    }
@@ -41,11 +41,11 @@ app.use(express.json());
     {
       if (err) 
       {
-        console.log('Raté lol')
+        //console.log('Raté lol')
         res.send(err);
       } 
       else {
-        console.log("WESH "+result)
+        //console.log("WESH "+result)
         res.json(result);
         // console.log(result)
       }
